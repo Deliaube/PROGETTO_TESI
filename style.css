@@ -3,9 +3,91 @@ body{
 }
 
 h1{
-    color: rgb(51, 21, 223);
     text-align: center;
-    font-size: 50px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    font-family: 'Courier', monospace;
     font-style: italic;
+}
+
+ul{
+    background-color: rgb(112, 112, 112);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li{
+    float: left;
+    display: block;
+   
+    text-align: center;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 15px
+}
+
+li a{
+    display: block;
+    padding: 8px;
+}
+
+main{
+    text-align: center;
+    float: left;
+}
+
+div{
+    float: right;
+}
+
+intro{
+    text-align: center;
+    align-items: center;
+    content: align;
+    vertical-align: middle;
+}
+
+table, th, td {
+    border:1px solid black;
+    content: align;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    
+  }
+  
+  /* Stile comune per i bottoni */
+  button {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: white;
+    background-color: #28a745; /* Verde */
+    border: none;
+    border-radius: 5px; /* Angoli arrotondati */
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #218838; /* Verde scuro al passaggio */
+  }
+
+  img {
+    display: block;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(16, 205, 98, 0.1);
+    align-items: center;
+    margin: auto;
+  }
+
+
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(112, 112, 112);
+    color: white;
+    text-align: center;
 }

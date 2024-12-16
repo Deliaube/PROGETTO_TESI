@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto Sito</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    
+    </header>
+
+    <div class="interactive-area">
+        <div class="point" data-message="Questo è il primo popup!">✴</div>
+        <div class="point" data-message="Ecco un altro popup!">★</div>
+        <div class="point" data-message="Messaggio per il terzo popup!">⬤</div>
+      </div>
+      
+      <!-- Area per il popup -->
+      <div class="popup" id="popup">
+        <span class="close">&times;</span>
+        <p id="popup-content"></p>
+      </div>
+
+      <style>/* Contenitore interattivo */
+        .interactive-area {
+          position: relative;
+          width: 100%;
+          height: 80vh;
+          background-color: #f9f9f9;
+          border: 2px dashed #ccc;
+          overflow: hidden;
+        }
+        
+        /* Punti interattivi */
+        .point {
+          position: absolute;
+          font-size: 20px;
+          cursor: pointer;
+          color: #ff5722;
+          transition: transform 0.2s;
+        }
+        
+        .point:hover {
+          transform: scale(1.5);
+        }
+        
+        /* Stile per il popup */
+        .popup {
+          display: none;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #ffffff;
+          border: 2px solid #ff5722;
+          border-radius: 10px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+          padding: 20px;
+          z-index: 1000;
+        }
+        
+        .popup p {
+          margin: 0;
+          font-size: 16px;
+          color: #333;
+        }
+        
+        .popup .close {
+          position: absolute;
+          top: 5px;
+          right: 10px;
+          font-size: 18px;
+          cursor: pointer;
+        }
+        </style>
+
+       <script >
+         // Generare posizioni casuali per i punti
+const points = document.querySelectorAll('.point');
+points.forEach(point => {
+  point.style.top = `${Math.random() * 80}%`;  // Posizione verticale casuale
+  point.style.left = `${Math.random() * 95}%`; // Posizione orizzontale casuale
+
+  // Aggiungi evento per mostrare il popup
+  point.addEventListener('click', function () {
+    const popup = document.getElementById('popup');
+    const popupContent = document.getElementById('popup-content');
+
+    // Prendi il messaggio dai dati del punto
+    popupContent.textContent = this.getAttribute('data-message');
+
+    // Mostra il popup
+    popup.style.display = 'block';
+  });
+});
+
+// Chiudere il popup
+const close = document.querySelector('.popup .close');
+close.addEventListener('click', function () {
+  const popup = document.getElementById('popup');
+  popup.style.display = 'none';
+});
+
+       </script>
+
+    <div class="footer">
+        <p>&copy; 2024 Progetto Sito</p>
+    </div>
+</body>
+</html>
