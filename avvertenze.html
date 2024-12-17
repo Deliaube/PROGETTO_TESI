@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>avvertenze</title>
     <link rel="stylesheet" href="style.css">
+    <!-- LOAD Tone.js from unpkg -->
+		<script src="https://unpkg.com/tone"></script>
+		<script>
+			function playNote() {
+				// create a synth
+				const synth = new Tone.Synth().toDestination();
+				// play a note from that synth
+				synth.triggerAttackRelease("C4", "8n");
+			}
+		</script>
 </head>
 <body>
     <header>
@@ -12,12 +22,9 @@
     </header>
 
     <main>
-        <h2>About</h2>
-        <p>This is a sample HTML page.</p>
+        <h1>TUMPH</h1>
+		<button onclick="playNote()">Click me to play note!</button>
     </main>
 
-    <footer>
-        <p>&copy; 2024 My Web Page</p>
-    </footer>
 </body>
 </html>

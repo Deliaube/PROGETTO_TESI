@@ -5,17 +5,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>contro indicazioni</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="dragndrop.css">
+
     </head>
     <body>
         <header>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">Chi Siamo</a></li>
                 </ul>
             </nav>
             <h1>contro indicazioni</h1>
 
-            <h1>Una guida all'esplorazione dell'Avatar</h1>
         </header>
+
+        <h2>Drag and Drop Images</h2>
+
+      <!-- Container for draggable images -->
+      <div class="image-container">
+          <img src="image1.jpg" alt="Image 1" class="draggable" draggable="true" id="image1">
+          <img src="image2.jpg" alt="Image 2" class="draggable" draggable="true" id="image2">
+          <img src="image3.jpg" alt="Image 3" class="draggable" draggable="true" id="image3">
+      </div>
+  
+      <!-- Drop area -->
+      <div class="drop-area" id="dropArea">
+      </div>
+
+
+     
+
+       <script src="dragndrop.js"></script>
+
+    </body>
 </html>

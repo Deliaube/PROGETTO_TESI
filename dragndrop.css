@@ -1,0 +1,33 @@
+.image-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.draggable {
+    width: 150px;
+    margin: 10px;
+    cursor: grab;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+
+.drop-area {
+    width: 100%;
+    height: 300px;
+    border: 3px dashed #ccc;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+   /* align-items: center; */
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+   
+}
+
+.drop-area.dragover {
+    background-color: #e0e0e0;
+}
