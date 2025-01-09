@@ -5,39 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="identity_guest.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="progressBar.css">
+    <title>Step 2</title>
 </head>
 <body>
-    
-<h1>Alerts</h1>
 
+<section>
+    <h1>Alerts</h1>
 <div class="Alerts" data-aos="zoom-in">
     <p> Welcome, please select your status</p>
     <ul>
-        <button> <li>  Guest </li> </button>
-        <li>  Killer </li>
-        <li>  User </li>
-        <li>  Abuder </li>
-        <li>  AFK </li>
+        <li>  <button a href="myContainer"> Guest </button> </li>
+        <li>  <button href="myContainer"> Killer </button> </li>
+        <li>  <button href="myContainer"> User </button> </li>
+        <li>  <button href="myContainer"> Abuser </button> </li>
+        <li>  <button href="myContainer"> AFK </button> </li>
     </ul>
 </div>
+</section>
 
+<section>
 <div class="Alerts" data-aos="zoom-in">
     <p> Please set duration of your stay </p>
-</div>
+
 
 <div id="myContainer">
      <div id="myBar">0%</div>
+     <p> 1 secondo, 7 minuti, 9 mesi, 12 anni, 2 lustri</p>
 </div> 
 <button id="progressButton"> hold me </button> 
 
-  <br>
+</div>
+</section>
+
+<section>
+    <div>
+        <h1>Progress Bar</h1>
+    <div id="progressContainer">
+        <div id="progressBar">AAA</div>
+      </div>
+      <div id="progressText">Progress: 0%</div>
+    </div>
+</section>
+
+
+<!---
+ <form action="/action_page.php" method="get">
+     <label for="vol">State your time:</label>
+     <input type="range" id="vol" name="vol" min="0" max="50">
+     <input type="submit" value="Submit">
+ </form>
+-->
+  
+  <section>
 <div class="Alerts" data-aos="zoom-in">
     <p> Thank you for your collaboration [user] number xxxx </p>
+    <button onclick="window.location.href='index.html'"> ok </button>
 </div>
-
+  </section>
 
 <script src="identity_guest.js"></script>
+<script src="progressBar.js"></script>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>

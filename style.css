@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(222, 211, 211);
+    background-color: rgb(255, 255, 255);
 }
 
 h1{
@@ -21,7 +21,6 @@ ul{
 li{
     float: left;
     display: block;
-   
     text-align: center;
     margin-left: 20px;
     text-decoration: none;
@@ -50,7 +49,7 @@ intro{
 }
 
 table, th, td {
-    border:1px solid black;
+    border:1px solid rgb(255, 255, 255);
     content: align;
     text-align: center;
     vertical-align: middle;

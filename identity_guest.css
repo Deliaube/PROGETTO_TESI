@@ -1,23 +1,37 @@
 body{
     background-color: rgb(255, 255, 255);
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    text-align: center;
+
+}
+
+section{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 div{
-    background-color: rgb(179, 173, 173, 0.5);
+    background-color: rgba(213, 213, 213, 0.5);
     border-radius: 10px;
     margin: auto;
     width: 50%;
+    margin: 10%;
     padding: 20px;
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: grid;
+    justify-content: center;
 }
 
 li {
     list-style-type: none;
 }
-
-
+/*
 #myContainer {
     width: 50%;
     max-width: 100%;
@@ -25,33 +39,72 @@ li {
     border-radius: 5px;
     overflow: hidden;
     position: relative;
-    height: 20px;
+    height: auto;
   }
 
   #myBar {
     width: 0;
-    height: 20px;
-    background-color: #000000;
+    height: 10px;
+    background: linear-gradient(90deg, #000000, #ffffff); /* Gradient effect 
     text-align: left;
     line-height: 10px;
     padding-left: 5px;
     color: white;
-    transition: width 0.05s linear; /* Smooth increase */
+    transition: width 0.05s linear; /* Smooth increase 
   }
   
-
-  .progress-bar {
-    background-color: #ccc; /* grey background */
-    width: 0; /* initial width */
-    transition: width 0.5s; /* smooth transition */
-  }
-  
-  /* when width is updated, the bar will grow from left to right */
 
   button{
     margin-top: 20px;
     padding: auto;
     font-size: 16px;
     cursor: pointer;
-    
+    justify-content: center;
   }
+  */
+
+  #myContainer {
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto;
+      text-align: center;
+    }
+
+    #myContainer div {
+      width: 100%;
+      height: 30px;
+      background-color: #ddd;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    #myBar {
+      width: 0;
+      height: 100%;
+      background-color: #4caf50;
+      transform-origin: right; /* Anchor to the right side */
+      transform: scaleX(1); /* Start growing towards the left (normal orientation) */
+      transition: width 0.05s linear; /* Smooth animation */
+      text-align: left;
+      line-height: 30px;
+      padding-left: 5px;
+      color: white;
+      font-weight: bold;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }

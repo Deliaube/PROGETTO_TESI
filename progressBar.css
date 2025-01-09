@@ -1,0 +1,38 @@
+  section > div {
+   background-color: rgb(232, 176, 176);
+   border: red 2px solid;
+   
+}
+
+#progressContainer, #progressBar {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+
+#progressContainer {
+    width: 100%;
+    max-width: 100%;
+    height: 30px;
+    background-color: #909ef0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px auto;
+    position: relative;
+    cursor: pointer;
+  }
+
+  #progressBar {
+    width: 0;
+    height: 100%;
+    background-color: #f4db21;
+    border-radius: 5px;
+    transition: width 0.1s ease-in-out;
+
+  }
+
+  #progressText {
+    margin-top: 20px;
+    font-size: 18px;
+  }
