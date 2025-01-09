@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage Confirmation</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const confirmAccess = () => {
+                const userConfirmed = confirm("Vuoi davvero accedere alla homepage?");
+                if (!userConfirmed) {
+                    alert("Accesso annullato. Ritorna quando sei pronto!");
+                    return false;
+                }
+                return true;
+            };
+
+            document.getElementById("homepage-link").addEventListener("click", function(event) {
+                if (!confirmAccess()) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Benvenuto</h1>
+    <p>Prima di accedere alla homepage, conferma di voler procedere.</p>
+    <a id="homepage-link" href="index.html">Vai alla Homepage</a>
+</body>
+</html>

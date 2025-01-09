@@ -76,12 +76,38 @@ table, th, td {
   img {
     display: block;
     height: auto;
-    border-radius: 8px;
+
     box-shadow: 0 4px 6px rgba(16, 205, 98, 0.1);
     align-items: center;
     margin: auto;
   }
 
+  /* HTML: <img class="curved-rectangle" src="" alt=""> */
+.curved-rectangle {
+  --c: 85; /* control the curvature (a percentage value without unit bigger than 50%)*/
+  
+  
+  aspect-ratio: 3/2;
+
+  mask: radial-gradient(calc(var(--c)*1%) 100% at 50% calc(-100%*cos(asin(50/var(--c)))),#0000 calc(100% - 1px),#000);
+  clip-path: ellipse(calc(var(--c)*1%) 100% at top);
+}
+
+  .go-to-homepage {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f60505;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .go-to-homepage:hover {
+    background-color: #ffffff;
+  }
 
 .footer{
     position: fixed;
