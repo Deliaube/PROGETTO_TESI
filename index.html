@@ -36,7 +36,19 @@
             <tr>
               <td><button onclick="window.location.href='avvertenze.html'"> B4</button></td>
               <td>
-                <img class="curved-rectangle" src="images/newborn_homepage1.jpeg" alt="Avatar" width="50%" >
+                <!--<img class="curved-rectangle" src="images/newborn_homepage1.jpeg" alt="Avatar" width="50%" > -->
+                <div class="mask1">
+                   <img src="images/newborn_homepage1.jpeg" alt="Avatar" width="50%" >
+                </div>
+<style>
+.mask1 {
+  -webkit-mask-image: url(images/Subtract.png);
+  mask-image: url(images/Subtract.png);
+  mask-size: 70%;
+  mask-repeat: no-repeat;    
+}
+
+</style>
               </td>
               <td><button onclick="window.location.href='controindicazioni.html'"> B6</button></td>
             </tr>
