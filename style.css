@@ -57,6 +57,17 @@ table, th, td {
     
   }
   
+  .mask1 {
+    clip-path: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    width: 200px;
+    height: 200px;
+    background-image: url('images/newborn_homepage1.jpeg');
+    background-size: cover;
+  }
+  
+  
+  
   /* Stile comune per i bottoni */
   button {
     padding: 10px 15px;

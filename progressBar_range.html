@@ -6,14 +6,25 @@
   <title>Progress Bar with Drag Interaction</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       text-align: center;
       margin: 0;
       padding: 20px;
     }
 
+    section {
+      margin-top: 20%;
+      width: 100%;
+      height: 20vh; /*100vh*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: #ca742e 3px solid;
+      text-align: center;
+    }
+
     #progressContainer {
-      width: 80%;
+      width: 30%;
       height: 30px;
       background-color: #ddd;
       border: 1px solid #ccc;
@@ -34,6 +45,7 @@
     #progressText {
       margin-top: 20px;
       font-size: 18px;
+      text-align: center;
     }
   </style>
 </head>
@@ -42,9 +54,16 @@
 <section class="durata">
   <div id="progressContainer">
     <div id="progressBar"></div>
+    <div id="progressMeter"> 3 secondi, 2 minuti, 4 ore, 9 mesi, 7 anni </div>
   </div>
-  <div id="progressText">Progress: 0%</div>
+<!--  <div id="progressText">Progress: 0%</div> -->
 </section>
+<p>how long is your stay suppoesd to be?</p>
+<div id="progressText">Progress: 0%</div>
+
+<div>
+  <button type="button"> <a href="index.html"> Proceed </a></button>
+</div>
 
   <script>
     const progressContainer = document.getElementById('progressContainer');
