@@ -1,5 +1,7 @@
 body{
     background-color: rgb(255, 255, 255);
+    font-family: 'Courier', monospace;
+
 }
 
 h1{
@@ -32,16 +34,28 @@ li a{
     padding: 8px;
 }
 
-main{
+section  {
+    margin-top: 10%;
+    width: 100%;
+    height: 20vh; /*100vh*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: #ababab 1px solid;
+    text-align: center;
+}
+
+
+main {
     text-align: center;
     float: left;
 }
 
-div{
+div {
     float: right;
 }
 
-intro{
+.intro {
     text-align: center;
     align-items: center;
     content: align;
@@ -58,31 +72,41 @@ table, th, td {
   }
   
   .mask1 {
-    clip-path: circle(50% at 50% 50%);
+    /*
     -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
     width: 200px;
     height: 200px;
     background-image: url('images/newborn_homepage1.jpeg');
     background-size: cover;
+*/
+-webkit-mask-image: linear-gradient(black, transparent);
+mask-image: linear-gradient(black, transparent); 
   }
-  
   
   
   /* Stile comune per i bottoni */
   button {
-    padding: 10px 15px;
-    font-size: 14px;
-    color: white;
-    background-color: #28a745; /* Verde */
-    border: none;
-    border-radius: 5px; /* Angoli arrotondati */
+    margin-top: 10px;
+    padding: auto;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
     cursor: pointer;
+    justify-content: center;
+    background-color: rgb(182, 182, 182);
+    border-radius: 60px;
+    text-align: center;
+    transition-duration: 0.4s;
+    margin: 4px 2px;
+    display: inline-block;
+    border: none;
+    padding: 16px 32px;
   }
   
   button:hover {
-    background-color: #218838; /* Verde scuro al passaggio */
+    background-color: #ffffff;
   }
-
+  
   img {
     display: block;
     height: auto;
@@ -92,22 +116,12 @@ table, th, td {
     margin: auto;
   }
 
-  /* HTML: <img class="curved-rectangle" src="" alt=""> */
-.curved-rectangle {
-  --c: 85; /* control the curvature (a percentage value without unit bigger than 50%)*/
-  
-  
-  aspect-ratio: 3/2;
-
-  mask: radial-gradient(calc(var(--c)*1%) 100% at 50% calc(-100%*cos(asin(50/var(--c)))),#0000 calc(100% - 1px),#000);
-  clip-path: ellipse(calc(var(--c)*1%) 100% at top);
-}
 
   .go-to-homepage {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #f60505;
+    background-color: #9d9c9c;
     color: #fff;
     padding: 10px 20px;
     border: none;
