@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable Cards</title>
+    <link rel="stylesheet" href="draggable_cards.css">
+</head>
+<body>
+    <h1> Effetti collaterali</h1>
+
+<!-- Container for all cards -->
+<div id="cardContainer">
+    <div class="draggable" id="card-1" style="top: 100px; left: 100px;">
+      <div class="draggable-header">Drag here</div>
+      <p>1. Awareness
+        Acknowledging the influence of the digital avatar
+         is the first step in understanding how it might
+          shape or amplify your identity. 
+          Ask yourself: Does this avatar reflect my true self,
+           or is it shaping me to fit external expectations?</p>
+    </div>
+    <div class="draggable" id="card-1" style="top: 100px; left: 100px;">
+        <div class="draggable-header">Drag here</div>
+        <p>2. Disrupt Patterns
+            Challenge the behaviors and interactions that align with the avatar’s influence on your digital life. For example, stop following repetitive cycles of self-presentation that might reinforce stereotypes or habits imposed by the avatar's framework.</p>
+      </div>
+  
+    <div class="draggable" id="card-2" style="top: 200px; left: 150px;">
+      <div class="draggable-header">Drag here</div>
+      <img src="https://via.placeholder.com/150" alt="Immagine Card 2" style="width: 100%;">
+    </div>
+  
+    <div class="draggable" id="card-2" style="top: 200px; left: 150px;">
+        <div class="draggable-header">Drag here</div>
+        <img src="https://via.placeholder.com/150" alt="Immagine Card 2" style="width: 100%;">
+      </div>
+
+    <div class="draggable" id="card-3" style="top: 300px; left: 200px;">
+      <div class="draggable-header">Drag here</div>
+      <p>3. Disconnection
+        Consider disconnecting from the online platforms or virtual spaces where the avatar operates if they perpetuate harmful interactions or exploit your digital identity. Step back and assess whether these spaces support your well-being.</p>
+    </div>
+
+    <div class="draggable" id="card-3" style="top: 300px; left: 200px;">
+        <div class="draggable-header">Drag here</div>
+        <p>Un altro testo per la Card 3</p>
+      </div>
+  </div>
+
+  
+  <script>
+    // Aggiunge il comportamento di drag-and-drop a tutte le cards
+document.querySelectorAll('.draggable').forEach((card) => {
+  dragElement(card);
+});
+
+// Funzione di drag-and-drop (come prima)
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (elmnt.querySelector(".draggable-header")) {
+    elmnt.querySelector(".draggable-header").onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+  </script>
+
+</body>
+</html>

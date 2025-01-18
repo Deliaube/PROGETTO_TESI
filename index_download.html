@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Immagini</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Scegli un'azione per ottenere un'immagine</h1>
+  <div class="actions">
+    <button onclick="selectAction('azione1')">Azione 1</button>
+    <button onclick="selectAction('azione2')">Azione 2</button>
+    <button onclick="selectAction('azione3')">Azione 3</button>
+  </div>
+  <div id="download-area">
+    <p id="message">Completa un'azione per vedere l'immagine.</p>
+    <a id="download-link" href="#" download>
+      <img id="preview" src="" alt="Anteprima immagine" style="display: none;">
+    </a>
+  </div>
+
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.actions button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#download-area {
+  margin-top: 20px;
+}
+
+#preview {
+  width: 300px;
+  height: auto;
+  margin-top: 10px;
+}
+
+</style>
+<script> // Mappa delle azioni e immagini corrispondenti
+    const imageMap = {
+      azione1: 'images/heart.png', // Percorso dell'immagine per Azione 1
+      azione2: 'images/brain.png', // Percorso dell'immagine per Azione 2
+      azione3: 'images/lungs.png'  // Percorso dell'immagine per Azione 3
+    };
+    
+    function selectAction(action) {
+      const downloadLink = document.getElementById('download-link');
+      const previewImage = document.getElementById('preview');
+      const message = document.getElementById('message');
+    
+      if (imageMap[action]) {
+        // Aggiorna il link di download e l'anteprima
+        downloadLink.href = imageMap[action];
+        previewImage.src = imageMap[action];
+        previewImage.style.display = 'block';
+    
+        // Aggiorna il messaggio
+        message.textContent = 'Clicca sull\'immagine per scaricarla!';
+      } else {
+        message.textContent = 'Errore: immagine non trovata!';
+        previewImage.style.display = 'none';
+      }
+    }
+    </script>
+ <!--<script src="script.js"></script> --> 
+</body>
+</html>

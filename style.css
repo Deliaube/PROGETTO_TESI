@@ -80,8 +80,8 @@ table, th, td {
     background-image: url('images/newborn_homepage1.jpeg');
     background-size: cover;
 */
--webkit-mask-image: linear-gradient(black, transparent);
-mask-image: linear-gradient(black, transparent); 
+-webkit-mask-image: radial-gradient(ellipse, black 50%, rgba(0, 0, 0, 0.5) 50%);
+mask-image: radial-gradient(ellipse, black 50%, rgba(0, 0, 0, 0.5) 50%);
   }
   
   
