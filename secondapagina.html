@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seconda Pagina</title>
+</head>
+<body>
+  <h1>Seconda Pagina</h1>
+  <p>Seleziona una delle opzioni per andare avanti:</p>
+  <button onclick="updateSum('A')">A</button>
+  <button onclick="updateSum('B')">B</button>
+  <button onclick="updateSum('C')">C</button>
+  <p><a href="new_index_CHANGES.html">Confirm</a></p>
+
+  <script>
+    function updateSum(value) {
+      // Ottieni la somma attuale
+      const totalSum = localStorage.getItem('totalSum') || '';
+
+      // Concatenazione della nuova scelta
+      const newSum = totalSum + value;
+
+      // Salva la somma aggiornata
+      localStorage.setItem('totalSum', newSum);
+
+      window.alert(`Hai selezionato: ${value}. La somma ora è: ${newSum}`);
+
+      console.log(`Hai selezionato: ${value}. La somma ora è: ${newSum}`);
+    }
+  </script>
+</body>
+</html>

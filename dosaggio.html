@@ -105,6 +105,30 @@ close.addEventListener('click', function () {
 
        </script>
 
+<section class="options">
+<h1>Pagina Dosaggio</h1>
+<button onclick="updateSum('A')">Scegli Opzione A</button>
+<button onclick="updateSum('B')">Scegli Opzione B</button>
+<button onclick="updateSum('C')">Scegli Opzione C</button>
+</section>
+<script>
+function updateSum(value) {
+      // Recupera la somma attuale da localStorage
+      const totalSum = localStorage.getItem('totalSum') || '';
+      
+      // Aggiorna la somma concatenando la scelta fatta
+      const newSum = totalSum + value;
+      
+      // Salva la nuova somma in localStorage
+      localStorage.setItem('totalSum', newSum);
+      
+      console.log(`Somma aggiornata: ${newSum}`); // Log per debugging
+      
+      // Reindirizza alla homepage (index.html)
+      window.location.href = 'new_index_CHANGES.html';
+    }
+</script>
+
     <div class="footer">
         <p>&copy; 2024 Progetto Sito</p>
     </div>

@@ -1,0 +1,21 @@
+GO TO HOMEPAGE BUTTON
+
+<a href="new_index.html" class="go-to-homepage">Homepage</a>
+
+CSS
+
+  .go-to-homepage {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #9d9c9c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .go-to-homepage:hover {
+    background-color: #ffffff;
+  }
