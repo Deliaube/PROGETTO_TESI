@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>contro indicazioni</title>
-        <link rel="stylesheet" href="style.css">
+     
         <link rel="stylesheet" href="dragndrop.css">
 
     </head>
@@ -12,7 +12,7 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="new_index_CHANGES.html">Home</a></li>
                 </ul>
             </nav>
             <h1>contro indicazioni</h1>
@@ -23,19 +23,55 @@
 
       <!-- Container for draggable images -->
       <div class="image-container">
-          <img src="image1.jpg" alt="Image 1" class="draggable" draggable="true" id="image1">
-          <img src="image2.jpg" alt="Image 2" class="draggable" draggable="true" id="image2">
-          <img src="image3.jpg" alt="Image 3" class="draggable" draggable="true" id="image3">
+          <img src="images/heart.png" alt="Image 1" class="draggable" draggable="true" id="image1">
+          <img src="images/lungs.png" alt="Image 2" class="draggable" draggable="true" id="image2">
+          <img src="images/ovaries.png" alt="Image 3" class="draggable" draggable="true" id="image3">
+          <img src="images/closet.png" alt="Image 4" class="draggable" draggable="true" id="image4">
+
       </div>
   
       <!-- Drop area -->
-      <div class="drop-area" id="dropArea">
-      </div>
+ 
+        <div class="grid-drop-container">
+            <div id="dropArea1" class="drop-area">Drop Area 1</div>
+            <div id="dropArea2" class="drop-area">Drop Area 2</div>
+            <div id="dropArea3" class="drop-area">Drop Area 3</div>
+            <div class="drop-area" id="dropArea">Drop Area 4</div>
 
+          </div>
 
-     
 
        <script src="dragndrop.js"></script>
-       <a href="index.html" class="go-to-homepage">Homepage</a>
+
+       <a href="new_index_CHANGES.html" class="go-to-homepage">Homepage</a>
+
+       <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
+
+<section class="options">
+    <h1>Pagina Controindicazioni</h1>
+    <button onclick="updateSum('A')">Scegli Opzione A</button>
+    <button onclick="updateSum('B')">Scegli Opzione B</button>
+    <button onclick="updateSum('C')">Scegli Opzione C</button>
+    </section>
+    <script>
+    function updateSum(value) {
+          // Recupera la somma attuale da localStorage
+          const totalSum = localStorage.getItem('totalSum') || '';
+          
+          // Aggiorna la somma concatenando la scelta fatta
+          const newSum = totalSum + value;
+          
+          // Salva la nuova somma in localStorage
+          localStorage.setItem('totalSum', newSum);
+          
+          console.log(`Somma aggiornata: ${newSum}`); // Log per debugging
+          
+          // Reindirizza alla homepage (index.html)
+          window.location.href = 'new_index_CHANGES.html';
+        }
+    </script>
+        <footer>
+            <p>Footer</p>
+          </footer>
     </body>
 </html>

@@ -29,9 +29,9 @@
 
                     <table>
                         <tr>
-                        <th><a href="secondapagina.html">Vai alla Seconda Pagina</a></th>
+                        <th></th>
                         <th><button id="navigateButton" class="btn default" onclick="window.location.href='dosaggio.html'"> B2</button></th>
-                        <th><a href="secondapagina.html">Vai alla Seconda Pagina</a></th>
+                        <th></th>
                         </tr>
                         <tr>
                         <td><button class="btn default" onclick="window.location.href='avvertenze.html'"> B4</button></td>
@@ -39,7 +39,7 @@
                             <p id="message">L'immagine cambierà in base alle scelte effettuate.</p>
                             <div class="image-container"> 
                             <!--  <img src="https://via.placeholder.com/150" alt="Placeholder Image">-->
-                                <img src="images/ccchaos.svg" id ="placeholder" alt="Placeholder Image"  class="rotate">
+                                <img src="images/ccchaos.svg" id ="placeholder" alt="Placeholder Image"  class="rotate custom.image">
                                 <div class="tooltip">This is an Avatara</div>
                             </div>
         
@@ -47,9 +47,9 @@
                         <td><button class="btn default" onclick="window.location.href='controindicazioni.html'"> B6</button></td>
                         </tr>
                         <tr>
-                        <td><a href="paginaterza.html">Vai alla Terza Pagina</a></td>
+                        <td></td>
                         <td><button class="btn default" onclick="window.location.href='draggable_cards.html'"> B8</button></td>
-                        <td><a href="paginaquarta.html">Vai alla Quarta Pagina</a></td>
+                        <td></td>
                         </tr>
                     </table>
                     <!-- Resetta scelte BUTTON-->
@@ -72,17 +72,25 @@
     
       // Controllo per le combinazioni - cambia immagini con compatibili 
       if (totalSum === 'AAA') {
-        placeholder.src = 'images/lungs.png';
+        placeholder.src = 'images/microwave.png';
         message.textContent = 'Combinazione AAA scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
       } else if (totalSum === 'ABC') {
-        placeholder.src = 'images/Designer(9).jpeg';
+        placeholder.src = 'images/closet.png';
         message.textContent = 'Combinazione ABC scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
       } else if (totalSum === 'BBB') {
-        placeholder.src = 'images/Designer(10).jpeg';
+        placeholder.src = 'images/pill.png';
         message.textContent = 'Combinazione BBB scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
       } else if (totalSum.includes('A') && totalSum.includes('B') && totalSum.includes('C')) {
         placeholder.src = 'images/Designer(8).jpeg';
         message.textContent = 'Tutte le opzioni sono state selezionate!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
       } else {
         message.textContent = 'Completa le scelte per vedere il risultato.';
       }

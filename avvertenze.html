@@ -25,6 +25,34 @@
         <h1>TUMPH</h1>
 		<button onclick="playNote()">Click me to play note!</button>
     </main>
-    <a href="index.html" class="go-to-homepage">Homepage</a>
+    <a href="new_index_CHANGES.html" class="go-to-homepage">Homepage</a>
+
+
+    <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
+
+<section class="options">
+    <h1>Pagina Avvertenze</h1>
+    <button onclick="updateSum('A')">Scegli Opzione A</button>
+    <button onclick="updateSum('B')">Scegli Opzione B</button>
+    <button onclick="updateSum('C')">Scegli Opzione C</button>
+    </section>
+    <script>
+    function updateSum(value) {
+          // Recupera la somma attuale da localStorage
+          const totalSum = localStorage.getItem('totalSum') || '';
+          
+          // Aggiorna la somma concatenando la scelta fatta
+          const newSum = totalSum + value;
+          
+          // Salva la nuova somma in localStorage
+          localStorage.setItem('totalSum', newSum);
+          
+          console.log(`Somma aggiornata: ${newSum}`); // Log per debugging
+          
+          // Reindirizza alla homepage (index.html)
+          window.location.href = 'new_index_CHANGES.html';
+        }
+    </script>
+
 </body>
 </html>

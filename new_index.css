@@ -93,7 +93,7 @@
     top: 50%;
     left: 0;
     transform: translate(-50%, -50%) rotate(45deg); /* Crea l'angolo diagonale */
-    width: 40px; /* Lunghezza della linea */
+    width: 10px; /* Lunghezza della linea */
     height: 1px; /* Spessore della linea */
     background-color: black;
   }
@@ -141,3 +141,12 @@
       height: auto;
     }
   }
+
+  .custom-image {
+    width: 300px; /* Specifica la larghezza */
+    height: auto; /* Mantiene le proporzioni */
+    max-width: 100%; /* Impedisce che l'immagine sia più larga del contenitore */
+    border: 2px solid black; /* Aggiungi uno stile al bordo (opzionale) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiungi ombre (opzionale) */
+  }
+  
