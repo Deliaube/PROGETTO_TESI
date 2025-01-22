@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dosaggio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="options.css">
 </head>
 <body>
     <header>
@@ -108,8 +109,10 @@ close.addEventListener('click', function () {
  
 <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->
 <section class="options">
-<h1>Pagina Dosaggio</h1>
-<p>per una identità bilanciata rivolgersi a:</p>
+  <div id="finished">
+   <h1>Finished?</h1> 
+    <p>chose your way out</p>
+ </div>
 <button onclick="updateSum('A')">Scegli Opzione A</button>
 <button onclick="updateSum('B')">Scegli Opzione B</button>
 <button onclick="updateSum('C')">Scegli Opzione C</button>

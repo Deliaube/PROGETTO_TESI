@@ -9,9 +9,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const confirmAccess = () => {
-                const userConfirmed = confirm("Vuoi davvero accedere alla homepage?");
+                const userConfirmed = confirm("Do you think you can access the homepage?");
                 if (!userConfirmed) {
-                    alert("Accesso annullato. Ritorna quando sei pronto!");
+                    alert("Access cancelled. Your input is no longer wanted.");
                     return false;
                 }
                 return true;
@@ -26,8 +26,9 @@
     </script>
 </head>
 <body>
-    <h1>Benvenuto</h1>
-    <p>Prima di accedere alla homepage, conferma di voler procedere.</p>
-    <a id="homepage-link" href="IDENTITY_QUEST.html">Vai alla Homepage</a>
+    <h1>Hello friend</h1>
+    <p>By accessing, you agree to embrace the beautifully flawed design of this site. <br> Warning: side effects may include existential musings and mild confusion. 
+        <br> Proceed at your own emotional risk</p>
+    <a id="homepage-link" href="IDENTITY_QUEST.html">Proceed</a>
 </body>
 </html>

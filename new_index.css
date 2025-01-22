@@ -51,6 +51,7 @@
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 10px;
   }
   
   
@@ -150,3 +151,47 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiungi ombre (opzionale) */
   }
   
+  /*TOOLTIP BUTTON*/
+  
+  .tooltip1 {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Testo del tooltip nascosto di default */
+  .tooltip1 .tooltip-text1 {
+    visibility: hidden;
+    width: 200px; /* Larghezza del tooltip */
+    background-color: #555; /* Colore di sfondo del tooltip */
+    color: #fff; /* Colore del testo */
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+  
+    /* Posizionamento del tooltip */
+    position: absolute;
+    bottom: 125%; /* Sopra il pulsante */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s; /* Animazione di comparsa */
+  }
+  
+  /* Triangolino sotto il tooltip */
+  .tooltip1 .tooltip-text1::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Posizionato sopra il tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Mostra il tooltip al passaggio del mouse */
+  .tooltip1:hover .tooltip-text1 {
+    visibility: visible;
+    opacity: 1;
+  }

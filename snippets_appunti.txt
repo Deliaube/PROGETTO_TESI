@@ -48,3 +48,27 @@ function updateSum(value) {
       window.location.href = 'new_index_CHANGES.html';
     }
 </script>
+
+-------------------------------------------------------------------
+
+Lista ordine pagine
+
+- homepage_access.html
+- IDENTITY_QUEST.html
+- new_index_CHANGES.html
+-> controindicazioni.html
+-> draggable_cards.html
+-> avvertenze.html
+-> dosaggio.html
+
+
+-------------------------------------------------------------------
+
+Warning
+This site psychologically profiles you as you navigate. 
+It gets to know who you really are then uses this informations to change itself. It coul use its knoweledge againsy you, creating your own personal reflection and appropriating your individuality. 
+
+-------------------------------------------------------------------
+
+No wonder you can't sleep. 
+

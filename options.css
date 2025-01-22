@@ -1,0 +1,25 @@
+.options {
+    background-color: rgb(134, 116, 116);
+    border-radius: 10px;
+    
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}
+
+.options button {
+    background-color: rgb(232, 219, 219);
+    border-radius: 10px;
+    margin: 1%;
+    position: sticky;
+    bottom: 0;
+}
+
+#finished {
+
+}
+
+.options p {
+    display: flex;
+    border: solid black 1px;
+}

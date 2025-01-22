@@ -7,15 +7,13 @@
     <link rel="stylesheet" href="new_index.css">
 </head>
 <body>
-        
-        
+ 
         <header>
           <h2>Cyberoute</h2>
         </header>
         
         <section>
                  <nav>
-                    List
                     <ul>
                     <li><a href="#">inmate</a></li>
                     <li><a href="#">egregore</a></li>
@@ -24,43 +22,45 @@
                </nav>
           
           <article>
-                      <h1>Structure</h1>
-                       <p>beware</p>
-
+                
                     <table>
                         <tr>
                         <th></th>
-                        <th><button id="navigateButton" class="btn default" onclick="window.location.href='dosaggio.html'"> B2</button></th>
+                        <th><button id="navigateButton" class="btn default" onclick="window.location.href='dosaggio.html'"> DOSAGGO</button></th>
                         <th></th>
                         </tr>
                         <tr>
-                        <td><button class="btn default" onclick="window.location.href='avvertenze.html'"> B4</button></td>
+                        <td><button class="btn default" onclick="window.location.href='avvertenze.html'"> AVVERTENZE</button></td>
                         <td>
-                            <p id="message">L'immagine cambierà in base alle scelte effettuate.</p>
+                            <!--<p id="message">L'immagine cambierà in base alle scelte effettuate.</p> -->
                             <div class="image-container"> 
                             <!--  <img src="https://via.placeholder.com/150" alt="Placeholder Image">-->
                                 <img src="images/ccchaos.svg" id ="placeholder" alt="Placeholder Image"  class="rotate custom.image">
-                                <div class="tooltip">This is an Avatara</div>
+                                <div class="tooltip">Origin point?</div>
                             </div>
         
                         </td>
-                        <td><button class="btn default" onclick="window.location.href='controindicazioni.html'"> B6</button></td>
+                        <td><button class="btn default" onclick="window.location.href='controindicazioni.html'"> CONTRO INDICAZIONI</button></td>
                         </tr>
                         <tr>
                         <td></td>
-                        <td><button class="btn default" onclick="window.location.href='draggable_cards.html'"> B8</button></td>
+                        <td><button class="btn default" onclick="window.location.href='draggable_cards.html'"> EFFETTI COLLATERALI</button></td>
                         <td></td>
                         </tr>
                     </table>
                     <!-- Resetta scelte BUTTON-->
-                    <button onclick="resetChoices()" class="btn default" style="border: 3px solid wheat;">Resetta Scelte</button>
+                    <div class="tooltip1">
+                      <button onclick="resetChoices()" class="btn default">Reset</button>
+                      <span class="tooltip-text1">Caution, rebooting will erase everything in memory</span>
+                    </div>
+                    
                     <script>
                       function resetChoices() {
                         localStorage.removeItem('totalSum');
                         location.reload();
                       }
                     </script>
-  <!--PARTE 2 SCRIPT RIGO 31-->                 
+                      <!--PARTE 2 SCRIPT RIGO 31-->                 
   <script>
     function updateImageBasedOnSum() {
       // Ottieni la somma salvata
@@ -109,6 +109,11 @@
         <footer>
           <p>Footer</p>
         </footer>
+        <!--
+         <div class="footer">
+           <p>&copy; 2024 Progetto Sito</p>
+         </div>
+        -->
 
 </body>
 </html>
