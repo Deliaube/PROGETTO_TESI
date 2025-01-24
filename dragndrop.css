@@ -14,6 +14,8 @@ body{
     margin: 0 auto; /* Centra il contenitore nella pagina */
     padding: 20px; /* Spaziatura interna */
     box-sizing: border-box;
+    float: right;
+    border: black 2px solid;
 }
 
 .image-container {
@@ -21,6 +23,8 @@ body{
     margin-bottom: 20px;
     display: flex;
     gap: 20px;
+    border: black 2px solid;
+
 }
 
 .draggable {
@@ -59,4 +63,14 @@ body{
     max-width: 100%; /* Le immagini si adattano alla larghezza */
     max-height: 100%; /* Evita che superino l'altezza del contenitore */
     object-fit: contain; /* Mantiene il rapporto d'aspetto */
+}
+
+.options {
+    position: fixed;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: antiquewhite;
+    width: 100%;
 }

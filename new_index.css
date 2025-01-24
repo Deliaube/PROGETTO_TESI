@@ -20,8 +20,12 @@
   nav {
     float: left;
     width: 30%;
-    background: #ccc;
+    background: #e8e8e8;
+    opacity: 50%;
     padding: 20px;
+    border: #555 4px solid;
+    border-radius: 15px;
+    margin: 5px;
   }
   
   /* Style the list inside the menu */
@@ -30,10 +34,22 @@
     padding: 50%;
   }
   
+ #text {
+    border: #555 4px solid;
+    border-radius: 15px;
+    text-align: left;
+    margin: 10px;
+    padding-left: 10px;
+ }
+
   article {
     float: left;
-    padding: 10%;
-    width: 70%;
+    padding: 3%;
+    width: 65%;
+    border: #555 4px solid;
+    border-radius: 15px;
+    margin: 5px;
+    background-color: rgb(220, 220, 219);
     }
 
   table, th, td {
@@ -127,6 +143,7 @@
   footer {
     position: fixed;
     background-color:rgba(216, 197, 165, 1);
+    opacity: 50%;
     padding: 10px;
     text-align: center;
     color: white;
