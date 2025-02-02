@@ -1,0 +1,323 @@
+body, html {
+    margin: 1;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4;
+}
+
+/* Stile per la barra di navigazione*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Allinea verticalmente il logo e il titolo */
+    padding: 10px 20px;
+    border: 3px solid black;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    margin: 3px;
+}
+
+.logo a {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+/* nelle altre pag il title sarà a dx----------------------------------*/
+.title h1 {
+    margin: 0; /* Rimuove il margine predefinito */
+    font-size: 34px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+/*_______________________________________________________________________*/
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo, .title {
+        margin: 5px 0;
+    }
+}
+
+/*Stile per il menu a tendina*/
+/*può restare qua, perchè nelle altre pagine NON cis sarà il menù a tendina negli html*/
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #b94f29;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 20px 20px 20px 20px;
+    width: 55px;
+    min-width: 10px;
+    height:790px;
+    overflow: hidden;
+    margin-top: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    /*per scrivere in verticale*/
+   
+    writing-mode: vertical-lr;
+  }
+
+  .reset {
+    text-orientation: upright;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 0px ; /*per centrare il testo reset*/
+    margin: 0;
+  }
+
+  .dropdown a:hover {background-color: #ddd;}
+  
+  .show {display: block;}
+
+  /*Stile per il contenuto IMMAGINI e TESTO della pagina*/
+
+.container-corpo {
+    display: flex;
+    justify-content: space-between; /* Distribuisce le colonne */
+    align-items: flex-start;         /* Allinea in alto */
+    margin: 5% auto;                 /* Margine del 5% ai lati */
+    padding: 20px;
+    max-width: 90%;                  /* Limita la larghezza massima */
+    gap: 20px;                       /* Spazio tra le colonne */
+    background-color: white;
+    border: 2px solid black;
+    border-style: double;
+    outline: 1px solid rgb(0, 0, 0);
+    outline-offset: -5px;
+    border-radius: 10px;
+}
+
+/* Colonne */
+.text, .immagine, .button {
+    flex: 1;                        /* Ogni colonna occupa lo stesso spazio */
+    padding: 15px;
+    text-align: justify;
+
+    border: 1px dotted blue;
+    border-style: dotted;
+  
+}
+
+/* Hover sul testo */
+.text p:hover {
+    color: darkblue;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/*IMMAGINE*/
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.rotate {
+    animation: rotation 8s infinite linear;
+  }
+  
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+  
+
+/* Tooltip */
+.immagine {
+    position: relative;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.immagine:hover .tooltip {
+    display: block;
+}
+
+/* Bottoni */
+
+.button-container{
+    border: 1px solid red;
+    border-style: dotted;
+}
+
+.button button {
+    display: block;
+    margin: 10px auto; /** Spazio tra i bottoni- togliere per avvicinarli all'img*/
+    padding: 10px 20px;
+    border: none;
+    background-color: #89a5c4;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button button:hover {
+    background-color: #6ee61e;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Align buttons vertically */
+    align-items: center;
+    transition: transform 0.5s ease; /* Smooth rotation */
+}
+
+/* Rotate when viewport width is less than 500px */
+@media (max-width: 700px) {
+    .button-container {
+        transform: rotate(90deg); /* Rotates the container */
+    }
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .container-corpo {
+        flex-direction: column; /* Le colonne diventano righe */
+        align-items: center;
+    }
+}
+
+
+
+/*STYLE button-container*/
+.button-container {
+    display: flex;
+    flex-direction: column; /* Disposizione verticale */
+    align-items: center;     /* Centra i bottoni orizzontalmente */
+    padding: 20px;           /* Padding generale del contenitore */
+    gap: 1px;               /* Spazio tra i pulsanti */
+}
+
+/* Stile base dei pulsanti */
+.btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 10px;           /* Padding interno ai pulsanti */
+    margin: 5px;             /* Margine esterno per spostamenti */
+}
+
+/* Effetto hover */
+.btn:hover {
+    transform: scale(1.1);   /* Effetto zoom al passaggio del mouse */
+}
+
+/* Personalizzazione individuale dei margini */
+.btn:nth-child(1) {
+    margin-top: 30px;        /* Sposta il primo pulsante verso il basso */
+    margin-right: 40px;
+}
+
+.btn:nth-child(2) {
+    margin-left: 30px;       /* Sposta il secondo pulsante leggermente a destra */
+}
+
+.btn:nth-child(3) {
+    margin-bottom: 40px;     /* Aggiunge spazio sotto il terzo pulsante */
+    margin-right: 40px;
+}
+
+
+
+
+
+
+/*style footer*/
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: rgb(52, 217, 49);
+    text-align: left;
+    justify-content: space-between;
+    align-items: center; /* Allinea verticalmente il logo e il titolo */
+    border: 3px solid black;
+    border-radius: 20px 20px 0px 0px; 
+    background-color: #f9f9f9;
+    }
+
+/*style marquee*/
+
+/* Contenitore del testo */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;  /* Nasconde il testo fuori dai bordi */
+    background-color: #222;
+    border: 2px solid white;
+    padding: 10px 0;
+    position: relative;
+  }
+  
+  /* Testo scorrevole */
+  .marquee {
+    display: inline-block;
+    white-space: nowrap;        /* Impedisce il ritorno a capo */
+    padding-left: 100%;         /* Parte da fuori schermo a destra */
+    animation: scroll 55s linear infinite;  /* Animazione continua + velocità */
+  }
+  
+  /* Definizione dell'animazione */
+  @keyframes scroll {
+    from {
+        transform: translateX(0%);   /* Inizia da destra */
+    }
+    to {
+        transform: translateX(-100%); /* Scorre tutto a sinistra */
+    }
+  }
+  
+
+
+  

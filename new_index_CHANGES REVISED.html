@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="new_index_CHANGES REVISED.css">
+  
+</head>
+<body>
+ 
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="new_index_CHANGES REVISED.html">📌</a>
+        </div>
+        <div class="title" >
+            <h1>CYBERMED_</h1>
+        </div>
+
+
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">🔗</button>
+          <div id="myDropdown" class="dropdown-content">
+            <button onclick="resetChoices()" class="btn default reset">✨ Reset</button>
+            <span class="tooltip-text1">Caution, rebooting will erase everything in memory</span>
+          </div>
+        </div>
+
+
+    </nav>
+</header>
+
+
+<section class="container-corpo">
+  <div class="text">
+    <p>In today’s world, integrating a new avatar has become an everyday habit, 
+      almost a mundane commodity of human life. 
+      Yet, it’s often overlooked how the ecocyber ecosystem may encounter regrettable breakdowns 
+      or disruptions in its environmental behavior. <br> 
+      <p>At CybeMED, we firmly believe that a clean folder reflects a clear mind.  </p>
+      <p>We invite you to participate in our test to uncover potential ailments your virtual identity might be suffering from. </p>
+      <br>
+      <p>Please note: the results are primarily indicative, and consulting a professional is recommended for a more precise diagnosis.</p>
+  </div>
+<!--immagini___________________________________________________________-->
+
+  <div class="immagine">
+      <div class="image-container" > 
+            <img src="images/ccchaos.svg" id ="placeholder" alt="Placeholder Image"  class="rotate custom.image">
+        </div>
+      <span class="tooltip">Origin Point?</span>
+  </div>
+<!--bottoni___________________________________________________________-->
+
+  <div class="button-container">
+
+    <!-- Pulsante 1: Controindicazioni -->
+    <button class="btn default" onclick="window.location.href='controindicazioni.html'">
+        <img src="bottoni/Polygon 4.svg" alt="Controindicazioni" style="width: 100px; height: 50px;">
+    </button>
+
+    <!-- Pulsante 2: Dosaggio -->
+    <button class="btn default" onclick="window.location.href='dosaggio.html'">
+        <img src="bottoni/Polygon 3.svg" alt="Dosaggio" style="width: 100px; height: 50px;">
+    </button>
+
+    <!-- Pulsante 3: Effetti Collaterali -->
+    <button class="btn default" onclick="window.location.href='draggable_cards.html'">
+        <img src="bottoni/Polygon 2.svg" alt="Effetti Collaterali" style="width: 100px; height: 50px;">
+    </button>
+
+</div>
+<!--style button-container _-----_______________--
+<style>
+.button-container {
+    display: flex;
+    flex-direction: column; /* Disposizione verticale */
+    align-items: center;     /* Centra i bottoni orizzontalmente */
+    padding: 20px;           /* Padding generale del contenitore */
+    gap: 1px;               /* Spazio tra i pulsanti */
+}
+
+/* Stile base dei pulsanti */
+.btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 10px;           /* Padding interno ai pulsanti */
+    margin: 5px;             /* Margine esterno per spostamenti */
+}
+
+/* Effetto hover */
+.btn:hover {
+    transform: scale(1.1);   /* Effetto zoom al passaggio del mouse */
+}
+
+/* Personalizzazione individuale dei margini */
+.btn:nth-child(1) {
+    margin-top: 30px;        /* Sposta il primo pulsante verso il basso */
+    margin-right: 40px;
+}
+
+.btn:nth-child(2) {
+    margin-left: 30px;       /* Sposta il secondo pulsante leggermente a destra */
+}
+
+.btn:nth-child(3) {
+    margin-bottom: 40px;     /* Aggiunge spazio sotto il terzo pulsante */
+    margin-right: 40px;
+}
+
+
+</style>-->
+
+</section>
+
+<!--Stile per il contenuto IMMAGINI e TESTO della pagina___________________________
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4;
+}
+
+.container-corpo {
+    display: flex;
+    justify-content: space-between; /* Distribuisce le colonne */
+    align-items: flex-start;         /* Allinea in alto */
+    margin: 5% auto;                 /* Margine del 5% ai lati */
+    padding: 20px;
+    max-width: 90%;                  /* Limita la larghezza massima */
+    gap: 20px;                       /* Spazio tra le colonne */
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/* Colonne */
+.text, .immagine, .button {
+    flex: 1;                        /* Ogni colonna occupa lo stesso spazio */
+    padding: 15px;
+    text-align: center;
+    border: 1px dotted blue;
+}
+
+/* Hover sul testo */
+.text p:hover {
+    color: darkblue;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/* Tooltip */
+.immagine {
+    position: relative;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.immagine:hover .tooltip {
+    display: block;
+}
+
+/* Bottoni */
+.button button {
+    display: block;
+    margin: 10px auto; /** Spazio tra i bottoni- togliere per avvicinarli all'img*/
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .container-corpo {
+        flex-direction: column; /* Le colonne diventano righe */
+        align-items: center;
+    }
+}
+
+</style> -->
+
+<!--script Resetta scelte BUTTON
+<script>
+                      function resetChoices() {
+                        localStorage.removeItem('totalSum');
+                        location.reload();
+                      }
+</script>
+
+the one workink is below 
+<script>
+function resetChoices() {
+  try {
+    // Verifica se la chiave esiste prima di rimuoverla
+    if (localStorage.getItem('totalSum') !== null) {
+      localStorage.removeItem('totalSum');
+    }
+    
+    // Ricarica la pagina senza cache per evitare problemi
+    window.location.reload(true);
+  } catch (error) {
+    console.error("Errore durante il reset:", error);
+    alert("Si è verificato un errore durante il reset. Riprova.");
+  }
+}
+</script> -->
+
+<!--PARTE 2 SCRIPT RIGO 31/ UPDATE IMG BASED ON SUMM-                
+  <script>
+    function updateImageBasedOnSum() {
+      // Ottieni la somma salvata
+      const totalSum = localStorage.getItem('totalSum') || '';
+    
+      // Seleziona l'immagine e il messaggio
+      const placeholder = document.getElementById('placeholder');
+      const message = document.getElementById('message');
+    
+      // Controllo per le combinazioni - cambia immagini con compatibili 
+      if (totalSum === 'AAA') {
+        placeholder.src = 'images/microwave.png';
+        message.textContent = 'Combinazione AAA scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else if (totalSum === 'ABC') {
+        placeholder.src = 'images/closet.png';
+        message.textContent = 'Combinazione ABC scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else if (totalSum === 'BBB') {
+        placeholder.src = 'images/pill.png';
+        message.textContent = 'Combinazione BBB scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else if (totalSum.includes('A') && totalSum.includes('B') && totalSum.includes('C')) {
+        placeholder.src = 'images/Designer(8).jpeg';
+        message.textContent = 'Tutte le opzioni sono state selezionate!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else {
+        message.textContent = 'Completa le scelte per vedere il risultato.';
+      }
+    }
+    
+    // Esegui al caricamento
+    window.onload = updateImageBasedOnSum;
+    
+  </script>  -->
+  
+
+<!--FOOTER_________________________________________________________________________________-->
+        <footer>
+          <p class="marquee">Delia Scaccianoce - 2025 Beware of any infections ----This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data 
+           ---- This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data
+          </p>
+        </footer>
+
+<!--dove avviene il cambio immagine e la selezione immagine-->
+      <script src="new_index_CHANGES REVISED.js"></script>
+</body>
+</html>

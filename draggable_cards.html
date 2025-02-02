@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Draggable Cards</title>
+    <link rel="stylesheet" href="new_index_CHANGES REVISED.css">
     <link rel="stylesheet" href="draggable_cards.css">
-</head>
+    <link rel="stylesheet" href="options.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  </head>
 <body>
   <header>
-    <h1> Effetti collaterali</h1>
-    <p> Consider the following effects as consequences of any peculiar factors your
-      avatar might be subject to:
-    </p>
-  </header>
+    <nav>
+        <div class="logo">
+            <a href="new_index_CHANGES REVISED.html">📌</a>
+        </div>
+        <div class="title" >
+            <h1>CYBERMED_</h1>
+        </div>
+
+    </nav>
+</header>
   
 <!-- Container for all cards -->
+ <section class="container-corpo">
 <div id="cardContainer">
+
     <div class="draggable" id="card-1" style="top: 100px; left: 100px;">
       <div class="draggable-header">Pick me GID</div>
       <p>1. Glitch Identity Disorder (GID)
@@ -113,8 +125,8 @@ Artistic Remedy: Display how identity is replicated and distorted to the point o
         </p>
       </div>
   </div>
-
-  
+</section>
+  <!---script drag n drop__________________________________________________________________-->
   <script>
     // Aggiunge il comportamento di drag-and-drop a tutte le cards
 document.querySelectorAll('.draggable').forEach((card) => {
@@ -155,33 +167,59 @@ function dragElement(elmnt) {
 }
   </script>
 
-<a href="new_index_CHANGES.html" class="go-to-homepage">Homepage</a>
+  <!--bg drag prova_________________________________________________con script query nella head
+  <p class='text-center' style='margin-bottom:20px;'>
+    Click and drag the image around
+  </p>
+  <div class='container'></div>
+<script src="bg_drag_prova.js"></script> -->
 
+  <!--bg drag prova-->
 <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
 
+<!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->
 <section class="options">
-  <h1>Pagina effetti collaterali</h1>
-  <button onclick="updateSum('A')">Scegli Opzione A</button>
-  <button onclick="updateSum('B')">Scegli Opzione B</button>
-  <button onclick="updateSum('C')">Scegli Opzione C</button>
-  </section>
-  <script>
-  function updateSum(value) {
-        // Recupera la somma attuale da localStorage
-        const totalSum = localStorage.getItem('totalSum') || '';
-        
-        // Aggiorna la somma concatenando la scelta fatta
-        const newSum = totalSum + value;
-        
-        // Salva la nuova somma in localStorage
-        localStorage.setItem('totalSum', newSum);
-        
-        console.log(`Somma aggiornata: ${newSum}`); // Log per debugging
-        
-        // Reindirizza alla homepage (index.html)
-        window.location.href = 'new_index_CHANGES.html';
-      }
-  </script>
+  <div id="finished">
+   <p>Finished? Please chose your way out</p>
+ </div>
+ <div class="buttons-options">
+  <button onclick="updateSum('A')">
+      <img src="icone/icon-a.svg" alt="Opzione A" class="icon-button">
+  </button>
+  <button onclick="updateSum('B')">
+      <img src="icone/icon-b.svg" alt="Opzione B" class="icon-button">
+  </button>
+  <button onclick="updateSum('C')">
+      <img src="icone/icon-c.svg" alt="Opzione C" class="icon-button">
+  </button>
+</div>
+</section>
+<!--
+<script>
+function updateSum(value) {
+      // Recupera la somma attuale da localStorage
+      const totalSum = localStorage.getItem('totalSum') || '';
+      
+      // Aggiorna la somma concatenando la scelta fatta
+      const newSum = totalSum + value;
+      
+      // Salva la nuova somma in localStorage
+      localStorage.setItem('totalSum', newSum);
+      
+      console.log(`Somma aggiornata: ${newSum}`); // Log per debugging
+      
+      // Reindirizza alla homepage (index.html)
+      window.location.href = 'new_index_CHANGES REVISED.html';
+    }
+</script> -->
+<script src="options.js"></script>
 
+
+  <!--FOOTER_________________________________________________________________________________-->
+  <footer>
+    <p class="marquee">Delia Scaccianoce - 2025 Beware of any infections ----This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data 
+     ---- This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data
+    </p>
+  </footer>
 </body>
 </html>

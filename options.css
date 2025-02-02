@@ -1,25 +1,42 @@
+/*OPTIONS _____________________________________________*/
+
 .options {
-    background-color: rgb(134, 116, 116);
-    border-radius: 10px;
-    
-    position: sticky;
-    bottom: 0;
-    width: 100%;
+    display: flex;               /* Attiva il layout flexbox */
+    float: right;
+    flex-direction: column;      /* Disposizione verticale */
+    align-items: center;         /* Centra orizzontalmente */
+    gap: 20px;                   /* Spazio tra gli elementi */
+    background-color: rgb(235, 235, 235);
+    width:20%;
+    border: 4px double black;    /* Bordo doppio */
+    border-radius: 20px;
+    padding: 10px;               /* Spaziatura interna */
+    box-sizing: border-box;      /* Include il padding nella larghezza */
+    margin-bottom: 100px;
+}
+
+#finished {
+    text-align: center;          /* Centra il testo */
+    padding: 6px;
+    border: 1px solid black;    /* Bordo doppio */
+    border-radius: 20px;
+    display: flex;
+}
+
+.buttons-options {
+    display: flex;               /* Flexbox per i bottoni */
+    gap: 10px;                   /* Spazio tra i bottoni */
 }
 
 .options button {
     background-color: rgb(232, 219, 219);
     border-radius: 10px;
-    margin: 1%;
-    position: sticky;
-    bottom: 0;
+    padding: 10px 20px;          /* Migliora la dimensione dei bottoni */
+    border: 1px solid black;
+    cursor: pointer;             /* Cambia il cursore al passaggio */
+    transition: background 0.3s; /* Effetto hover fluido */
 }
 
-#finished {
-
-}
-
-.options p {
-    display: flex;
-    border: solid black 1px;
+.options button:hover {
+    background-color: rgb(200, 200, 200); /* Cambio colore al passaggio */
 }

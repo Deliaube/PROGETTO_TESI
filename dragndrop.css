@@ -1,13 +1,9 @@
-body{
-    background-color: rgb(255, 255, 255);
-    font-family: 'Courier', monospace;
 
-}
 
 /* Contenitore della griglia */
 .grid-drop-container {
     display: grid; /* Imposta il layout a griglia */
-    grid-template-columns: repeat(3, 1fr); /* 3 colonne di larghezza uguale */
+    grid-template-columns: repeat(2, 1fr); /* 3 colonne di larghezza uguale */
     gap: 20px; /* Spazio tra le griglie */
     width: 100%;
     max-width: 1200px; /* Larghezza massima per il layout */
@@ -23,9 +19,10 @@ body{
     margin-bottom: 20px;
     display: flex;
     gap: 20px;
-    border: black 2px solid;
+  
 
 }
+
 
 .draggable {
     width: 150px;
@@ -65,12 +62,45 @@ body{
     object-fit: contain; /* Mantiene il rapporto d'aspetto */
 }
 
+/*OPTIONS _____________________________________________*/
+
 .options {
-    position: fixed;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    background-color: antiquewhite;
-    width: 100%;
+    display: flex;               /* Attiva il layout flexbox */
+    float: right;
+    flex-direction: column;      /* Disposizione verticale */
+    align-items: center;         /* Centra orizzontalmente */
+    gap: 20px;                   /* Spazio tra gli elementi */
+    background-color: rgb(235, 235, 235);
+    width:20%;
+    border: 4px double black;    /* Bordo doppio */
+    border-radius: 20px;
+    padding: 10px;               /* Spaziatura interna */
+    box-sizing: border-box;      /* Include il padding nella larghezza */
+    margin-bottom: 100px;
+}
+
+#finished {
+    text-align: center;          /* Centra il testo */
+    padding: 6px;
+    border: 1px solid black;    /* Bordo doppio */
+    border-radius: 20px;
+    display: flex;
+}
+
+.buttons-options {
+    display: flex;               /* Flexbox per i bottoni */
+    gap: 10px;                   /* Spazio tra i bottoni */
+}
+
+.options button {
+    background-color: rgb(232, 219, 219);
+    border-radius: 10px;
+    padding: 10px 20px;          /* Migliora la dimensione dei bottoni */
+    border: 1px solid black;
+    cursor: pointer;             /* Cambia il cursore al passaggio */
+    transition: background 0.3s; /* Effetto hover fluido */
+}
+
+.options button:hover {
+    background-color: rgb(200, 200, 200); /* Cambio colore al passaggio */
 }
