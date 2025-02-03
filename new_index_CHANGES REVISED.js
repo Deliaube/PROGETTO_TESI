@@ -56,8 +56,13 @@ function updateImageBasedOnSum() {
       message.textContent = 'Combinazione ABC scelta!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
-    } else if (totalSum === 'BBB') {
-      placeholder.src = 'images/pill.png';
+    } else if (totalSum === 'BBB') { 
+      placeholder.src = 'images/rrrepeat.svg';
+      message.textContent = 'Combinazione BBB scelta!';
+      placeholder.style.width = '300px';
+      placeholder.style.height = 'auto';
+    }else if (totalSum === 'CCC') { 
+      placeholder.src = 'images/tttwinkle.svg';
       message.textContent = 'Combinazione BBB scelta!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="dragndrop.css">
         <link rel="stylesheet" href="options.css">
 
+
     </head>
     <body>
 
@@ -49,9 +50,7 @@
                 <li> Severe identity dissociation  </li> 
                 <li> Overdependence on digital validation  </li> 
         </ul>
-            We kindly ask you to release your avatar/virtual identity for the time being. Our dedicated administration will oversee and care for your avatar while you undergo recovery from your mental health condition.  
-            We apologize for the inconvenience, but this measure is necessary to ensure the safety of our virtual spaces and to prevent any potential "contamination" from the material world into the digital realm.  
-            Thank you for your understanding.           
+         ______________          
       </p>
   </div>
 
@@ -68,6 +67,61 @@
 
        <script src="dragndrop.js"></script>
 
+<div class="container-riga">
+
+  <button id="confirmBtn">Confirm</button>
+
+
+<section id="resultSection" style="display: none;">
+  <div class="result-text" id="resultText1">Risposta per Bipolarism
+    <p>
+      Now, we kindly ask you to release your avatar/virtual identity for the time being. Our dedicated administration will oversee and care for your avatar while you undergo recovery from your mental health condition. We apologize for the inconvenience, but this measure is necessary to ensure the safety of our virtual spaces and to prevent any potential contamination from the material world into the digital realm.
+      Thank you for your understanding.
+    </p>
+  </div>
+  <div class="result-text" id="resultText2">Risposta per Depression</div>
+  <div class="result-text" id="resultText3">Risposta per Anxiety Disorder</div>
+  <div class="result-text" id="resultText4">Risposta per Drop Area 4</div>
+</section>
+<style> 
+#confirmBtn {
+  padding: 10px 20px;   
+  border: 3px double black;
+  border-radius: 10px;
+  cursor: pointer;             /* Cambia il cursore al passaggio */
+  transition: background 0.3s; /* Effetto hover fluido */
+  margin: 10px;
+  margin-left: 10%;
+}
+
+#confirmBtn:hover {
+  background-color:  rgba(253, 132, 186, 1);
+}
+
+  #resultSection {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 3px double #000000;
+  border-radius: 10px;
+  width: 50%;
+  margin-bottom: 5%;
+}
+
+.result-text {
+  display: none; 
+  padding: 15px;
+  background-color: #e0e0e0;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+</style>
 
        <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
 
@@ -88,6 +142,8 @@
     </button>
   </div>
   </section>
+
+</div>
 <!--
   <script>
   function updateSum(value) {
@@ -114,5 +170,9 @@
            ---- This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data
           </p>
         </footer>
+
+        <script src="counter.js"></script>
+
+      
     </body>
 </html>

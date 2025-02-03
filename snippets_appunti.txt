@@ -53,13 +53,25 @@ function updateSum(value) {
 
 Lista ordine pagine
 
-- homepage_access.html
-- IDENTITY_QUEST.html
-- new_index_CHANGES.html
--> controindicazioni.html
--> draggable_cards.html
+- homepage_access.html             IDENTITY_QUEST.css
+
+- IDENTITY_QUEST.html              IDENTITY_QUEST.css
+
+- new_index_CHANGES REVISED.html   new_index_CHANGES REVISED.css
+
+-> controindicazioni.html          new_index_CHANGES REVISED.css
+                                   dragndrop.css
+                                   options.css
+
+-> draggable_cards.html            new_index_CHANGES REVISED.css
+                                   draggable_cards.css
+                                   options.css
+
 -> avvertenze.html
--> dosaggio.html
+
+-> dosaggio.html                   new_index_CHANGES REVISED.css
+                                   dosaggio.css
+                                   options.css
 
 
 -------------------------------------------------------------------

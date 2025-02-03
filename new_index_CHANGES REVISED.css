@@ -48,16 +48,17 @@ nav {
 /*Stile per il menu a tendina*/
 /*può restare qua, perchè nelle altre pagine NON cis sarà il menù a tendina negli html*/
 .dropbtn {
-    background-color: #3498DB;
+    background-color: rgba(85, 188, 81, 1);
     color: white;
     padding: 16px;
     font-size: 16px;
-    border: none;
+    border: 1px solid black;
+    border-radius: 10px;
     cursor: pointer;
   }
   
   .dropbtn:hover, .dropbtn:focus {
-    background-color: #b94f29;
+    background-color: rgba(253, 132, 186, 1);
   }
   
   .dropdown {
@@ -122,10 +123,10 @@ nav {
     flex: 1;                        /* Ogni colonna occupa lo stesso spazio */
     padding: 15px;
     text-align: justify;
-
+    /*
     border: 1px dotted blue;
     border-style: dotted;
-  
+    */
 }
 
 /* Hover sul testo */
@@ -184,11 +185,12 @@ nav {
 }
 
 /* Bottoni */
-
+/*
 .button-container{
     border: 1px solid red;
     border-style: dotted;
 }
+    */ 
 
 .button button {
     display: block;

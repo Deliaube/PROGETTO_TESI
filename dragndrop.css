@@ -104,3 +104,13 @@
 .options button:hover {
     background-color: rgb(200, 200, 200); /* Cambio colore al passaggio */
 }
+
+
+/** CONTAINER RIGA  risultato + options*/
+.container-riga {
+    display: flex;       /* Attiva il flexbox */
+    justify-content: space-between;  /* Spazio tra le sezioni */
+    align-items: flex-start;          /* Allineamento verticale in alto */
+    gap: 20px;                        /* Distanza tra le sezioni */
+  }
+  
