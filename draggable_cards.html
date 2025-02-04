@@ -26,6 +26,9 @@
   
 <!-- Container for all cards -->
  <section class="container-corpo">
+          <!-- Background draggabile con style -->
+          <div class="background-draggable"></div> 
+
 <div id="cardContainer">
 
     <div class="draggable" id="card-1" style="top: 100px; left: 100px;">
@@ -154,14 +157,91 @@ function dragElement(elmnt) {
 }
   </script>
 
-  <!--bg drag prova_________________________________________________con script query nella head
+<!-- STYLE  Background draggabile DENTRO CONTAINER-CORPO -->
+ <style> 
+  .container-corpo {
+  position: relative; /* Importante per il posizionamento assoluto interno */
+  width: 100%;
+  height: 800px; /* Altezza a piacere */
+  overflow: hidden;
+  border: 2px solid black;
+}
+
+.background-draggable {
+  position: absolute; /* Posizionato sotto le cards */
+  top: 0;
+  left: 0;
+  width: 200%; /* Estende il background oltre i bordi */
+  height: 200%;
+  background-image: url('images/background_temporaneo.jpg'); /* Immagine personalizzata */
+  background-size: cover; /* Adatta l'immagine */
+  background-position: center;
+  cursor: move; /* Mostra il cursore di spostamento */
+  z-index: 1; /* Sotto le cards */
+}
+
+#cardContainer {
+  position: relative;
+  z-index: 2; /* Sopra il background */
+}
+
+.draggable-bg {
+  position: absolute;
+  cursor: grab;
+  backdrop-filter: blur(5px); /* Effetto per far risaltare il testo */
+
+}
+
+ </style>
+ <!--per il background draggabile dentro al container-corpo-->
+<script> 
+(function() {
+  const background = document.querySelector('.background-draggable');
+  let isDragging = false, startX, startY, posX = 0, posY = 0;
+
+  background.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    startX = e.clientX - posX;
+    startY = e.clientY - posY;
+    background.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+
+    posX = e.clientX - startX;
+    posY = e.clientY - startY;
+
+    // Limiti per non trascinare troppo fuori
+    const maxX = 0;
+    const minX = -(background.offsetWidth - background.parentElement.offsetWidth);
+    const maxY = 0;
+    const minY = -(background.offsetHeight - background.parentElement.offsetHeight);
+
+    // Applica limiti di movimento
+    posX = Math.min(maxX, Math.max(minX, posX));
+    posY = Math.min(maxY, Math.max(minY, posY));
+
+    background.style.transform = `translate(${posX}px, ${posY}px)`;
+  });
+
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+    background.style.cursor = 'move';
+  });
+})();
+</script>
+
+
+
+  <!--bg drag prova_______________________________________________________
   <p class='text-center' style='margin-bottom:20px;'>
     Click and drag the image around
   </p>
   <div class='container'></div>
 <script src="bg_drag_prova.js"></script> -->
 
-  <!--bg drag prova-->
+
 <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
 
 <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->
