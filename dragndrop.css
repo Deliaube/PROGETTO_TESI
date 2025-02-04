@@ -52,6 +52,20 @@
     margin: 10px;
 }
 
+#dropArea1 {
+    background-image: url("drag_images/2.png");
+    background-size: cover;        /* Adatta l’immagine a riempire l’area */
+    background-position: center;   /* Centra l’immagine */
+    background-repeat: no-repeat;  /* Evita la ripetizione */
+}
+
+#dropArea2 {
+    background-image: url("drag_images/1.png");
+    background-size: cover;        /* Adatta l’immagine a riempire l’area */
+    background-position: center;   /* Centra l’immagine */
+    background-repeat: no-repeat;  /* Evita la ripetizione */
+}
+
 .drop-area.dragover {
     background-color: #e0e0e0;
 }
