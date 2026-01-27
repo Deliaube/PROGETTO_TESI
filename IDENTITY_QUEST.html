@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="IDENTITY_QUEST.css">
+  <link rel="stylesheet" href="timer.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
   <title>1. let's start with 3 questions foy you</title>
@@ -31,7 +32,31 @@
   </div>
   <!--  <div id="progressText">Progress: 0%</div> -->
 </section>
-<p>how long is your stay suppoesd to be?</p>
+
+<!-- Duration Selection Section -->
+<section class="durata-selection" data-aos="zoom-in">
+  <div class="Alerts">
+    <p>How long is your stay supposed to be?</p>
+    
+    <div style="display: flex; flex-direction: column; align-items: center; width: 100%; padding: 0 20px;">
+      <input 
+        type="range" 
+        id="durationSlider" 
+        class="duration-slider" 
+        min="1" 
+        max="60" 
+        value="13"
+        oninput="updateSliderValue(this.value)"
+      >
+      <div class="slider-labels">
+        <span>1 min</span>
+        <span>60 min</span>
+      </div>
+      <div class="slider-value" id="sliderValue">13 minutes</div>
+      <button class="confirm-btn" onclick="confirmAndStartTimer()">CONFIRM</button>
+    </div>
+  </div>
+</section>
 <button onclick="location.href='#end';"> Marked </button>
 
 <!--
@@ -97,8 +122,10 @@
   </script>
 <!-- Script for animation -->
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
+<!-- Timer Scripts -->
+<script src="timer.js"></script>
+<script>
+  AOS.init();
 </script>
 
 </body>
