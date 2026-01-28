@@ -3,6 +3,7 @@ body {
   text-align: center;
   margin: 0;
   padding: 20px;
+  scroll-behavior: smooth;
 }
 
 .quest {
@@ -95,3 +96,19 @@ section {
   text-align: center; /* Centra il contenuto di metric */
 }
 
+.durata-selection {
+  margin-top: 80vh !important;
+}
+
+.start-cyberoute-btn {
+  background-color: rgba(85, 188, 81, 1);
+  color: white;
+  border: 1px solid black;
+  padding: 16px 32px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.start-cyberoute-btn:hover {
+  background-color: rgba(253, 132, 186, 1);
+}

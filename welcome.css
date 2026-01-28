@@ -1,0 +1,87 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.welcome-container {
+  margin-top: 15%;
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-box {
+  border: 3px solid black;
+  border-radius: 20px;
+  background-color: #f9f9f9;
+  padding: 40px;
+  max-width: 600px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-box h1 {
+  font-size: 48px;
+  margin: 0 0 20px 0;
+  color: #000;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#userNumber {
+  color: rgba(85, 188, 81, 1);
+  font-weight: bold;
+}
+
+.welcome-box p {
+  font-size: 20px;
+  margin: 20px 0;
+  color: #555;
+}
+
+.continue-btn {
+  margin-top: 30px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+  background-color: rgba(85, 188, 81, 1);
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  transition-duration: 0.4s;
+  display: inline-block;
+}
+
+.continue-btn:hover {
+  background-color: rgba(253, 132, 186, 1);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .welcome-container {
+    margin-top: 30%;
+    height: auto;
+  }
+
+  .welcome-box {
+    padding: 20px;
+  }
+
+  .welcome-box h1 {
+    font-size: 32px;
+  }
+
+  .welcome-box p {
+    font-size: 16px;
+  }
+
+  .continue-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}

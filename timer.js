@@ -271,15 +271,15 @@ function applyCustomDuration() {
   }
 }
 
-// Confirm and start timer, then redirect
+// Confirm and start timer
 function confirmAndStartTimer() {
   const slider = document.getElementById('durationSlider');
   if (slider) {
     const duration = parseInt(slider.value);
     timerManager.setDuration(duration);
-    // Redirect to the main page
+    // Redirect to welcome page (which then goes to main page)
     setTimeout(() => {
-      window.location.href = 'new_index_CHANGES REVISED.html';
+      window.location.href = 'welcome.html';
     }, 300);
   }
 }
