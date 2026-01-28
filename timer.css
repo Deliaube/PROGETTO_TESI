@@ -14,6 +14,11 @@
   z-index: 1000;
   min-width: 150px;
   text-align: center;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .timer-widget.hidden {

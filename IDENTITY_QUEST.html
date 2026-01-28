@@ -15,11 +15,11 @@
     <div class="Alerts" data-aos="zoom-in">
            <p> Welcome, please select your status</p>
         <ul>
-            <li>  <button onclick="document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Guest </button> </li>
-            <li>  <button onclick="document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Killer </button> </li>
-            <li>  <button onclick="document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> User </button> </li>
-            <li>  <button onclick="document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Abuser </button> </li>
-            <li>  <button onclick="document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> AFK </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Guest'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Guest </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Killer'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Killer </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'User'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> User </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Abuser'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Abuser </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'AFK'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> AFK </button> </li>
         </ul>
     </div>
   </section>
@@ -73,6 +73,11 @@
 
  <!-- Script for progress bar -->
   <script>
+    // Enable custom cursor when status button is clicked
+    function enableCustomCursor() {
+      document.body.style.cursor = "url('cursor.svg') 16 16, auto";
+    }
+
     const progressContainer = document.getElementById('progressContainer');
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');

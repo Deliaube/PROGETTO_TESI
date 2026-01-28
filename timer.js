@@ -66,7 +66,40 @@ class TimerManager {
     `;
     
     document.body.insertBefore(widget, document.body.firstChild);
+    this.enableDragWidget(widget);
     this.updateWidgetDisplay();
+  }
+
+  // Enable drag functionality for the timer widget
+  enableDragWidget(widget) {
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    widget.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      const rect = widget.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      widget.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        const newX = e.clientX - offsetX;
+        const newY = e.clientY - offsetY;
+        widget.style.right = 'auto';
+        widget.style.top = Math.max(0, newY) + 'px';
+        widget.style.left = Math.max(0, newX) + 'px';
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      widget.style.cursor = 'grab';
+    });
+
+    widget.style.cursor = 'grab';
   }
 
   // Start the interval to update the timer display

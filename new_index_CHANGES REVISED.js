@@ -23,6 +23,9 @@
 
 function resetChoices() {
     try {
+      // Resetta il cursore al default
+      document.body.style.cursor = 'auto';
+      
       // Verifica se la chiave esiste prima di rimuoverla
       if (localStorage.getItem('totalSum') !== null) {
         localStorage.removeItem('totalSum');

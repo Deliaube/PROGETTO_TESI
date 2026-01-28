@@ -1,4 +1,4 @@
-// Function to manage user counter
+// Function to manage user counter and display user status
 function initializeUserCounter() {
   // Get current user number from localStorage
   let userNumber = localStorage.getItem('userNumber');
@@ -14,6 +14,15 @@ function initializeUserCounter() {
   
   // Display the user number
   document.getElementById('userNumber').textContent = userNumber;
+  
+  // Get user status from localStorage
+  let userStatus = localStorage.getItem('userStatus');
+  if (!userStatus) {
+    userStatus = 'User'; // Default value
+  }
+  
+  // Display the user status
+  document.getElementById('userStatus').textContent = userStatus;
 }
 
 // Run when page loads

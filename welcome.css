@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 20px;
   background-color: #f4f4f4;
+  cursor: url('cursor.svg') 16 16, auto;
 }
 
 .welcome-container {
