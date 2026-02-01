@@ -24,7 +24,19 @@
 
     </nav>
 </header>
-  
+
+<!-- New Card Controls -->
+<div style="padding: 15px 20px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; display: flex; align-items: center; gap: 15px;">
+  <button id="createOutsideCardBtn" title="Create a new card in the left of the container" style="padding: 8px 16px; font-size: 16px; cursor: pointer;">➕ New Card</button>
+  <div id="createColorPalette" class="color-palette" role="radiogroup" aria-label="Choose post-it color" style="display:flex;align-items:center;gap:10px;">
+    <button class="color-sphere selected" data-color="yellow" title="Yellow post-it" aria-pressed="true" role="radio"></button>
+    <button class="color-sphere" data-color="pink" title="Pink post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere" data-color="green" title="Green post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere" data-color="blue" title="Blue post-it" aria-pressed="false" role="radio"></button>
+  </div>
+  <button id="cleanerBtn" title="Delete all cards at once" style="padding: 8px 16px; font-size: 16px; cursor: pointer; background: #ff4444; color: white; border: none; border-radius: 6px;">🗑️ Cleaner</button>
+</div>
+
 <!-- Container for all cards -->
  <section class="container-corpo">
           <!-- Background draggabile con style -->
@@ -117,45 +129,492 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
       </div>
   </div>
 </section>
+
+<!-- Card Statistics -->
+<div id="cardStats" style="margin: 20px; padding: 15px; background-color: #f0f0f0; border-radius: 8px; display: flex; gap: 30px; justify-content: center; font-family: monospace;">
+  <div style="text-align: center;">
+    <div style="font-size: 24px; font-weight: bold; color: #2196F3;" id="totalCreated">0</div>
+    <div style="font-size: 12px; color: #666;">Total Created</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="font-size: 24px; font-weight: bold; color: #4CAF50;" id="currentCards">0</div>
+    <div style="font-size: 12px; color: #666;">Current Cards</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="font-size: 24px; font-weight: bold; color: #f44336;" id="deletedCards">0</div>
+    <div style="font-size: 12px; color: #666;">Deleted Cards</div>
+  </div>
+</div>
+
   <!---script drag n drop__________________________________________________________________-->
   <script>
-    // Aggiunge il comportamento di drag-and-drop a tutte le cards
-document.querySelectorAll('.draggable').forEach((card) => {
-  dragElement(card);
-});
+  document.addEventListener('DOMContentLoaded', function() {
+    const cardContainer = document.getElementById('cardContainer');
 
-// Funzione di drag-and-drop (come prima)
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (elmnt.querySelector(".draggable-header")) {
-    elmnt.querySelector(".draggable-header").onmousedown = dragMouseDown;
-  }
+    // State persistence: use localStorage
+    const STORAGE_KEY = 'draggableCards_state_v1';
+    const DELETED_KEY = 'draggableCards_deleted_v1';
+    const COUNTER_KEY = 'draggableCards_counter_v1';
 
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    document.onmousemove = elementDrag;
-  }
+    // Reset localStorage if corrupted (check for URL param ?reset=1)
+    if (window.location.search.includes('reset=1')) {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(DELETED_KEY);
+      localStorage.removeItem(COUNTER_KEY);
+      localStorage.removeItem('draggableCards_nextCreateIndex_v1');
+      console.log('localStorage cleared');
+      // Remove ?reset=1 from URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
 
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
+    function saveDeletedState(arr) { localStorage.setItem(DELETED_KEY, JSON.stringify(arr || [])); }
+    function loadDeletedState() { try { return JSON.parse(localStorage.getItem(DELETED_KEY) || '[]') || []; } catch(e) { return []; } }
+    
+    let deletedCards = loadDeletedState();
 
-  function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
+    function saveAllCardsState() {
+      const arr = Array.from(document.querySelectorAll('.draggable')).map(getCardStateFromElem);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+      console.log('Saved cards state:', arr.length);
+      updateCardStats();
+    }
+    
+    function loadAllCardsState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || null; } catch (e) { return null; }
+    }
+
+    function updateCardStats() {
+      const currentCount = document.querySelectorAll('.draggable').length;
+      const deletedCount = deletedCards.length;
+      const totalCreated = parseInt(localStorage.getItem(COUNTER_KEY) || '0');
+      
+      document.getElementById('totalCreated').textContent = totalCreated;
+      document.getElementById('currentCards').textContent = currentCount;
+      document.getElementById('deletedCards').textContent = deletedCount;
+    }
+
+    function refreshTrashList() {
+      const list = document.getElementById('trashList');
+      if (!list) return;
+      list.innerHTML = '';
+      deletedCards.forEach((c, idx) => {
+        const item = document.createElement('div');
+        item.className = 'trash-item';
+        item.innerHTML = `<div class="trash-title">${(c.headerText||'Card')} - <small>${new Date(c.deletedAt).toLocaleString()}</small></div><div class="trash-actions"><button data-idx="${idx}" class="restoreBtn">Restore</button> <button data-idx="${idx}" class="permDelBtn">Delete permanently</button></div>`;
+        list.appendChild(item);
+      });
+      list.querySelectorAll('.restoreBtn').forEach(b => b.addEventListener('click', (e) => { const i = parseInt(b.dataset.idx); restoreDeletedCard(i); }));
+      list.querySelectorAll('.permDelBtn').forEach(b => b.addEventListener('click', (e) => { const i = parseInt(b.dataset.idx); if (confirm('Delete permanently?')) { deletedCards.splice(i,1); saveDeletedState(deletedCards); refreshTrashList(); } }));
+    }
+
+    function getCardStateFromElem(card) {
+      const id = card.id || ('card-temp-' + Math.round(Math.random()*1e6));
+      const header = card.querySelector('.draggable-header');
+      const content = card.querySelector('.card-content');
+      
+      let headerText = '';
+      if (header) {
+        const deleteBtn = header.querySelector('.inline-delete');
+        const clonedHeader = header.cloneNode(true);
+        const clonedDeleteBtn = clonedHeader.querySelector('.inline-delete');
+        if (clonedDeleteBtn) clonedDeleteBtn.remove();
+        headerText = clonedHeader.textContent.trim();
+      }
+      
+      return {
+        id: id,
+        left: parseFloat(card.style.left) || 0,
+        top: parseFloat(card.style.top) || 0,
+        zIndex: parseInt(card.style.zIndex) || 0,
+        width: card.style.width ? parseFloat(card.style.width) : card.offsetWidth,
+        height: card.style.height ? parseFloat(card.style.height) : card.offsetHeight,
+        headerText: headerText,
+        contentHTML: (content && content.innerHTML) || '',
+        colorClass: Array.from(card.classList).find(c => c.startsWith('postit-')) || 'postit-yellow'
+      };
+    }
+
+    function deleteCard(card) {
+      const state = getCardStateFromElem(card);
+      state.deletedAt = Date.now();
+      deletedCards.push(state);
+      saveDeletedState(deletedCards);
+      card.remove();
+      saveAllCardsState();
+      refreshTrashList();
+      updateCardStats();
+    }
+
+    function createCardFromState(obj) {
+      const newCard = document.createElement('div');
+      newCard.className = 'draggable';
+      newCard.id = obj.id;
+      newCard.style.left = (obj.left || 12) + 'px';
+      newCard.style.top = (obj.top || 12) + 'px';
+      if (obj.zIndex) newCard.style.zIndex = obj.zIndex;
+      if (obj.width) newCard.style.width = obj.width + 'px';
+      if (obj.height) newCard.style.height = obj.height + 'px';
+      newCard.innerHTML = `
+        <div class="draggable-header">${obj.headerText || ''}</div>
+        <div class="card-content" contenteditable="true">${obj.contentHTML || ''}</div>
+        <div class="resize-handle"></div>
+      `;
+      if (obj.colorClass) newCard.classList.add(obj.colorClass);
+      return newCard;
+    }
+
+    function restoreDeletedCard(index) {
+      const obj = deletedCards.splice(index,1)[0];
+      saveDeletedState(deletedCards);
+      const c = createCardFromState(obj);
+      document.getElementById('cardContainer').appendChild(c);
+      ensureContentElem(c);
+      dragElement(c);
+      makeResizable(c);
+      saveAllCardsState();
+      refreshTrashList();
+      updateCardStats();
+    }
+
+    // Drag behavior
+    function dragElement(elmnt) {
+      const header = elmnt.querySelector('.draggable-header');
+      if (!header) return;
+
+      header.style.touchAction = 'none';
+      header.style.cursor = 'grab';
+
+      let pointerId = null;
+      let startX = 0, startY = 0;
+      let startLeft = 0, startTop = 0;
+
+      function onPointerDown(e) {
+        e.preventDefault();
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        startY = e.clientY;
+        startLeft = parseFloat(elmnt.style.left) || elmnt.offsetLeft || 0;
+        startTop = parseFloat(elmnt.style.top) || elmnt.offsetTop || 0;
+        try { header.setPointerCapture(pointerId); } catch (err) {}
+        header.style.cursor = 'grabbing';
+        document.addEventListener('pointermove', onPointerMove);
+        document.addEventListener('pointerup', onPointerUp);
+      }
+
+      function onPointerMove(e) {
+        if (pointerId === null || e.pointerId !== pointerId) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        let newLeft = Math.round(startLeft + dx);
+        let newTop = Math.round(startTop + dy);
+        const minLeft = -elmnt.offsetWidth + 50;
+        const minTop = 0;
+        newLeft = Math.max(minLeft, newLeft);
+        newTop = Math.max(minTop, newTop);
+        elmnt.style.left = newLeft + 'px';
+        elmnt.style.top = newTop + 'px';
+      }
+
+      function onPointerUp(e) {
+        if (pointerId === null || e.pointerId !== pointerId) return;
+        try { header.releasePointerCapture(pointerId); } catch (err) {}
+        pointerId = null;
+        header.style.cursor = 'grab';
+        document.removeEventListener('pointermove', onPointerMove);
+        document.removeEventListener('pointerup', onPointerUp);
+        try { saveAllCardsState(); } catch (err) { console.warn('save failed', err); }
+      }
+
+      header.addEventListener('pointerdown', onPointerDown);
+      header.addEventListener('pointercancel', onPointerUp);
+    }
+
+    function makeResizable(card) {
+      const handle = card.querySelector('.resize-handle');
+      if (!handle) return;
+
+      handle.style.touchAction = 'none';
+      handle.style.cursor = 'nwse-resize';
+
+      let pointerId = null;
+      let startWidth = 0, startHeight = 0;
+      let startX = 0, startY = 0;
+
+      function onPointerDown(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        startY = e.clientY;
+        startWidth = card.offsetWidth;
+        startHeight = card.offsetHeight;
+        try { handle.setPointerCapture(pointerId); } catch (err) {}
+        document.addEventListener('pointermove', onPointerMove);
+        document.addEventListener('pointerup', onPointerUp);
+      }
+
+      function onPointerMove(e) {
+        if (pointerId === null || e.pointerId !== pointerId) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        const newWidth = Math.max(150, startWidth + dx);
+        const newHeight = Math.max(100, startHeight + dy);
+        card.style.width = newWidth + 'px';
+        card.style.height = newHeight + 'px';
+      }
+
+      function onPointerUp(e) {
+        if (pointerId === null || e.pointerId !== pointerId) return;
+        try { handle.releasePointerCapture(pointerId); } catch (err) {}
+        pointerId = null;
+        document.removeEventListener('pointermove', onPointerMove);
+        document.removeEventListener('pointerup', onPointerUp);
+        try { saveAllCardsState(); } catch (err) {}
+      }
+
+      handle.addEventListener('pointerdown', onPointerDown);
+      handle.addEventListener('pointercancel', onPointerUp);
+    }
+
+    function ensureContentElem(card) {
+      let content = card.querySelector('.card-content');
+      if (!content) {
+        content = document.createElement('div');
+        content.className = 'card-content';
+        // move existing children (p, img, text) into content
+        const toMove = [];
+        card.childNodes.forEach(node => {
+          if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('draggable-header')) return;
+          if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) return;
+          toMove.push(node);
+        });
+        if (toMove.length) {
+          toMove.forEach(n => content.appendChild(n));
+        } else {
+          content.textContent = '';
+        }
+        card.appendChild(content);
+      }
+      // make editable and attach handlers
+      content.setAttribute('contenteditable','true');
+      content.setAttribute('tabindex','0');
+      content.style.cursor = 'text';
+
+      content.addEventListener('click', (e) => { e.stopPropagation(); content.focus(); });
+
+      // Paste images from clipboard
+      content.addEventListener('paste', function(e) {
+        const clipboard = (e.clipboardData || window.clipboardData);
+        if (!clipboard || !clipboard.items) return;
+        for (let i = 0; i < clipboard.items.length; i++) {
+          const item = clipboard.items[i];
+          if (item.type.indexOf('image') !== -1) {
+            const file = item.getAsFile();
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+              const img = document.createElement('img');
+              img.src = evt.target.result;
+              img.style.maxWidth = '100%';
+              content.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+            e.preventDefault();
+          }
+        }
+      });
+
+      // Drop files into content
+      content.addEventListener('drop', function(e) {
+        e.preventDefault();
+        const files = e.dataTransfer.files;
+        if (files && files.length) {
+          for (let f of files) {
+            if (f.type && f.type.startsWith('image/')) {
+              const reader = new FileReader();
+              reader.onload = function(evt) {
+                const img = document.createElement('img');
+                img.src = evt.target.result;
+                img.style.maxWidth = '100%';
+                content.appendChild(img);
+              };
+              reader.readAsDataURL(f);
+            }
+          }
+        }
+      });
+      content.addEventListener('dragover', (e) => e.preventDefault());
+
+      // Add inline delete (X) to header - top right corner
+      const header = card.querySelector('.draggable-header');
+      if (header && !header.querySelector('.inline-delete')) {
+        const del = document.createElement('button');
+        del.className = 'inline-delete';
+        del.title = 'Delete card';
+        del.setAttribute('aria-label','Delete card');
+        del.innerText = '✖';
+        // Prevent clicks on the button from starting a drag
+        del.addEventListener('pointerdown', (ev) => { ev.stopPropagation(); });
+        del.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          ev.preventDefault();
+          deleteCard(card);
+        });
+        header.appendChild(del);
+      }
+
+      // Add resize handle if not present
+      if (!card.querySelector('.resize-handle')) {
+        const resizeHandle = document.createElement('div');
+        resizeHandle.className = 'resize-handle';
+        card.appendChild(resizeHandle);
+      }
+
+      return content;
+    }
+
+    // INITIALIZATION
+    let saved = loadAllCardsState();
+    let cardCounter = parseInt(localStorage.getItem(COUNTER_KEY) || '0');
+
+    if (saved && saved.length) {
+      // clear existing and load saved
+      document.querySelectorAll('.draggable').forEach(d => d.remove());
+      const container = document.getElementById('cardContainer');
+      saved.forEach(obj => { 
+        const c = createCardFromState(obj); 
+        container.appendChild(c); 
+        ensureContentElem(c); 
+        dragElement(c);
+        makeResizable(c);
+        // Update cardCounter based on loaded card IDs
+        const cardNum = parseInt((obj.id||'card-0').split('-').pop()||0);
+        cardCounter = Math.max(cardCounter, cardNum);
+      });
+      // Save updated counter
+      localStorage.setItem(COUNTER_KEY, String(cardCounter));
+      console.log('Loaded saved cards:', saved.length);
+    } else {
+      // no saved state: normalize IDs and save initial DOM
+      const existing = Array.from(document.querySelectorAll('.draggable'));
+      existing.forEach((card, idx) => {
+        if (!card.id) card.id = `card-${idx+1}`;
+        cardCounter = Math.max(cardCounter, parseInt((card.id||'card-0').split('-').pop()||0));
+        ensureContentElem(card);
+        dragElement(card);
+        makeResizable(card);
+      });
+      localStorage.setItem(COUNTER_KEY, String(cardCounter));
+      saveAllCardsState();
+    }
+
+    // Track card count for unique ids
+    const currentCardCount = document.querySelectorAll('.draggable').length;
+    cardCounter = Math.max(cardCounter, currentCardCount);
+    let nextCreateIndex = parseInt(localStorage.getItem('draggableCards_nextCreateIndex_v1') || String(cardCounter)) || cardCounter;
+
+    // Initialize stats
+    updateCardStats();
+
+    // Button to create a new card
+    const createBtn = document.getElementById('createOutsideCardBtn');
+    const colorPalette = document.getElementById('createColorPalette');
+
+    // initialize palette behavior (single selection, keyboard accessible)
+    if (colorPalette) {
+      const buttons = Array.from(colorPalette.querySelectorAll('.color-sphere'));
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-pressed','false'); });
+          btn.classList.add('selected'); btn.setAttribute('aria-pressed','true');
+        });
+        btn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } });
+      });
+      // ensure default
+      if (!colorPalette.querySelector('.color-sphere.selected')) {
+        const def = colorPalette.querySelector('[data-color="yellow"]'); if (def) { def.classList.add('selected'); def.setAttribute('aria-pressed','true'); }
+      }
+    }
+
+    if (createBtn) {
+      createBtn.addEventListener('click', () => {
+        cardCounter++;
+        const sel = colorPalette && colorPalette.querySelector('.color-sphere.selected');
+        const chosenColor = sel ? sel.dataset.color : 'yellow';
+        const newCard = document.createElement('div');
+        newCard.className = 'draggable';
+        newCard.id = `card-${cardCounter}`;
+        newCard.style.zIndex = 999;
+        newCard.innerHTML = `
+          <div class="draggable-header"></div>
+          <div class="card-content" contenteditable="true"></div>
+          <div class="resize-handle"></div>
+        `;
+        // append to cardContainer so it's inside the container on the left
+        const container = document.getElementById('cardContainer');
+        // compute an offset so new cards don't stack exactly
+        const contRect = container.getBoundingClientRect();
+        const stepX = 26, stepY = 18;
+        const maxX = Math.max(40, Math.floor(contRect.width - 120));
+        const maxY = Math.max(40, Math.floor(contRect.height - 80));
+        const ox = (nextCreateIndex * stepX) % maxX;
+        const oy = (nextCreateIndex * stepY) % maxY;
+        newCard.style.left = (12 + ox) + 'px';
+        newCard.style.top = (12 + oy) + 'px';
+        nextCreateIndex = (nextCreateIndex || 0) + 1;
+        localStorage.setItem('draggableCards_nextCreateIndex_v1', String(nextCreateIndex));
+
+        container.appendChild(newCard);
+        // apply color class
+        newCard.classList.add('postit-' + chosenColor);
+        ensureContentElem(newCard);
+        dragElement(newCard);
+        makeResizable(newCard);
+        // focus content for immediate editing
+        const content = newCard.querySelector('.card-content');
+        if (content) { content.focus(); }
+        // save
+        localStorage.setItem(COUNTER_KEY, String(cardCounter));
+        saveAllCardsState();
+        updateCardStats();
+      });
+    }
+
+    // Cleaner button - delete all cards at once
+    const cleanerBtn = document.getElementById('cleanerBtn');
+    if (cleanerBtn) {
+      cleanerBtn.addEventListener('click', () => {
+        console.log('Cleaner button clicked');
+        const currentCards = Array.from(document.querySelectorAll('.draggable'));
+        console.log('Current cards count:', currentCards.length);
+        
+        if (currentCards.length === 0) {
+          alert('No cards to delete!');
+          return;
+        }
+        
+        const confirmed = confirm(`Are you sure you want to permanently delete all ${currentCards.length} cards? This will also clear the trash bin to free up space.`);
+        if (confirmed) {
+          console.log('User confirmed deletion');
+          
+          // Remove all cards from DOM
+          currentCards.forEach(card => card.remove());
+          
+          // Clear trash bin to free up localStorage space
+          deletedCards = [];
+          saveDeletedState(deletedCards);
+          
+          // Save empty state and update stats
+          saveAllCardsState();
+          refreshTrashList();
+          updateCardStats();
+          console.log('All cards deleted and trash cleared');
+        }
+      });
+      console.log('Cleaner button initialized');
+    } else {
+      console.error('Cleaner button not found!');
+    }
+  });
   </script>
 
 <!-- STYLE  Background draggabile DENTRO CONTAINER-CORPO -->
@@ -174,7 +633,7 @@ function dragElement(elmnt) {
   left: 0;
   width: 200%; /* Estende il background oltre i bordi */
   height: 200%;
-  background-image: url('images/background_temporaneo.jpg'); /* Immagine personalizzata */
+  /* background-image viene impostata dinamicamente via JavaScript */
   background-size: cover; /* Adatta l'immagine */
   background-position: center;
   cursor: move; /* Mostra il cursore di spostamento */
@@ -198,6 +657,17 @@ function dragElement(elmnt) {
 <script> 
 (function() {
   const background = document.querySelector('.background-draggable');
+  
+  // Random background image selection
+  const backgroundImages = [
+    'images/background_temporaneo.jpg',
+    'images/background_temporaneo 2.jpg'
+  ];
+  
+  // Seleziona una immagine random
+  const randomImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+  background.style.backgroundImage = `url('${randomImage}')`;
+  
   let isDragging = false, startX, startY, posX = 0, posY = 0;
 
   background.addEventListener('mousedown', function(e) {
