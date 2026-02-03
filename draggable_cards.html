@@ -33,6 +33,7 @@
     <button class="color-sphere" data-color="pink" title="Pink post-it" aria-pressed="false" role="radio"></button>
     <button class="color-sphere" data-color="green" title="Green post-it" aria-pressed="false" role="radio"></button>
     <button class="color-sphere" data-color="blue" title="Blue post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere" data-color="transparent" title="Transparent post-it" aria-pressed="false" role="radio"></button>
   </div>
   <button id="cleanerBtn" title="Delete all cards at once" style="padding: 8px 16px; font-size: 16px; cursor: pointer; background: #ff4444; color: white; border: none; border-radius: 6px;">🗑️ Cleaner</button>
 </div>
@@ -634,7 +635,8 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
   width: 200%; /* Estende il background oltre i bordi */
   height: 200%;
   /* background-image viene impostata dinamicamente via JavaScript */
-  background-size: cover; /* Adatta l'immagine */
+  background-size: contain; /* Mostra l'immagine completa senza tagliarla */
+  background-repeat: no-repeat; /* Evita ripetizioni */
   background-position: center;
   cursor: move; /* Mostra il cursore di spostamento */
   z-index: 1; /* Sotto le cards */
@@ -657,11 +659,14 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
 <script> 
 (function() {
   const background = document.querySelector('.background-draggable');
+  if (!background) return;
   
   // Random background image selection
   const backgroundImages = [
     'images/background_temporaneo.jpg',
-    'images/background_temporaneo 2.jpg'
+    'images/background_temporaneo 2.jpg',
+    'images/background_temporaneo 3.jpg',
+    'images/background_temporaneo 2 (1).jpg'
   ];
   
   // Seleziona una immagine random
@@ -671,10 +676,14 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
   let isDragging = false, startX, startY, posX = 0, posY = 0;
 
   background.addEventListener('mousedown', function(e) {
+    // Ignora se si clicca su una card
+    if (e.target !== background) return;
+    
     isDragging = true;
     startX = e.clientX - posX;
     startY = e.clientY - posY;
     background.style.cursor = 'grabbing';
+    e.preventDefault();
   });
 
   document.addEventListener('mousemove', function(e) {
@@ -683,22 +692,73 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
     posX = e.clientX - startX;
     posY = e.clientY - startY;
 
-    // Limiti per non trascinare troppo fuori
+    // Calcola i limiti in base alle dimensioni effettive
+    const container = background.parentElement;
+    const bgWidth = background.offsetWidth;
+    const bgHeight = background.offsetHeight;
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+
+    // Limiti completi: permetti di trascinare fino ai bordi del background
+    const maxMovementX = (bgWidth - containerWidth);
+    const maxMovementY = (bgHeight - containerHeight);
+
     const maxX = 0;
-    const minX = -(background.offsetWidth - background.parentElement.offsetWidth);
+    const minX = -maxMovementX;
     const maxY = 0;
-    const minY = -(background.offsetHeight - background.parentElement.offsetHeight);
+    const minY = -maxMovementY;
 
     // Applica limiti di movimento
-    posX = Math.min(maxX, Math.max(minX, posX));
-    posY = Math.min(maxY, Math.max(minY, posY));
+    posX = Math.max(minX, Math.min(maxX, posX));
+    posY = Math.max(minY, Math.min(maxY, posY));
 
     background.style.transform = `translate(${posX}px, ${posY}px)`;
   });
 
   document.addEventListener('mouseup', function() {
-    isDragging = false;
-    background.style.cursor = 'move';
+    if (isDragging) {
+      isDragging = false;
+      background.style.cursor = 'move';
+    }
+  });
+
+  // Supporto touch per dispositivi mobili
+  background.addEventListener('touchstart', function(e) {
+    if (e.target !== background) return;
+    isDragging = true;
+    const touch = e.touches[0];
+    startX = touch.clientX - posX;
+    startY = touch.clientY - posY;
+    e.preventDefault();
+  });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    posX = touch.clientX - startX;
+    posY = touch.clientY - startY;
+
+    const container = background.parentElement;
+    const maxMovementX = (background.offsetWidth - container.offsetWidth);
+    const maxMovementY = (background.offsetHeight - container.offsetHeight);
+
+    const maxX = 0;
+    const minX = -maxMovementX;
+    const maxY = 0;
+    const minY = -maxMovementY;
+
+    posX = Math.max(minX, Math.min(maxX, posX));
+    posY = Math.max(minY, Math.min(maxY, posY));
+
+    background.style.transform = `translate(${posX}px, ${posY}px)`;
+    e.preventDefault();
+  });
+
+  document.addEventListener('touchend', function() {
+    if (isDragging) {
+      isDragging = false;
+      background.style.cursor = 'move';
+    }
   });
 })();
 </script>
