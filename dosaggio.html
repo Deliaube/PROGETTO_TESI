@@ -95,7 +95,11 @@
   <div class="popup" id="popup">
     <span class="close">&times;</span>
     <p id="popup-content"></p>
-    <textarea id="commentBox" placeholder="Scrivi qui..."></textarea>
+    <textarea id="commentBox" placeholder="Write here..."></textarea>
+  </div>
+  
+  <div class="popup-dark" id="darkPopup">
+    <p>i don't think so</p>
   </div>
 </section>
   <script>
@@ -117,8 +121,20 @@
       });
     });
     
+    const darkPopup = document.getElementById('darkPopup');
+    
     document.querySelector('.popup .close').addEventListener('click', function () {
       popup.style.display = 'none';
+      
+      // Mostra il popup nero in posizione random
+      darkPopup.style.top = `${Math.random() * 80}%`;
+      darkPopup.style.left = `${Math.random() * 80}%`;
+      darkPopup.style.display = 'block';
+      
+      // Nascondi il popup nero dopo 2 secondi
+      setTimeout(() => {
+        darkPopup.style.display = 'none';
+      }, 2000);
     });
 
     commentBox.addEventListener('input', () => {

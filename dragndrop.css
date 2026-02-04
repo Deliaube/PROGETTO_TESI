@@ -13,25 +13,29 @@
     padding: 20px; /* Spaziatura interna */
     box-sizing: border-box;
     float: right;
-    border: black 2px solid;
 }
 
 .image-container {
-    width: 100%;
-    margin-bottom: 20px;
+    width: auto;
+    margin-bottom: 5px;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    right: 20px;
+    top: 150px;
+    z-index: 10;
   
 
 }
 
 
 .draggable {
-    margin: 10px;
+    margin: 5px;
     cursor: grab;
     border: none;
     border-radius: 8px;
-    max-width: 150px;
+    max-width: 90px;
     height: auto;
 }
 

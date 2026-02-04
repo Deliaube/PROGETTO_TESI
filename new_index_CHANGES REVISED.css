@@ -108,8 +108,9 @@ nav {
     justify-content: space-between; /* Distribuisce le colonne */
     align-items: flex-start;         /* Allinea in alto */
     margin: 5% auto;                 /* Margine del 5% ai lati */
+    margin-right: 200px;             /* Spazio per le dollface a destra */
     padding: 20px;
-    max-width: 90%;                  /* Limita la larghezza massima */
+    max-width: calc(90% - 200px);    /* Ridotto per fare spazio alle dollface */
     gap: 20px;                       /* Spazio tra le colonne */
     background-color: white;
     border: 2px solid black;
