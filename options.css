@@ -7,12 +7,44 @@
     align-items: center;         /* Centra orizzontalmente */
     gap: 20px;                   /* Spazio tra gli elementi */
     background-color: rgb(235, 235, 235);
-    width:20%;
+    width: 20%;
+    min-width: 200px;            /* Larghezza minima */
+    max-width: 300px;            /* Larghezza massima */
     border: 4px double black;    /* Bordo doppio */
     border-radius: 20px;
     padding: 10px;               /* Spaziatura interna */
     box-sizing: border-box;      /* Include il padding nella larghezza */
     margin-bottom: 100px;
+}
+
+/* Media query per tablet */
+@media (max-width: 1024px) {
+    .options {
+        width: 30%;
+        min-width: 180px;
+        gap: 15px;
+        padding: 8px;
+    }
+}
+
+/* Media query per mobile */
+@media (max-width: 768px) {
+    .options {
+        float: none;
+        width: 90%;
+        max-width: 100%;
+        margin: 20px auto 100px;
+        gap: 10px;
+    }
+    
+    .buttons-options {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .options button {
+        width: 100%;
+    }
 }
 
 #finished {

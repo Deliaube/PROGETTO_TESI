@@ -3,9 +3,11 @@
 /* Contenitore della griglia */
 .grid-drop-container {
     display: grid; /* Imposta il layout a griglia */
-    grid-template-columns: repeat(2, 1fr); /* 3 colonne di larghezza uguale */
-    gap: 20px; /* Spazio tra le griglie */
+    grid-template-columns: repeat(2, 1fr); /* 2 colonne di larghezza uguale */
+    column-gap: 30px; /* Spazio orizzontale tra le colonne */
+    row-gap: 5px; /* Spazio verticale tra le righe */
     width: 100%;
+    min-width: 50%; /* Occupano almeno il 50% della width del body */
     max-width: 1200px; /* Larghezza massima per il layout */
     margin: 0 auto; /* Centra il contenitore nella pagina */
     padding: 20px; /* Spaziatura interna */
@@ -25,11 +27,12 @@
 
 
 .draggable {
-    width: 150px;
     margin: 10px;
     cursor: grab;
-    border: 2px solid #ddd;
+    border: none;
     border-radius: 8px;
+    max-width: 150px;
+    height: auto;
 }
 
 .draggable:active {
@@ -37,19 +40,19 @@
 }
 
 .drop-area {
-    flex: 1 1 calc(33.33% - 20px); /* Ogni area occupa circa 1/3 della larghezza */
-    /* max-width: 300px; Opzionale: limita la dimensione delle drop area */
-    
-    width: 100%;
-    height: 300px;
+    width: 100%; /* Larghezza adattiva al container */
+    min-width: 340px; /* Ridotto di 10px */
+    height: 390px; /* Ridotto di 10px */
     border: 2px dashed #ccc;
     border-radius: 12px;
     display: flex;
-    justify-content: center;
-   /* align-items: center; */
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px;
+    padding: 10px;
     background-color: #f9f9f9;
     transition: background-color 0.3s ease;
-    margin: 10px;
+    margin: 5px; /* Margin ridotto */
 }
 
 #dropArea1 {
@@ -71,8 +74,11 @@
 }
 
 .drop-area img {
-    max-width: 100%; /* Le immagini si adattano alla larghezza */
-    max-height: 100%; /* Evita che superino l'altezza del contenitore */
+    max-width: 80px; /* Ridimensiona le immagini dollface */
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     object-fit: contain; /* Mantiene il rapporto d'aspetto */
 }
 

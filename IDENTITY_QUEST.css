@@ -13,7 +13,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: #ababab 1px solid;
   text-align: center;
 }
 
@@ -54,7 +53,6 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: #ababab 1px solid;
   text-align: center;
 }
 
@@ -97,7 +95,12 @@ section {
 }
 
 .durata-selection {
-  margin-top: 80vh !important;
+  margin-top: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 20vh;
 }
 
 .start-cyberoute-btn {

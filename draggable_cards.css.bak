@@ -1,0 +1,81 @@
+#cardContainer {
+    position: relative;
+    
+
+  }
+  
+  .draggable {
+    position: absolute !important;
+    z-index: 999 !important;
+    background-color: #f1f1f1 !important;
+    border:3px double #000000 !important;
+    text-align: center;
+    border-radius: 15px;
+    width: 300px;
+    height: auto;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .draggable-header {
+    padding: 10px;
+    cursor: grab;
+    touch-action: none;
+    z-index: 10;
+    background-color: wheat;
+    color: #855d5d;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 36px; /* make header easier to target */
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .draggable-header:active { transform: translateY(1px); }
+  .card-content:focus { outline: none; box-shadow: 0 0 0 3px rgba(50,150,255,0.15); }
+
+  .inline-delete {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .card-content {
+    min-height: 80px;
+    padding: 10px;
+    outline: none;
+    background: rgba(255,255,255,0.95);
+    text-align: left;
+  }
+
+  .resizer {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 6px;
+    bottom: 6px;
+    background: rgba(0,0,0,0.4);
+    cursor: se-resize;
+    border-radius: 3px;
+    z-index: 11;
+  }
+
+  .draggable.selected {
+    box-shadow: 0 0 0 3px rgba(255,0,0,0.15);
+    border: 2px solid rgba(255,0,0,0.25);
+  }
+
+  .card-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .card-controls button {
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+  }

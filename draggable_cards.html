@@ -630,8 +630,9 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
 
 .background-draggable {
   position: absolute; /* Posizionato sotto le cards */
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 200%; /* Estende il background oltre i bordi */
   height: 200%;
   /* background-image viene impostata dinamicamente via JavaScript */
@@ -700,19 +701,19 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
     const containerHeight = container.offsetHeight;
 
     // Limiti completi: permetti di trascinare fino ai bordi del background
-    const maxMovementX = (bgWidth - containerWidth);
-    const maxMovementY = (bgHeight - containerHeight);
+    const maxMovementX = (bgWidth - containerWidth) / 2;
+    const maxMovementY = (bgHeight - containerHeight) / 2;
 
-    const maxX = 0;
+    const maxX = maxMovementX;
     const minX = -maxMovementX;
-    const maxY = 0;
+    const maxY = maxMovementY;
     const minY = -maxMovementY;
 
     // Applica limiti di movimento
     posX = Math.max(minX, Math.min(maxX, posX));
     posY = Math.max(minY, Math.min(maxY, posY));
 
-    background.style.transform = `translate(${posX}px, ${posY}px)`;
+    background.style.transform = `translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px))`;
   });
 
   document.addEventListener('mouseup', function() {
@@ -739,18 +740,18 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
     posY = touch.clientY - startY;
 
     const container = background.parentElement;
-    const maxMovementX = (background.offsetWidth - container.offsetWidth);
-    const maxMovementY = (background.offsetHeight - container.offsetHeight);
+    const maxMovementX = (background.offsetWidth - container.offsetWidth) / 2;
+    const maxMovementY = (background.offsetHeight - container.offsetHeight) / 2;
 
-    const maxX = 0;
+    const maxX = maxMovementX;
     const minX = -maxMovementX;
-    const maxY = 0;
+    const maxY = maxMovementY;
     const minY = -maxMovementY;
 
     posX = Math.max(minX, Math.min(maxX, posX));
     posY = Math.max(minY, Math.min(maxY, posY));
 
-    background.style.transform = `translate(${posX}px, ${posY}px)`;
+    background.style.transform = `translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px))`;
     e.preventDefault();
   });
 
@@ -782,13 +783,13 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
  </div>
  <div class="buttons-options">
   <button onclick="updateSum('A')">
-      <img src="icone/icon-a.svg" alt="Opzione A" class="icon-button">
+      <img src="icone/Roll_alt_light_light.svg" alt="Opzione A" class="icon-button">
   </button>
   <button onclick="updateSum('B')">
-      <img src="icone/icon-b.svg" alt="Opzione B" class="icon-button">
+      <img src="icone/Pointers_light.svg" alt="Opzione B" class="icon-button">
   </button>
   <button onclick="updateSum('C')">
-      <img src="icone/icon-c.svg" alt="Opzione C" class="icon-button">
+      <img src="icone/Lock_duotone_line.svg" alt="Opzione C" class="icon-button">
   </button>
 </div>
 </section>

@@ -19,7 +19,7 @@
             <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Killer'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Killer </button> </li>
             <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'User'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> User </button> </li>
             <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Abuser'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Abuser </button> </li>
-            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'AFK'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> AFK </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Bug'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Bug </button> </li>
         </ul>
     </div>
   </section>
@@ -39,7 +39,7 @@
   <div class="Alerts">
     <p>How long is your stay supposed to be?</p>
     
-    <div style="display: flex; flex-direction: column; align-items: center; width: 100%; padding: 0 20px;">
+    <div style="display: flex; flex-direction: column; align-items: center; width: auto; padding: 0 20px;">
       <input 
         type="range" 
         id="durationSlider" 
@@ -62,14 +62,6 @@
 <!--
   <div id="progressText">Progress: 0%</div>
 -->
-
-
-<section id="end" style="padding-top: 20px;">
-  <div class="Alerts" data-aos="zoom-in">
-      <p> Thank you for your collaboration [user] number xxxx </p>
-      <button class="start-cyberoute-btn" onclick="location.href='welcome.html';"> start cyberoute </button>
-  </div>
- </section>
 
  <!-- Script for progress bar -->
   <script>

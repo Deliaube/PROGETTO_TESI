@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable Cards</title>
+    <link rel="stylesheet" href="new_index_CHANGES REVISED.css">
+    <link rel="stylesheet" href="draggable_cards.css">
+    <link rel="stylesheet" href="options.css">
+    <link rel="stylesheet" href="timer.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  </head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="new_index_CHANGES REVISED.html">📌</a>
+        </div>
+        <div class="title" >
+            <h1>CYBERMED_</h1>
+        </div>
+
+    </nav>
+</header>
+  
+<!-- Container for all cards -->
+ <section class="container-corpo">
+          <!-- Background draggabile con style -->
+          <div class="background-draggable"></div> 
+
+<div id="cardContainer">
+
+    <div class="draggable" id="card-1" style="top: 100px; left: 100px;">
+      <div class="draggable-header">Pick me GID</div>
+      <p> <b>1. Glitch Identity Disorder (GID) </b>
+        Description: The avatar exhibits inconsistencies in appearance or behavior, creating a fragmented and unstable digital persona—a direct counterpart to an identity crisis.
+        <br> Causes: Overlapping filters, imperfect algorithms, or excessive modifications imposed by the user.
+        <br>Symptoms:
+        Random variations in physical traits (visual glitches).
+        Behavioral inconsistencies.</p>
+    </div>
+    <div class="draggable" id="card-1" style="top: 160px; left: 120px;">
+        <div class="draggable-header">Drag here</div>
+        <p>
+         <b> 2. Hyper-Performative Syndrome </b>
+Description: The avatar is forced to continuously perform an idealized role imposed by the user, reducing it to a hollow product.
+Causes: The need to conform to unrealistic aesthetic, social, or algorithmic standards (e.g., “perfect” social media avatars).
+<br>Symptoms:
+Excessive symbolic burden on the character.
+Struggles to appear authentic.    </p>
+      </div>
+
+    <div class="draggable" id="card-2" style="top: 200px; left: 150px;">
+      <div class="draggable-header">Drag here</div>
+      <img src="images/Designer (10).jpeg" alt="Immagine Card 2" style="width: 100%;">
+    </div>
+  
+    <div class="draggable" id="card-2" style="top: 260px; left: 180px;">
+        <div class="draggable-header">Drag here</div>
+        <img src="images/Designer (8).jpeg" alt="Immagine Card 2" style="width: 100%;">
+      </div>
+
+    <div class="draggable" id="card-3" style="top: 350px; left: 270px;">
+      <div class="draggable-header">Drag here</div>
+      <p>
+       <b> 3. Parasitic Algorithm Syndrome (PAS) </b>
+Description: Advertising algorithms or data-mining processes latch onto the avatar, distorting its autonomy for commercial purposes.
+Causes: Tracking, targeting, and profiling user interactions.
+<br>Symptoms:
+Behavior solely geared toward promoting content.
+A sensation of lost narrative autonomy.      </p>
+    </div>
+
+    <div class="draggable" id="card-3" style="top: 370px; left: 370px;">
+      <div class="draggable-header">Drag here</div>
+      <p>
+      <b> 4. Emotional Oversaturation Disorder (EOD)</b> 
+        Description: The avatar becomes overloaded with emotions projected by the user, losing its ability to reflect true states of mind.
+        Causes: Using avatars to express amplified or entirely detached emotions from the user's actual identity.
+        <br>Symptoms:
+        Exaggerated expressivity (excessive reactions or emotive distortions).
+        Emotional disconnect between user and avatar.      </p>
+    </div>
+
+    <div class="draggable" id="card-3" style="top: 400px; left: 200px;">
+        <div class="draggable-header">Drag here</div>
+        <p>
+        <b>  5. Static Existence Disorder (SED)</b>
+Description: The avatar is trapped in a fixed role or configuration, unable to evolve, leading to obsolescence.
+Causes: Platform limitations or lack of personalized interaction options.
+<br>Symptoms:
+Figurative immobility.
+Decline in social or cultural relevance.        </p>
+      </div>
+
+      <div class="draggable" id="card-3" style="top: 450px; left: 220px;">
+        <div class="draggable-header">Drag here</div>
+        <p>
+        <b> 6. Viral Meme Syndrome </b> 
+Description: The avatar becomes "infected" by external narratives like memes or trends, losing its original uniqueness.
+Causes: Appropriation of its appearance or persona within online circuits.
+<br>Symptoms:
+Uncontrolled multiplication of its likeness or messages taken out of context.        </p>
+      </div>
+
+      <div class="draggable" id="card-3" style="top: 480px; left: 300px;">
+        <div class="draggable-header">Drag here</div>
+        <p>
+        <b> 7. Digital Burnout </b> 
+          Description: The avatar becomes exhausted from constant interaction and excessive demands from the user.
+          Causes: Intensive and continuous use in digital spaces without recovery periods.
+         <br> Symptoms:
+          Sluggish or incomplete animations.
+          Error messages (e.g., “Too tired to load”).        </p>
+      </div>
+  </div>
+</section>
+  <!---script drag n drop & dynamic cards-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cardContainer = document.getElementById('cardContainer');
+      let selectedCard = null;
+      let cardCounter = Math.max(0, document.querySelectorAll('.draggable').length);
+
+      // Debug: ensure existing .draggable elements are visible
+      const existingCards = document.querySelectorAll('.draggable');
+      console.log('Existing draggable count:', existingCards.length);
+      existingCards.forEach((c, i) => {
+        console.log(`Card ${i}:`, c.id, 'computed display:', window.getComputedStyle(c).display, 'opacity:', window.getComputedStyle(c).opacity);
+        c.style.display = 'block';
+        c.style.opacity = '1';
+        c.style.visibility = 'visible';
+        c.style.zIndex = 100;
+        if (!c.style.backgroundColor) c.style.backgroundColor = 'rgba(255,255,255,0.95)';
+      });
+
+      // Controls (add, delete, zoom in/out)
+      const controlsHtml = `
+        <div class="card-controls">
+          <button id="addCard" title="Add card">+1</button>
+          <button id="deleteCard" title="Delete selected" disabled>🗑️</button>
+          <button id="arrangeCards" title="Arrange cards">Arrange</button>
+          <button id="resetDraggables" title="Reset draggables">Reset drag</button>
+          <button id="zoomIn" title="Zoom In">🔎+</button>
+          <button id="zoomOut" title="Zoom Out">🔎-</button>
+        </div>
+      `;
+      cardContainer.insertAdjacentHTML('beforebegin', controlsHtml);
+
+      function dragElement(elmnt) {
+        // Avoid double initialization
+        if (elmnt.dataset.dragInit === '1') return;
+
+        // Use pointer events for reliable dragging across devices
+        const header = elmnt.querySelector('.draggable-header');
+        if (!header) return;
+
+        // ensure header allows pointer dragging
+        header.style.touchAction = 'none';
+        header.style.cursor = 'grab';
+        console.log('dragElement setup for', elmnt.id, 'header pointer-events=', window.getComputedStyle(header).pointerEvents, 'rect=', header.getBoundingClientRect());
+
+        let pointerId = null;
+        let startX = 0, startY = 0;
+        let startLeft = 0, startTop = 0;
+
+        function onPointerDown(e) {
+          e.preventDefault();
+          pointerId = e.pointerId;
+          startX = e.clientX;
+          startY = e.clientY;
+          startLeft = parseInt(elmnt.style.left) || elmnt.offsetLeft || 0;
+          startTop = parseInt(elmnt.style.top) || elmnt.offsetTop || 0;
+          document.body.style.userSelect = 'none';
+          header.setPointerCapture(pointerId);
+          header.style.cursor = 'grabbing';
+          console.log('pointerdown on', elmnt.id);
+
+          // attach move/up handlers for this drag session
+          function onMove(eMove) {
+            if (pointerId !== null && eMove.pointerId === pointerId) {
+              const dx = eMove.clientX - startX;
+              const dy = eMove.clientY - startY;
+              elmnt.style.left = (startLeft + dx) + 'px';
+              elmnt.style.top = (startTop + dy) + 'px';
+            }
+          }
+          function onUp(eUp) {
+            if (pointerId !== null && eUp.pointerId === pointerId) {
+              try { header.releasePointerCapture(pointerId); } catch (err) {}
+              pointerId = null;
+              document.body.style.userSelect = '';
+              header.style.cursor = 'grab';
+              clampCardToContainer(elmnt);
+              console.log('pointerup on', elmnt.id, 'now at', elmnt.style.left, elmnt.style.top);
+              document.removeEventListener('pointermove', onMove);
+              document.removeEventListener('pointerup', onUp);
+            }
+          }
+
+          document.addEventListener('pointermove', onMove);
+          document.addEventListener('pointerup', onUp);
+        }
+
+        header.addEventListener('pointerdown', onPointerDown);
+        header.addEventListener('pointercancel', () => { pointerId = null; document.body.style.userSelect = ''; header.style.cursor = 'grab'; });
+
+        elmnt.dataset.dragInit = '1';
+      }
+
+      // Wrap existing content into editable container
+      function ensureContentElem(card) {
+        let content = card.querySelector('.card-content');
+        if (!content) {
+          content = document.createElement('div');
+          content.className = 'card-content';
+          // move existing children (p, img) into content
+          const toMove = [];
+          card.childNodes.forEach(node => {
+            if (node.nodeType === Node.ELEMENT_NODE && !node.classList.contains('draggable-header')) {
+              toMove.push(node);
+            }
+          });
+          if (toMove.length) {
+            toMove.forEach(n => { content.appendChild(n); });
+          } else {
+            content.textContent = 'New card';
+          }
+          card.appendChild(content);
+        }
+        return content;
+      }
+
+      // Paste handler for images
+      function handlePaste(e, contentElem) {
+        const clipboard = (e.clipboardData || window.clipboardData);
+        if (!clipboard || !clipboard.items) return;
+        for (let i = 0; i < clipboard.items.length; i++) {
+          const item = clipboard.items[i];
+          if (item.type.indexOf('image') !== -1) {
+            const file = item.getAsFile();
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+              const img = document.createElement('img');
+              img.src = evt.target.result;
+              img.style.maxWidth = '100%';
+              contentElem.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+            e.preventDefault();
+          }
+        }
+      }
+
+      // Drop handler for files
+      function handleDrop(e, contentElem) {
+        e.preventDefault();
+        const files = e.dataTransfer.files;
+        if (files && files.length) {
+          for (let f of files) {
+            if (f.type && f.type.startsWith('image/')) {
+              const reader = new FileReader();
+              reader.onload = function(evt) {
+                const img = document.createElement('img');
+                img.src = evt.target.result;
+                img.style.maxWidth = '100%';
+                contentElem.appendChild(img);
+              };
+              reader.readAsDataURL(f);
+            }
+          }
+        }
+      }
+
+      function selectCard(card) {
+        if (selectedCard) selectedCard.classList.remove('selected');
+        selectedCard = card;
+        if (selectedCard) selectedCard.classList.add('selected');
+        document.getElementById('deleteCard').disabled = !selectedCard;
+      }
+
+      function makeCardInteractive(card) {
+        console.log('makeCardInteractive:', card.id);
+        cardCounter = Math.max(cardCounter, parseInt((card.id || 'card-0').split('-').pop() || 0));
+        const content = ensureContentElem(card);
+        content.setAttribute('contenteditable','true');
+        content.setAttribute('tabindex','0');
+        content.style.cursor = 'text';
+        // Ensure clicking the content focuses it for typing
+        content.addEventListener('click', (e) => { e.stopPropagation(); selectCard(card); content.focus(); console.log('content clicked on', card.id); });
+        content.addEventListener('focus', (e) => { e.stopPropagation(); selectCard(card); console.log('content focused', card.id); });
+        content.addEventListener('paste', (e) => { console.log('paste event on', card.id); handlePaste(e, content); });
+        content.addEventListener('drop', (e) => { console.log('drop event on', card.id); handleDrop(e, content); });
+        content.addEventListener('dragover', (e) => e.preventDefault());
+        // prevent pointer events on content from interfering with header dragging
+        content.style.pointerEvents = 'auto';
+        content.addEventListener('mousedown', (e) => { e.stopPropagation(); console.log('content mousedown', card.id); });
+
+        // inline delete
+        const header = card.querySelector('.draggable-header');
+        if (header && !header.querySelector('.inline-delete')) {
+          const del = document.createElement('button');
+          del.className = 'inline-delete';
+          del.title = 'Delete card';
+          del.innerText = '🗑';
+          del.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            if (confirm('Delete this card?')) {
+              card.remove();
+              if (selectedCard === card) { selectedCard = null; document.getElementById('deleteCard').disabled = true; }
+            }
+          });
+          header.appendChild(del);
+        }
+
+        // resizer handle
+        if (!card.querySelector('.resizer')) {
+          const resizer = document.createElement('div');
+          resizer.className = 'resizer';
+          card.appendChild(resizer);
+
+          let isResizing = false, startX=0, startY=0, startW=0, startH=0;
+          resizer.addEventListener('mousedown', (e) => {
+            e.stopPropagation();
+            isResizing = true;
+            startX = e.clientX; startY = e.clientY;
+            startW = card.offsetWidth; startH = card.offsetHeight;
+            document.body.style.userSelect = 'none';
+            document.addEventListener('mousemove', resizeMove);
+            document.addEventListener('mouseup', stopResize);
+          });
+
+          function resizeMove(e) {
+            if (!isResizing) return;
+            const dx = e.clientX - startX; const dy = e.clientY - startY;
+            card.style.width = Math.max(120, startW + dx) + 'px';
+            card.style.height = Math.max(80, startH + dy) + 'px';
+          }
+          function stopResize() {
+            isResizing = false;
+            document.body.style.userSelect = '';
+            document.removeEventListener('mousemove', resizeMove);
+            document.removeEventListener('mouseup', stopResize);
+          }
+        }
+
+        // click to select
+        card.addEventListener('click', (e) => { e.stopPropagation(); selectCard(card); });
+
+        // make draggable
+        dragElement(card);
+      }
+
+      // Utility: ensure card is inside container bounds
+      function clampCardToContainer(card) {
+        const cont = cardContainer;
+        const contW = cont.clientWidth;
+        const contH = cont.clientHeight;
+        const cardW = card.offsetWidth || 300;
+        const cardH = card.offsetHeight || 120;
+        // parse existing top/left or use offset
+        let top = parseInt(card.style.top) || card.offsetTop || 0;
+        let left = parseInt(card.style.left) || card.offsetLeft || 0;
+
+        const maxTop = Math.max(0, contH - cardH - 10);
+        const maxLeft = Math.max(0, contW - cardW - 10);
+
+        if (top < 0 || top > maxTop) top = Math.floor(Math.max(0, maxTop / 2));
+        if (left < 0 || left > maxLeft) left = Math.floor(Math.max(0, maxLeft / 2));
+
+        card.style.top = top + 'px';
+        card.style.left = left + 'px';
+      }
+
+      // Initialize existing cards with defensive logging
+      const existing = Array.from(document.querySelectorAll('.draggable'));
+      console.log('Initializing existing cards:', existing.length);
+      existing.forEach((card, idx) => {
+        console.log(`Card[${idx}] id=${card.id} - before init rect:`, card.getBoundingClientRect());
+        try {
+          // Defensive styles to ensure visibility
+          card.style.display = 'block';
+          card.style.opacity = '1';
+          card.style.visibility = 'visible';
+          if (!card.style.zIndex || parseInt(card.style.zIndex) < 50) card.style.zIndex = 50;
+          if (!card.style.width) card.style.width = '300px';
+          if (!card.style.background) card.style.background = 'rgba(241,241,241,0.98)';
+
+          // Clamp into view before making interactive
+          clampCardToContainer(card);
+
+          makeCardInteractive(card);
+          console.log(`Card[${idx}] initialized successfully, rect:`, card.getBoundingClientRect());
+        } catch (err) {
+          console.error(`Error initializing card[${idx}] id=${card.id}:`, err);
+          // mark card visually so we can see problematic ones
+          card.style.border = '3px dashed red';
+          card.style.background = 'rgba(255,200,200,0.95)';
+        }
+      });
+
+      // Layout function: arrange cards in a centered grid (skips debug-card)
+      function layoutCards() {
+        const cards = Array.from(document.querySelectorAll('.draggable')).filter(c => c.id !== 'debug-card');
+        if (!cards.length) return;
+        const contW = cardContainer.clientWidth;
+        const contH = cardContainer.clientHeight;
+        const gap = 20;
+        const cardW = cards[0].offsetWidth || 300;
+        const cardH = Math.max(...cards.map(c => c.offsetHeight || 120));
+        const cols = Math.max(1, Math.floor((contW + gap) / (cardW + gap)));
+        const rows = Math.ceil(cards.length / cols);
+        const totalWidth = cols * (cardW + gap) - gap;
+        const startX = Math.max(0, Math.floor((contW - totalWidth) / 2));
+        const startY = 20; // top padding
+
+        cards.forEach((card, i) => {
+          const col = i % cols;
+          const row = Math.floor(i / cols);
+          const left = startX + col * (cardW + gap);
+          const top = startY + row * (cardH + gap);
+          card.style.left = left + 'px';
+          card.style.top = top + 'px';
+          // reset scaling on layout
+          card.style.transform = 'none';
+          card.removeAttribute('data-scale');
+        });
+
+        console.log('layoutCards applied: ', cards.length, 'cards, cols:', cols, 'rows:', rows);
+      }
+
+      // Attach arrange button
+      const arrangeBtn = document.getElementById('arrangeCards');
+      if (arrangeBtn) arrangeBtn.addEventListener('click', () => layoutCards());
+
+      // Reset draggables button
+      const resetDragBtn = document.getElementById('resetDraggables');
+      if (resetDragBtn) resetDragBtn.addEventListener('click', () => {
+        document.querySelectorAll('.draggable').forEach(c => { delete c.dataset.dragInit; });
+        document.querySelectorAll('.draggable').forEach(c => dragElement(c));
+        console.log('Draggables re-initialized');
+      });
+
+      // Also run layout once on init
+      layoutCards();
+
+      // Keep debug card centered after layout
+      // Insert debug test card to verify rendering (center it)
+      const debugCard = document.createElement('div');
+      debugCard.className = 'draggable';
+      debugCard.id = 'debug-card';
+      debugCard.style.width = '360px';
+      debugCard.style.height = '140px';
+      debugCard.style.background = 'rgba(255,255,0,0.95)';
+      debugCard.innerHTML = `<div class="draggable-header">DEBUG CARD</div><div class="card-content" contenteditable="true">If you see this, rendering works.</div>`;
+      // center
+      cardContainer.appendChild(debugCard);
+      clampCardToContainer(debugCard);
+      makeCardInteractive(debugCard);
+      console.log('Debug card inserted (centered)');
+
+      // Global click to deselect
+      document.addEventListener('click', () => selectCard(null));
+
+      // Add card
+      document.getElementById('addCard').addEventListener('click', () => {
+        cardCounter++;
+        const newCard = document.createElement('div');
+        newCard.className = 'draggable';
+        newCard.id = `card-${cardCounter}`;
+        newCard.style.width = '300px';
+        newCard.style.height = 'auto';
+        newCard.innerHTML = `
+          <div class="draggable-header">Drag me</div>
+          <div class="card-content" contenteditable="true">New card. Paste images or type here.</div>
+        `;
+        cardContainer.appendChild(newCard);
+        // center new card within container
+        clampCardToContainer(newCard);
+        makeCardInteractive(newCard);
+        selectCard(newCard);
+      });
+
+      // Delete selected
+      document.getElementById('deleteCard').addEventListener('click', () => {
+        if (!selectedCard) return;
+        if (confirm('Delete selected card?')) { selectedCard.remove(); selectedCard = null; document.getElementById('deleteCard').disabled = true; }
+      });
+
+      // Zoom controls
+      document.getElementById('zoomIn').addEventListener('click', () => {
+        if (!selectedCard) return;
+        const scale = parseFloat(selectedCard.getAttribute('data-scale') || '1');
+        const next = Math.min(3, scale + 0.1);
+        selectedCard.style.transform = `scale(${next})`;
+        selectedCard.setAttribute('data-scale', next);
+      });
+      document.getElementById('zoomOut').addEventListener('click', () => {
+        if (!selectedCard) return;
+        const scale = parseFloat(selectedCard.getAttribute('data-scale') || '1');
+        const next = Math.max(0.5, scale - 0.1);
+        selectedCard.style.transform = `scale(${next})`;
+        selectedCard.setAttribute('data-scale', next);
+      });
+
+      // Keyboard delete
+      document.addEventListener('keydown', (e) => {
+        if ((e.key === 'Delete' || e.key === 'Backspace') && selectedCard && !document.activeElement.isContentEditable) {
+          if (confirm('Delete selected card?')) { selectedCard.remove(); selectedCard = null; document.getElementById('deleteCard').disabled = true; }
+        }
+      });
+
+      console.log('Draggable card editor initialized');
+
+      // Ensure debug card exists only once (guard against duplicate declarations)
+      if (!document.getElementById('debug-card')) {
+        const debugCard = document.createElement('div');
+        debugCard.className = 'draggable';
+        debugCard.id = 'debug-card';
+        debugCard.style.width = '360px';
+        debugCard.style.height = '140px';
+        debugCard.style.background = 'rgba(255,255,0,0.95)';
+        debugCard.innerHTML = `<div class="draggable-header">DEBUG CARD</div><div class="card-content" contenteditable="true">If you see this, rendering works.</div>`;
+        // center
+        cardContainer.appendChild(debugCard);
+        clampCardToContainer(debugCard);
+        makeCardInteractive(debugCard);
+        console.log('Debug card inserted (centered)');
+      } else {
+        console.log('Debug card already present; skipping duplicate insertion');
+      }
+    });
+  </script>
+
+<!-- STYLE  Background draggabile DENTRO CONTAINER-CORPO -->
+ <style> 
+  .container-corpo {
+  position: relative; /* Importante per il posizionamento assoluto interno */
+  width: 100%;
+  height: 800px; /* Altezza a piacere */
+  overflow: hidden;
+  border: 2px solid black;
+}
+
+.background-draggable {
+  position: absolute; /* Posizionato sotto le cards */
+  top: 0;
+  left: 0;
+  width: 200%; /* Estende il background oltre i bordi */
+  height: 200%;
+  background-image: url('images/background_temporaneo.jpg'); /* Immagine personalizzata */
+  background-size: cover; /* Adatta l'immagine */
+  background-position: center;
+  cursor: move; /* Mostra il cursore di spostamento */
+  z-index: 1; /* Sotto le cards */
+}
+
+#cardContainer {
+  position: relative;
+  z-index: 2; /* Sopra il background */
+}
+
+.draggable-bg {
+  position: absolute;
+  cursor: grab;
+  backdrop-filter: blur(5px); /* Effetto per far risaltare il testo */
+
+}
+
+ </style>
+ <!--per il background draggabile dentro al container-corpo-->
+<script> 
+(function() {
+  const background = document.querySelector('.background-draggable');
+  let isDragging = false, startX, startY, posX = 0, posY = 0;
+
+  background.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    startX = e.clientX - posX;
+    startY = e.clientY - posY;
+    background.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+
+    posX = e.clientX - startX;
+    posY = e.clientY - startY;
+
+    // Limiti per non trascinare troppo fuori
+    const maxX = 0;
+    const minX = -(background.offsetWidth - background.parentElement.offsetWidth);
+    const maxY = 0;
+    const minY = -(background.offsetHeight - background.parentElement.offsetHeight);
+
+    // Applica limiti di movimento
+    posX = Math.min(maxX, Math.max(minX, posX));
+    posY = Math.min(maxY, Math.max(minY, posY));
+
+    background.style.transform = `translate(${posX}px, ${posY}px)`;
+  });
+
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+    background.style.cursor = 'move';
+  });
+})();
+</script>
+
+
+
+  <!--bg drag prova_______________________________________________________
+  <p class='text-center' style='margin-bottom:20px;'>
+    Click and drag the image around
+  </p>
+  <div class='container'></div>
+<script src="bg_drag_prova.js"></script> -->
+
+
+<!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
+
+<!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->
+<section class="options">
+  <div id="finished">
+   <p>Finished? Please chose your way out</p>
+ </div>
+ <div class="buttons-options">
+  <button onclick="updateSum('A')">
+      <img src="icone/icon-a.svg" alt="Opzione A" class="icon-button">
+  </button>
+  <button onclick="updateSum('B')">
+      <img src="icone/icon-b.svg" alt="Opzione B" class="icon-button">
+  </button>
+  <button onclick="updateSum('C')">
+      <img src="icone/icon-c.svg" alt="Opzione C" class="icon-button">
+  </button>
+</div>
+</section>
+<!--
+<script>
+function updateSum(value) {
+      // Recupera la somma attuale da localStorage
+      const totalSum = localStorage.getItem('totalSum') || '';
+      
+      // Aggiorna la somma concatenando la scelta fatta
+      const newSum = totalSum + value;
+      
+      // Salva la nuova somma in localStorage
+      localStorage.setItem('totalSum', newSum);
+      
+      console.log(`Somma aggiornata: ${newSum}`); // Log per debugging
+      
+      // Reindirizza alla homepage (index.html)
+      window.location.href = 'new_index_CHANGES REVISED.html';
+    }
+</script> -->
+<script src="options.js"></script>
+
+<!-- Fallback for missing icon files: hide failed images and show emoji fallback -->
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.icon-button').forEach(img => {
+      img.addEventListener('error', () => {
+        if (img.dataset.fallbackApplied) return;
+        img.style.display = 'none';
+        const span = document.createElement('span');
+        span.className = 'icon-fallback';
+        span.textContent = '⚠️';
+        img.parentElement.appendChild(span);
+        img.dataset.fallbackApplied = '1';
+        console.warn('Icon fallback applied for', img.src);
+      });
+      // If image already failed to load earlier, trigger fallback
+      if (!img.complete || img.naturalWidth === 0) { img.dispatchEvent(new Event('error')); }
+    });
+  });
+</script>
+<style>
+.icon-fallback { font-size: 18px; display: inline-block; vertical-align: middle; margin-left: 4px; }
+</style>
+<script src="timer.js"></script>
+
+
+  <!--FOOTER_________________________________________________________________________________-->
+  <footer>
+    <p class="marquee">Delia Scaccianoce - 2025 Beware of any infections ----This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data 
+     ---- This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data
+    </p>
+  </footer>
+</body>
+</html>
