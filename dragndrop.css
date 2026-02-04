@@ -86,6 +86,24 @@
     object-fit: contain; /* Mantiene il rapporto d'aspetto */
 }
 
+@media (max-width: 900px) {
+    .grid-drop-container {
+        grid-template-columns: 1fr;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        padding: 10px;
+        float: none;
+    }
+
+    .drop-area {
+        min-width: 0;
+        width: 100%;
+        height: auto;
+        min-height: 260px;
+    }
+}
+
 /*OPTIONS _____________________________________________*/
 
 .options {

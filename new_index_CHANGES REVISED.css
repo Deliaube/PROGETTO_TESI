@@ -231,6 +231,22 @@ nav {
     }
 }
 
+@media (max-width: 900px) {
+    .container-corpo {
+        margin-right: 0;
+        max-width: 90%;
+        width: 90%;
+        padding: 16px;
+    }
+
+    .container-corpo .text,
+    .container-corpo .immagine,
+    .container-corpo .button {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
 
 
 /*STYLE button-container*/

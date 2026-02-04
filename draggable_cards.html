@@ -152,6 +152,34 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
   document.addEventListener('DOMContentLoaded', function() {
     const cardContainer = document.getElementById('cardContainer');
 
+    // Hidden state system
+    const STATE_KEYS = {
+      transmigrator: 'hiddenState_transmigrator_v1',
+      egregore: 'hiddenState_egregore_v1',
+      inmate: 'hiddenState_inmate_v1'
+    };
+    const STATE_MIN = 0;
+    const STATE_MAX = 10;
+
+    function clampState(value) {
+      return Math.max(STATE_MIN, Math.min(STATE_MAX, value));
+    }
+
+    function getState(key) {
+      const raw = localStorage.getItem(STATE_KEYS[key]);
+      const num = parseInt(raw || '0', 10);
+      return clampState(Number.isNaN(num) ? 0 : num);
+    }
+
+    function setState(key, value) {
+      localStorage.setItem(STATE_KEYS[key], String(clampState(value)));
+    }
+
+    function incrementState(key, delta) {
+      const current = getState(key);
+      setState(key, current + (delta || 0));
+    }
+
     // State persistence: use localStorage
     const STORAGE_KEY = 'draggableCards_state_v1';
     const DELETED_KEY = 'draggableCards_deleted_v1';
@@ -241,6 +269,7 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
       deletedCards.push(state);
       saveDeletedState(deletedCards);
       card.remove();
+      incrementState('inmate', 1);
       saveAllCardsState();
       refreshTrashList();
       updateCardStats();
@@ -402,6 +431,16 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
       content.style.cursor = 'text';
 
       content.addEventListener('click', (e) => { e.stopPropagation(); content.focus(); });
+
+      // Track content edits to improve transmigrator
+      content.addEventListener('input', () => {
+        const now = Date.now();
+        const last = parseInt(content.dataset.lastEditAt || '0', 10);
+        if (Number.isNaN(last) || (now - last) > 2000) {
+          incrementState('transmigrator', 1);
+          content.dataset.lastEditAt = String(now);
+        }
+      });
 
       // Paste images from clipboard
       content.addEventListener('paste', function(e) {
@@ -570,6 +609,7 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
         ensureContentElem(newCard);
         dragElement(newCard);
         makeResizable(newCard);
+        incrementState('egregore', 2);
         // focus content for immediate editing
         const content = newCard.querySelector('.card-content');
         if (content) { content.focus(); }
@@ -599,6 +639,8 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
           
           // Remove all cards from DOM
           currentCards.forEach(card => card.remove());
+
+          incrementState('inmate', Math.min(3, currentCards.length));
           
           // Clear trash bin to free up localStorage space
           deletedCards = [];
