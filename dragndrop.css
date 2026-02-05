@@ -3,16 +3,16 @@
 /* Contenitore della griglia */
 .grid-drop-container {
     display: grid; /* Imposta il layout a griglia */
-    grid-template-columns: repeat(2, 1fr); /* 2 colonne di larghezza uguale */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Colonne responsive */
     column-gap: 30px; /* Spazio orizzontale tra le colonne */
     row-gap: 5px; /* Spazio verticale tra le righe */
     width: 100%;
-    min-width: 50%; /* Occupano almeno il 50% della width del body */
-    max-width: 1200px; /* Larghezza massima per il layout */
+    min-width: 0; /* Evita overflow nel container */
+    max-width: 100%; /* Mantiene la griglia dentro al container */
     margin: 0 auto; /* Centra il contenitore nella pagina */
     padding: 20px; /* Spaziatura interna */
     box-sizing: border-box;
-    float: right;
+    float: none;
 }
 
 .image-container {
@@ -25,7 +25,7 @@
     right: 20px;
     top: 150px;
     z-index: 10;
-  
+    /*border: 1px solid black;*/
 
 }
 
@@ -45,7 +45,7 @@
 
 .drop-area {
     width: 100%; /* Larghezza adattiva al container */
-    min-width: 340px; /* Ridotto di 10px */
+    min-width: 0; /* Permette di restringersi */
     height: 390px; /* Ridotto di 10px */
     border: 2px dashed #ccc;
     border-radius: 12px;
@@ -103,16 +103,10 @@
 @media (max-width: 900px) {
     .grid-drop-container {
         grid-template-columns: 1fr;
-        width: 100%;
-        min-width: 0;
-        max-width: 100%;
         padding: 10px;
-        float: none;
     }
 
     .drop-area {
-        min-width: 0;
-        width: 100%;
         height: auto;
         min-height: 260px;
     }
