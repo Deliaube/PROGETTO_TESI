@@ -46,6 +46,17 @@ button:hover {
   background-color: #ffffff;
 }
 
+button:active {
+  background-color: #010101;
+  outline: 2px solid rgb(255, 255, 255);
+}
+
+/* Questa classe "blocca" il colore rosso */
+button.selected {
+  background-color: #000000;
+  color: white; /* Opzionale: rende il testo più leggibile sul rosso */
+}
+
 section {
   margin-top: 20%;
   width: 100%;

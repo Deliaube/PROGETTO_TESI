@@ -24,6 +24,19 @@
     </div>
   </section>
     
+<!--script bottoni evidenziati-->
+<script>
+// Seleziona tutti i pulsanti (o usa un id/classe specifica)
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+  button.addEventListener('click', function() {
+    // toggle() aggiunge la classe se non c'è, e la toglie se c'è
+    this.classList.toggle('selected');
+  });
+});
+</script>
+
 <!-- Timer Section
 <section class="durata" id="durata" data-aos="zoom-in">
   <div id="progressContainer">

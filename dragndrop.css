@@ -60,14 +60,28 @@
 }
 
 #dropArea1 {
-    background-image: url("drag_images/2.png");
+    background-image: url("images/avatar\ nt\ 4.jpeg");
     background-size: cover;        /* Adatta l’immagine a riempire l’area */
     background-position: center;   /* Centra l’immagine */
     background-repeat: no-repeat;  /* Evita la ripetizione */
 }
 
 #dropArea2 {
-    background-image: url("drag_images/1.png");
+    background-image: url("images/avatar\ eg\ 4.jpeg");
+    background-size: cover;        /* Adatta l’immagine a riempire l’area */
+    background-position: center;   /* Centra l’immagine */
+    background-repeat: no-repeat;  /* Evita la ripetizione */
+}
+
+#dropArea3 {
+    background-image: url("images/avatar\ tr\ 4.jpeg");
+    background-size: cover;        /* Adatta l’immagine a riempire l’area */
+    background-position: center;   /* Centra l’immagine */
+    background-repeat: no-repeat;  /* Evita la ripetizione */
+}
+
+#dropArea4 {
+    background-image: url("images/avatar\ in\ 4.jpeg");
     background-size: cover;        /* Adatta l’immagine a riempire l’area */
     background-position: center;   /* Centra l’immagine */
     background-repeat: no-repeat;  /* Evita la ripetizione */
