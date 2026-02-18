@@ -149,7 +149,7 @@ nav {
   margin-right: auto;
 }
 
-
+/*
 .rotate {
     animation: rotation 8s infinite linear;
   }
@@ -162,11 +162,24 @@ nav {
       transform: rotate(359deg);
     }
   }
+  */
   
+  .image-container-homepage img {
+    max-width: 100%;
+    height: auto;
+    border: 3px double black;
+    border-radius: 40px;
+    transition: transform 0.3s ease;
+    }
+    
 
 /* Tooltip */
 .immagine {
     position: relative;
+    border-radius: 50%;
+   
+    cursor: pointer;
+    
 }
 
 .tooltip {
