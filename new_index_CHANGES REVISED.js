@@ -50,7 +50,7 @@ function updateImageBasedOnSum() {
   
     // Controllo per le combinazioni - cambia immagini con compatibili 
     if (totalSum === 'AAA') {
-      placeholder.src = 'images/microwave.png';
+      placeholder.src = 'images/treeecourse.gif';
       message.textContent = 'Combinazione AAA scelta!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
@@ -60,17 +60,17 @@ function updateImageBasedOnSum() {
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
     } else if (totalSum === 'BBB') { 
-      placeholder.src = 'images/rrrepeat.svg';
+      placeholder.src = 'images/vvvortex.svg';
       message.textContent = 'Combinazione BBB scelta!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
     }else if (totalSum === 'CCC') { 
-      placeholder.src = 'images/tttwinkle.svg';
-      message.textContent = 'Combinazione BBB scelta!';
+      placeholder.src = 'images/doubleface.gif';
+      message.textContent = 'Combinazione CCC scelta!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
     } else if (totalSum.includes('A') && totalSum.includes('B') && totalSum.includes('C')) {
-      placeholder.src = 'images/Designer(8).jpeg';
+      placeholder.src = 'images/doubleface.gif';
       message.textContent = 'Tutte le opzioni sono state selezionate!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
