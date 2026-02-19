@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="egregore.css">
+    <link rel="stylesheet" href="timer.css">
+  
+</head>
+<body>
+ 
+
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="new_index_CHANGES REVISED.html">❤</a>
+        </div>
+        <div class="title" >
+            <h1>CYBERMAD_</h1>
+        </div>
+
+
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">🔗</button>
+          <div id="myDropdown" class="dropdown-content">
+            <button onclick="resetChoices()" class="btn default reset">✨ Reset</button>
+            <span class="tooltip-text1">Caution, rebooting will erase everything in memory</span>
+          </div>
+        </div>
+
+
+    </nav>
+</header>
+
+
+<section class="container-corpo">
+
+ <div class="audio-wrapper">
+    <button id="audioToggle" class="music-btn" aria-label="Toggle Music">
+        <span class="icon">🔇</span>
+        <span class="label">MUSIC OFF</span>
+    </button>
+</div>
+
+  <div class="text">
+     <p>In the shared rhythm of this era, weaving a new avatar into our essence has become a common breath—a quiet pulse within the tapestry of human life.
+     Yet, we often drift blind to how our cyber-ecosystem may fracture, causing ripples of dissonance in the sacred flow of our digital environment.
+     <p>At CyberMAD, we hold the truth that a pristine vessel reflects a boundless mind. When the digital folder is cleansed, the collective spirit finds its clarity. </p>
+     <p>We call upon you to enter this shared inquiry: join our ritual of testing to illuminate the shadows that may be haunting your virtual identity. </p>
+     <p>Be mindful: these revelations are but echoes of your current state. To find the source of your truth, we encourage you to seek the guidance of those who guard the deeper mysteries of the mind.</br> please note: the results are primarily indicative, and consulting a professional is recommended or a more precise diagnosis.</p>
+  
+   <button class="btn-flower" type="button" onclick="location.href='#'" aria-label="Ottieni il tuo avatar">
+    <div class="flower">Get your <br> Egregore</div>
+   </button>
+  
+    </div>
+<!--immagini__________________________________________________________
+
+  <div class="immagine">
+      <div class="image-container" > 
+            <img src="images/ccchaos.svg" id ="placeholder" alt="Placeholder Image"  class="rotate custom.image">
+              <p id="frase-avatar" class="avatar-voice"></p>
+          </div>
+      <span class="tooltip">Origin Point?</span>
+  </div>
+_-->
+
+  <!--spline _______________________________________________________
+  <div class="spline-container">
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.51/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/DkNeCS7HFUHKtBsG/scene.splinecode"></spline-viewer>
+ </div>-->
+
+<div class="main-gallery-container">
+    <div class="gallery-wrapper" id="gallery">
+        <div class="film-strip" id="filmStrip">
+            <div class="item clone"><img src="images/img egregore/rosa.png" title="egregore-pic"></div>
+            <div class="item clone"><img src="https://picsum.photos/400/500?random=4" title="egregore-pic"></div>
+            <div class="item clone"><img src="https://picsum.photos/400/500?random=5" title="egregore-pic"></div>
+
+            <div class="item"><img src="https://picsum.photos/400/500?random=1" title="egregore-pic"></div>
+            <div class="item"><img src="images/img egregore/kawaii j.png" title="egregore-pic"></div>
+            <div class="item"><img src="https://picsum.photos/400/500?random=3" title="egregore-pic"></div>
+            <div class="item"><img src="images/img egregore/rosa.png" title="egregore-pic"></div>
+            <div class="item"><img src="https://picsum.photos/400/500?random=5" title="egregore-pic"></div>
+            <div class="item"><img src="images/img egregore/moon.png" title="egregore-pic"></div>
+            <div class="item"><img src="https://picsum.photos/400/500?random=5" title="egregore-pic"></div>
+            <div class="item"><img src="images/img egregore/planetegg.png" title="egregore-pic"></div>
+
+            <div class="item clone"><img src="https://picsum.photos/400/500?random=1" title="egregore-pic"></div>
+            <div class="item clone"><img src="https://picsum.photos/400/500?random=2" title="egregore-pic"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--bottoni___________________________________________________________-->
+
+<div class="button-container">
+
+    <button class="btn default" type ="button" onclick="window.location.href='controindicazioni.html'" title="controllo indicazioni">
+        <div class="triangle punta-alto"></div>
+    </button>
+
+    <button class="btn default" type ="button" onclick="window.location.href='dosaggio.html'" title="dosaggio">
+        <div class="triangle punta-destra"></div>  
+    </button>
+
+    <button class="btn default" type ="button" onclick="window.location.href='draggable_cards.html'" title="combinazioni">
+        <div class="triangle punta-basso"></div>
+    </button>
+
+</div>
+
+</section>
+
+<!--Stile per il contenuto IMMAGINI e TESTO della pagina___________________________
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4;
+}
+
+.container-corpo {
+    display: flex;
+    justify-content: space-between; /* Distribuisce le colonne */
+    align-items: flex-start;         /* Allinea in alto */
+    margin: 5% auto;                 /* Margine del 5% ai lati */
+    padding: 20px;
+    max-width: 90%;                  /* Limita la larghezza massima */
+    gap: 20px;                       /* Spazio tra le colonne */
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/* Colonne */
+.text, .immagine, .button {
+    flex: 1;                        /* Ogni colonna occupa lo stesso spazio */
+    padding: 15px;
+    text-align: center;
+    border: 1px dotted blue;
+}
+
+/* Hover sul testo */
+.text p:hover {
+    color: darkblue;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/* Tooltip */
+.immagine {
+    position: relative;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.immagine:hover .tooltip {
+    display: block;
+}
+
+/* Bottoni */
+.button button {
+    display: block;
+    margin: 10px auto; /** Spazio tra i bottoni- togliere per avvicinarli all'img*/
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .container-corpo {
+        flex-direction: column; /* Le colonne diventano righe */
+        align-items: center;
+    }
+}
+
+</style> -->
+
+<!--script Resetta scelte BUTTON
+<script>
+                      function resetChoices() {
+                        localStorage.removeItem('totalSum');
+                        location.reload();
+                      }
+</script>
+
+the one workink is below 
+<script>
+function resetChoices() {
+  try {
+    // Verifica se la chiave esiste prima di rimuoverla
+    if (localStorage.getItem('totalSum') !== null) {
+      localStorage.removeItem('totalSum');
+    }
+    
+    // Ricarica la pagina senza cache per evitare problemi
+    window.location.reload(true);
+  } catch (error) {
+    console.error("Errore durante il reset:", error);
+    alert("Si è verificato un errore durante il reset. Riprova.");
+  }
+}
+</script> -->
+
+<!--PARTE 2 SCRIPT RIGO 31/ UPDATE IMG BASED ON SUMM-                
+  <script>
+    function updateImageBasedOnSum() {
+      // Ottieni la somma salvata
+      const totalSum = localStorage.getItem('totalSum') || '';
+    
+      // Seleziona l'immagine e il messaggio
+      const placeholder = document.getElementById('placeholder');
+      const message = document.getElementById('message');
+    
+      // Controllo per le combinazioni - cambia immagini con compatibili 
+      if (totalSum === 'AAA') {
+        placeholder.src = 'images/microwave.png';
+        message.textContent = 'Combinazione AAA scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else if (totalSum === 'ABC') {
+        placeholder.src = 'images/closet.png';
+        message.textContent = 'Combinazione ABC scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else if (totalSum === 'BBB') {
+        placeholder.src = 'images/pill.png';
+        message.textContent = 'Combinazione BBB scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else if (totalSum.includes('A') && totalSum.includes('B') && totalSum.includes('C')) {
+        placeholder.src = 'images/Designer(8).jpeg';
+        message.textContent = 'Tutte le opzioni sono state selezionate!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else {
+        message.textContent = 'Completa le scelte per vedere il risultato.';
+      }
+    }
+    
+    // Esegui al caricamento
+    window.onload = updateImageBasedOnSum;
+    
+  </script>  -->
+  
+
+<!--FOOTER_________________________________________________________________________________-->
+        <footer>
+          <p class="marquee">Delia Scaccianoce - 2025 Beware of any infections ----This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data 
+           ---- This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data
+          </p>
+        </footer>
+
+<!--dove avviene il cambio immagine e la selezione immagine-->
+      <script src="new_index_CHANGES REVISED.js"></script>
+      <!-- Timer Scripts -->
+      <script src="timer.js"></script>
+
+<script>
+   const gallery = document.getElementById('gallery');
+const items = document.querySelectorAll('.item');
+
+// 1. Focus Logic (Intersection Observer)
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            items.forEach(i => i.classList.remove('is-focused'));
+            entry.target.classList.add('is-focused');
+        }
+    });
+}, { root: gallery, threshold: 0.8 });
+
+items.forEach(item => observer.observe(item));
+
+// 2. Infinite Loop Logic
+gallery.addEventListener('scroll', () => {
+    const scrollTop = gallery.scrollTop;
+    const scrollHeight = gallery.scrollHeight;
+    const clientHeight = gallery.clientHeight;
+
+    // Se arriviamo troppo in alto (sopra i primi cloni)
+    if (scrollTop <= 0) {
+        gallery.scrollTop = scrollHeight - (clientHeight * 2);
+    } 
+    // Se arriviamo troppo in basso (sui cloni finali)
+    else if (scrollTop + clientHeight >= scrollHeight) {
+        gallery.scrollTop = clientHeight;
+    }
+});
+
+// Posiziona lo scroll all'inizio degli elementi reali all'avvio
+window.onload = () => {
+    gallery.scrollTop = gallery.clientHeight; 
+};
+</script>
+<script> // Sparkle Effect on Mouse Move
+    document.addEventListener('mousemove', (e) => {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = e.clientX + 'px';
+    sparkle.style.top = e.clientY + 'px';
+    
+    // Piccola variazione casuale per non farli uscire tutti dallo stesso punto
+    const randomX = (Math.random() - 0.5) * 20;
+    const randomY = (Math.random() - 0.5) * 20;
+    sparkle.style.marginLeft = randomX + 'px';
+    sparkle.style.marginTop = randomY + 'px';
+
+    document.body.appendChild(sparkle);
+
+    // Rimuoviamo l'elemento dopo l'animazione per non intasare il browser
+    setTimeout(() => {
+        sparkle.remove();
+    }, 800);
+});
+</script>
+
+<canvas id="sparkleCanvas"></canvas>
+<script> // Sparkle Effect with Particles
+    const canvas = document.getElementById('sparkleCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+class Particle {
+    constructor(x, y, isStatic) {
+        this.x = x;
+        this.y = y;
+        this.isStatic = isStatic; // Se true, è un brillantino di sfondo
+        this.size = Math.random() * 2 + 1;
+        this.speedY = isStatic ? Math.random() * 0.5 : Math.random() * 1 - 0.5;
+        this.speedX = isStatic ? 0 : Math.random() * 1 - 0.5;
+        this.life = isStatic ? 100 : Math.random() * 50 + 20;
+        this.opacity = Math.random();
+    }
+    update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        if (this.isStatic) {
+            if (this.y > canvas.height) this.y = 0; // Loop per sfondo
+        } else {
+            this.life--;
+        }
+    }
+    draw() {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.isStatic ? this.opacity * 0.3 : this.life / 50})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Crea i brillantini fissi di sfondo
+for (let i = 0; i < 100; i++) {
+    particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height, true));
+}
+
+// Crea brillantini al movimento del mouse
+window.addEventListener('mousemove', (e) => {
+    for (let i = 0; i < 2; i++) {
+        particles.push(new Particle(e.clientX, e.clientY, false));
+    }
+});
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, i) => {
+        p.update();
+        p.draw();
+        if (!p.isStatic && p.life <= 0) particles.splice(i, 1);
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+<script> // Audio Toggle
+    document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('myAudio');
+    const btn = document.getElementById('audioToggle');
+    const icon = btn.querySelector('.icon');
+    const label = btn.querySelector('.label');
+
+    // Funzione per cambiare stato
+    btn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play().then(() => {
+                // Successo: l'audio sta andando
+                btn.classList.add('playing');
+                icon.textContent = '🔊';
+                label.textContent = 'MUSIC ON';
+            }).catch(error => {
+                console.error("Errore riproduzione:", error);
+                alert("Assicurati che il percorso del file audio sia corretto!");
+            });
+        } else {
+            // Pausa
+            audio.pause();
+            btn.classList.remove('playing');
+            icon.textContent = '🔇';
+            label.textContent = 'MUSIC OFF';
+        }
+    });
+});
+</script>
+
+<script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
+<script>
+// --- CONFIGURAZIONE STRUMENTI ---
+const reverb = new Tone.Reverb({ decay: 6, wet: 0.5 }).toDestination();
+
+// PAD: Suono morbido e disteso
+const pad = new Tone.PolySynth(Tone.Synth, {
+  oscillator: { type: "sine" },
+  envelope: { attack: 2, decay: 1, sustain: 0.8, release: 3 }
+}).connect(reverb);
+
+// MELODY: La melodia sognante
+const melody = new Tone.Synth({
+  oscillator: { type: "triangle" },
+  envelope: { attack: 0.3, decay: 0.5, sustain: 0.4, release: 1 }
+}).connect(reverb);
+
+// BUBBLE: Il tocco digitale cristallino
+const bubble = new Tone.Synth({
+  oscillator: { type: "sine" },
+  envelope: { attack: 0.01, decay: 0.2, sustain: 0, release: 0.3 }
+}).connect(reverb);
+
+Tone.Transport.bpm.value = 88;
+
+// --- PROGRAMMAZIONE SEQUENZA ---
+const chords = [
+  ["F4","A4","C5","E5"],
+  ["C4","E4","G4","B4"],
+  ["D4","F4","A4","C5"],
+  ["Bb3","D4","F4","A4"]
+];
+
+// Loop degli accordi (ogni 4 battute)
+Tone.Transport.scheduleRepeat(time => {
+  chords.forEach((chord, i) => {
+    pad.triggerAttackRelease(chord, "2n", time + (i * 2));
+  });
+}, "8m"); 
+
+// Loop Melodia
+Tone.Transport.scheduleRepeat(time => {
+  melody.triggerAttackRelease("A4", "4n", time + 2);
+  melody.triggerAttackRelease("C5", "4n", time + 2.5);
+  melody.triggerAttackRelease("D5", "4n", time + 3);
+  melody.triggerAttackRelease("C5", "4n", time + 3.5);
+}, "4m");
+
+// Loop Bubbles
+Tone.Transport.scheduleRepeat(time => {
+  bubble.triggerAttackRelease("C6", "8n", time);
+}, "2n");
+
+// --- LOGICA BOTTONE ---
+const btn = document.getElementById('audioToggle');
+const icon = btn.querySelector('.icon');
+const label = btn.querySelector('.label');
+
+btn.addEventListener('click', async () => {
+    // Sblocca l'audio
+    await Tone.start();
+    // Aspetta che il riverbero sia pronto (necessario per Tone.Reverb)
+    await reverb.ready;
+
+    if (Tone.Transport.state !== "started") {
+        Tone.Transport.start();
+        btn.classList.add('playing');
+        icon.textContent = '🔊';
+        label.textContent = 'MUSIC ON';
+    } else {
+        // Stop fluido: ferma il trasporto ma lascia che il riverbero sfumi
+        Tone.Transport.stop();
+        btn.classList.remove('playing');
+        icon.textContent = '🔇';
+        label.textContent = 'MUSIC OFF';
+    }
+});
+</script>
+
+
+
+</body>
+</html>

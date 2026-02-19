@@ -2,10 +2,70 @@ body, html {
     margin: 1;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #f4f4f4;
-    cursor: url('cursor.svg') 16 16, auto;
+    font-family: 'Shadows Into Light', cursive;
+
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap'); 
+
+
+body {
+  /* Creiamo un cursore usando un piccolo trucco SVG */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
+}
+
+/* Assicurati che il cursore rimanga anche sui link e bottoni */
+a, button {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), pointer;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffc0cb; /* Il tuo rosa */
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    /* --- CONTROLLI --- */
+    --cross-size: 40px;    /* Dimensione della singola croce */
+    --grid-gap: 60px;      /* Distanza tra le croci (cella della scacchiera) */
+    --cross-opacity: 0.25;
+    --cross-color: white;
+
+    background-color: var(--cross-color);
+    opacity: var(--cross-opacity);
+
+    /* Definiamo la cella della scacchiera */
+    --s: calc(var(--cross-size) + var(--grid-gap));
+
+    /* Usiamo la tua shape SVG */
+    --svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="15 30, 40 30, 40 5, 60 5, 60 30, 85 30, 85 55, 60 55, 60 95, 40 95, 40 55, 15 55"/></svg>');
+
+    /* TRUCCO SCACCHIERA:
+       Applichiamo la maschera due volte. 
+       La seconda è spostata esattamente della metà della dimensione della cella.
+    */
+    -webkit-mask-image: var(--svg), var(--svg);
+    -webkit-mask-size: var(--s) var(--s);
+    -webkit-mask-repeat: repeat;
+    -webkit-mask-position: 0 0, calc(var(--s) / 2) calc(var(--s) / 2);
+
+    mask-image: var(--svg), var(--svg);
+    mask-size: var(--s) var(--s);
+    mask-repeat: repeat;
+    mask-position: 0 0, calc(var(--s) / 2) calc(var(--s) / 2);
+}
+
 
 /* Stile per la barra di navigazione*/
 nav {
@@ -13,9 +73,9 @@ nav {
     justify-content: space-between;
     align-items: center; /* Allinea verticalmente il logo e il titolo */
     padding: 10px 20px;
-    border: 3px solid black;
+    border: 3px solid rgb(253, 2, 170);
     border-radius: 20px;
-    background-color: #f9f9f9;
+    background-color: rgba(253, 132, 186, 0.349);
     margin: 3px;
 }
 
@@ -70,8 +130,8 @@ nav {
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #ffffff;
-    border: 1px solid black;
+    background-color: #ffffff8a;
+    border: 1px solid rgb(255, 6, 193);
     border-radius: 20px 20px 20px 20px;
     width: 55px;
     min-width: 10px;
@@ -112,10 +172,10 @@ nav {
     padding: 20px;
     max-width: calc(90% - 200px);    /* Ridotto per fare spazio alle dollface */
     gap: 20px;                       /* Spazio tra le colonne */
-    background-color: white;
-    border: 2px solid black;
-    border-style: double;
-    outline: 1px solid rgb(0, 0, 0);
+    background-color: rgba(248, 129, 228, 0.281);
+    border: 2px solid rgb(255, 1, 191);
+    border-style: dotted;
+    outline: 1px solid rgb(255, 1, 191);
     outline-offset: -5px;
     border-radius: 10px;
 }
@@ -125,15 +185,31 @@ nav {
     flex: 1;                        /* Ogni colonna occupa lo stesso spazio */
     padding: 15px;
     text-align: justify;
-    /*
-    border: 1px dotted blue;
-    border-style: dotted;
-    */
+}
+
+.text {
+    display: flex;
+    flex-direction: column; /* Impila gli elementi verticalmente */
+    align-items: center;    /* Centra tutto orizzontalmente */
+    text-align: center;     /* Centra il testo dentro i paragrafi */
+    max-width: 800px;       /* Opzionale: evita che il testo si allarghi troppo */
+    margin: 0 auto;         /* Centra il contenitore stesso nella pagina */
+    padding: 20px;
+}
+
+.text p {
+    width: 100%;            /* Assicura che il testo occupi lo spazio necessario */
+    line-height: 1.6;       /* Migliora la leggibilità */
+    margin-bottom: 1.5rem;  /* Spazio tra i paragrafi */
+}
+
+.btn-flower {
+    margin-top: 20px;       /* Distanza extra tra l'ultimo paragrafo e il fiore */
 }
 
 /* Hover sul testo */
 .text p:hover {
-    color: darkblue;
+    color: rgb(139, 0, 139);
     transform: scale(1.1);
     transition: all 0.3s ease;
 }
@@ -173,31 +249,7 @@ nav {
     }
     
 
-/* Tooltip */
-.immagine {
-    position: relative;
-    border-radius: 50%;
-   
-    cursor: pointer;
-    
-}
 
-.tooltip {
-    display: none;
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: black;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-}
-
-.immagine:hover .tooltip {
-    display: block;
-}
 
 .triangle {
   --r: 20px; 
@@ -257,7 +309,7 @@ nav {
     radial-gradient(var(--r) at top    var(--_g)),
     radial-gradient(var(--r) at bottom var(--_g));
   clip-path: polygon(100% 50%,0 100%,0 0);
-  background: linear-gradient(45deg,#2c2c2c,#b4b4b4);
+  background: linear-gradient(45deg,#971a82,#f8c5f1);
 }
 
 .button button {
@@ -356,7 +408,121 @@ nav {
 
 
 
+/*FLOWER*/
+/* Importa un font da Google Fonts (opzionale) */
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Dancing+Script:wght@400..700&display=swap');
 
+.btn-flower {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+
+  /* L'OMBRA: drop-shadow segue il ritaglio della maschera del figlio */
+  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.2));
+}
+
+.flower {
+  width: 180px;
+  aspect-ratio: 1;
+  background: linear-gradient(rgb(177, 64, 133), rgb(230, 58, 172)) ; /* Colore del fiore */
+  
+  /* Maschera (la tua versione) */
+  --g: /30.26% 30.26% radial-gradient(#000 calc(71% - 1px),#0000 71%) no-repeat;
+  mask: 100% 50% var(--g),81.174% 89.092% var(--g),38.874% 98.746% var(--g),4.952% 71.694% var(--g),4.952% 28.306% var(--g),38.874% 1.254% var(--g),81.174% 10.908% var(--g),radial-gradient(100% 100%,#000 31.417%,#0000 calc(31.417% + 1px));
+  
+  /* --- GESTIONE FONT --- */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  color: #e9b0eb;             /* Colore del testo */
+  font-family: 'Dancing Script', cursive; /* Cambia qui il font */
+  font-size: 1.1rem;          /* Dimensione */
+  font-weight: 800;           /* Grassetto */
+  letter-spacing: 1px;        /* Spazio tra lettere */
+  text-transform: uppercase;  /* Tutto maiuscolo */
+}
+
+.btn-flower:hover {
+  transform: scale(1.05);
+  /* Ombra più intensa al passaggio del mouse */
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.3));
+}
+
+/* Effetto Hover dinamico */
+.btn-flower:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+
+.btn-flower:active {
+  transform: scale(0.95);
+}
+
+
+/*GALLERy*/
+ :root {
+    --film-color: #1a1a1b;
+    --hole-color: #050505;
+    /* --- CONTROLLO DIMENSIONI --- */
+    --film-width: 280px; /* Rimpicciolisci questo valore per stringere tutto */
+}
+
+.main-gallery-container {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery-wrapper {
+    width: var(--film-width);
+    height: 70vh; /* Altezza della finestra visibile */
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    background: var(--hole-color);
+    position: relative;
+}
+
+.film-strip {
+    --h-w: 10px;  /* Fori più piccoli */
+    --h-h: 14px;
+    --h-p: 26px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6vh;
+    padding: 20vh 0; /* Padding ridotto per gestire meglio i cloni */
+
+    background: 
+        linear-gradient(to bottom, var(--hole-color) var(--h-h), #0000 0) 6px 0 / var(--h-w) var(--h-p) repeat-y, /* Primo set di fori, spostato di 6px a destra */
+        linear-gradient(to bottom, var(--hole-color) var(--h-h), #00000000 0) calc(100% - 6px - var(--h-w)) 0 / var(--h-w) var(--h-p) repeat-y, /* Secondo set di fori, spostato di 6px a sinistra */
+        var(--film-color);
+}
+
+.item {
+    scroll-snap-align: center;
+    width: 70%; /* Immagini più piccole rispetto al nastro */
+    transition: all 0.4s ease;
+    opacity: 0.3;
+    transform: scale(0.9);
+}
+
+.item.is-focused {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+}
 
 
 /*style footer*/
@@ -369,9 +535,9 @@ footer {
     text-align: left;
     justify-content: space-between;
     align-items: center; /* Allinea verticalmente il logo e il titolo */
-    border: 3px solid black;
+    border: 3px solid rgba(253, 132, 186, 0.349);
     border-radius: 20px 20px 0px 0px; 
-    background-color: #f9f9f9;
+    background-color: rgba(253, 132, 186, 0.349);
     z-index: 1000;
     }
 
@@ -405,6 +571,71 @@ footer {
     }
   }
   
+.item .item clone{
+    border-radius: 5px;
 
+}
 
-  
+  .sparkle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none; /* Non blocca i click */
+    z-index: 9999;
+    box-shadow: 0 0 10px white, 0 0 20px #ff00ff; /* Bagliore rosa/bianco */
+    animation: fadeOut 0.8s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.5) translateY(20px); opacity: 0; }
+}
+
+#sparkleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Fondamentale: clicchi attraverso il canvas */
+    z-index: 99999; /* Sopra a ogni cosa */
+}
+
+/*musica*/
+.audio-wrapper {
+    position: fixed;
+    bottom: 25px;
+    left: 25px; /* Spostiamolo a sinistra per non coprire altri tasti */
+    z-index: 100000; /* Sopra anche al canvas dei brillantini */
+}
+
+.music-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.music-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.music-btn.playing {
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
