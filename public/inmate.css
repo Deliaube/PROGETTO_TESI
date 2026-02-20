@@ -1,0 +1,449 @@
+body, html {
+    margin: 1;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #000000;
+    cursor: url('cursor.svg') 16 16, auto;
+
+     background-color: #050a05; /* Un nero leggermente verdastro aumenta il realismo LCD */
+    
+    /* Effetto Glow: ombra esterna per la luce, interna per profondità */
+    box-shadow: 
+        0 0 15px rgba(0, 255, 42, 0.2),            /* Bagliore esterno soffuso */
+        inset 0 0 10px rgba(30, 255, 0, 0.4);     /* Bagliore interno sui bordi */
+    
+    position: relative;
+    overflow: hidden; /* Importante per contenere gli effetti successivi */
+}
+
+/* Stile per la barra di navigazione*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Allinea verticalmente il logo e il titolo */
+    padding: 10px 20px;
+    border: 3px solid  #6ee61e;
+    border-radius: 20px;
+    background-color: #000000;
+    margin: 3px;
+}
+
+.logo a {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #6ee61e;
+}
+
+/* nelle altre pag il title sarà a dx----------------------------------*/
+.title h1 {
+    margin: 0; /* Rimuove il margine predefinito */
+    font-size: 34px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #6ee61e;
+}
+/*_______________________________________________________________________*/
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo, .title {
+        margin: 5px 0;
+    }
+}
+
+/*Stile per il menu a tendina*/
+/*può restare qua, perchè nelle altre pagine NON cis sarà il menù a tendina negli html*/
+.dropbtn {
+    background-color: #6ee61e;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #6ee61e;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 20px 20px 20px 20px;
+    width: 55px;
+    min-width: 10px;
+    height:790px;
+    overflow: hidden;
+    margin-top: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    /*per scrivere in verticale*/
+   
+    writing-mode: vertical-lr;
+  }
+
+  .reset {
+    text-orientation: upright;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 0px ; /*per centrare il testo reset*/
+    margin: 0;
+  }
+
+  .dropdown a:hover {background-color: #ddd;}
+  
+  .show {display: block;}
+
+  /*Stile per il contenuto IMMAGINI e TESTO della pagina*/
+
+.container-corpo {
+    display: flex;
+    justify-content: space-between; /* Distribuisce le colonne */
+    align-items: flex-start;         /* Allinea in alto */
+    margin: 5% auto;                 /* Margine del 5% ai lati */
+    margin-right: 200px;             /* Spazio per le dollface a destra */
+    padding: 20px;
+    max-width: calc(90% - 200px);    /* Ridotto per fare spazio alle dollface */
+    gap: 20px;                       /* Spazio tra le colonne */
+    background-color: rgb(0, 0, 0);
+    border: 2px solid rgb(0, 255, 42);
+    border-style: inset;
+    outline: 1px solid rgb(30, 255, 0);
+    outline-offset: -8px;
+    border-radius: 5px;
+
+    background-color: #050a05; /* Un nero leggermente verdastro aumenta il realismo LCD */
+    
+    /* Effetto Glow: ombra esterna per la luce, interna per profondità */
+    box-shadow: 
+        0 0 15px rgba(0, 255, 42, 0.2),            /* Bagliore esterno soffuso */
+        inset 0 0 10px rgba(30, 255, 0, 0.4);     /* Bagliore interno sui bordi */
+    
+    position: relative;
+    overflow: hidden; /* Importante per contenere gli effetti successivi */
+}
+
+/*effetto scanlines LCD*/
+.container-corpo::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Scanlines: sottili linee orizzontali nere */
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.1) 50%
+    ), 
+    /* Rumore statico (Noise) via SVG data-uri */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    background-size: 100% 3px, 150px 150px;
+    pointer-events: none; /* Permette di cliccare ciò che sta sotto */
+    z-index: 10;
+}
+
+@keyframes glitch-border {
+    0% { border-color: rgb(0, 255, 42); transform: translate(0); }
+    2% { border-color: #fff; transform: translate(-2px, 2px); }
+    4% { border-color: rgb(0, 255, 42); transform: translate(2px, -2px); }
+    100% { border-color: rgb(0, 255, 42); }
+}
+
+.container-corpo {
+    animation: glitch-border 5s infinite; /* Il glitch accade ogni 5 secondi */
+}
+
+/* Colonne */
+.text, .immagine, .button {
+    flex: 1;                        /* Ogni colonna occupa lo stesso spazio */
+    padding: 15px;
+    text-align: justify;
+    /*
+    border: 1px dotted blue;
+    border-style: dotted;
+    */
+    color: #6ee61e;
+}
+
+/* Hover sul testo */
+.text p:hover {
+    color: rgb(2, 252, 43);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/*IMMAGINE*/
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-video {
+    width: 100%;       /* Regola questa percentuale o usa i px (es. 400px) */
+    max-width: 600px;  /* Limite massimo di larghezza */
+    height: auto;      /* Mantiene le proporzioni */
+    cursor: pointer;   /* Fa capire che è cliccabile */
+    border-radius: 100px; /* Opzionale: per arrotondare i bordi */
+    display: block;
+}
+
+.custom-video {
+    transition: filter 0.3s ease;
+    filter: brightness(0.9);
+}
+
+.custom-video:hover {
+    filter: brightness(1.1);
+}
+  
+  .image-container-homepage img {
+    max-width: 100%;
+    height: auto;
+    border: 3px double black;
+    border-radius: 40px;
+    transition: transform 0.3s ease;
+    }
+    
+
+/* Tooltip */
+.immagine {
+    position: relative;
+    border-radius: 50%;
+   
+    cursor: pointer;
+    
+}
+
+
+
+.triangle {
+  --r: 20px; 
+  height: 180px;
+  aspect-ratio: cos(30deg);
+  display: inline-block; /* Essenziale per la rotazione */
+  
+  --_g: calc(tan(60deg)*var(--r)) left var(--r),#000 98%,#0000 101%;
+  -webkit-mask:
+    conic-gradient(from 60deg at calc(3*var(--r)/2 - 100%),#000 60deg,#0000 0)
+    0 0/calc(100% - 3*var(--r)/2) 100% no-repeat,
+    radial-gradient(var(--r) at calc(100% - 2*var(--r)) 50%,#000 98%,#0000 101%),
+    radial-gradient(var(--r) at top    var(--_g)),
+    radial-gradient(var(--r) at bottom var(--_g));
+  clip-path: polygon(100% 50%,0 100%,0 0);
+  background: linear-gradient(45deg, #6ee61e,#49b978);
+  
+  /* Transizione fluida se decidi di animarli */
+  transition: transform 0.3s ease;
+}
+
+/* Direzioni basate sul tuo codice originale (che punta a DESTRA) */
+/*.punta-destra   { transform: rotate(0deg); } */ /* Non serve, è la posizione di default */
+.punta-sinistra { transform: rotate(180deg); }
+.punta-alto     { transform: rotate(-90deg); }
+.punta-basso    { transform: rotate(90deg); }
+
+/* Rotazioni per i diversi bottoni (Polygon 4, 3, 2) */
+.rotate-right { transform: rotate(360deg); }
+ /*CENTRALE*/
+.rotate-up    { transform: rotate(-180deg); } /* giù */
+
+/* Effetto al passaggio del mouse */
+.btn:hover .triangle-shape {
+    filter: brightness(1.1);
+    transform: scale(1.05) rotate(inherit); /* Mantiene la rotazione */
+}
+
+.triangle {
+  /* Dimensioni dinamiche */
+  --size: 15vw; /* 15% della larghezza dello schermo */
+  --r: calc(var(--size) / 8); /* Il raggio proporzionale alla dimensione */
+
+  height: var(--size);
+  min-height: 40px; /* Non diventerà mai troppo piccolo */
+  max-height: 120px; /* Non diventerà mai troppo grande */
+  
+  aspect-ratio: cos(30deg);
+  display: inline-block;
+  
+  /* Mantieni tutto il resto del tuo codice (mask, clip-path, background) */
+  --_g: calc(tan(60deg)*var(--r)) left var(--r),#000 98%,#0000 101%;
+  -webkit-mask:
+    conic-gradient(from 60deg at calc(3*var(--r)/2 - 100%),#000 60deg,#0000 0)
+    0 0/calc(100% - 3*var(--r)/2) 100% no-repeat,
+    radial-gradient(var(--r) at calc(100% - 2*var(--r)) 50%,#000 98%,#0000 101%),
+    radial-gradient(var(--r) at top    var(--_g)),
+    radial-gradient(var(--r) at bottom var(--_g));
+  clip-path: polygon(100% 50%,0 100%,0 0);
+  background: linear-gradient(45deg,#6ee61e,#031b05);
+}
+
+.button button {
+    display: block;
+    margin: 10px auto; /** Spazio tra i bottoni- togliere per avvicinarli all'img*/
+    padding: 10px 20px;
+    border: none;
+    background-color: #89a5c4;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button button:hover {
+    background-color: #6ee61e;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Align buttons vertically */
+    align-items: center;
+    transition: transform 0.5s ease; /* Smooth rotation */
+}
+
+/* Rotate when viewport width is less than 500px */
+@media (max-width: 700px) {
+    .button-container {
+        transform: rotate(90deg); /* Rotates the container */
+    }
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .container-corpo {
+        flex-direction: column; /* Le colonne diventano righe */
+        align-items: center;
+    }
+}
+
+@media (max-width: 900px) {
+    .container-corpo {
+        margin-right: 0;
+        max-width: 90%;
+        width: 90%;
+        padding: 16px;
+    }
+
+    .container-corpo .text,
+    .container-corpo .immagine,
+    .container-corpo .button {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+
+
+/*STYLE button-container*/
+.button-container {
+    display: flex;
+    flex-direction: column; /* Disposizione verticale */
+    align-items: center;     /* Centra i bottoni orizzontalmente */
+    padding: 20px;           /* Padding generale del contenitore */
+    gap: 1px;               /* Spazio tra i pulsanti */
+}
+
+/* Stile base dei pulsanti */
+.btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 10px;           /* Padding interno ai pulsanti */
+    margin: 5px;             /* Margine esterno per spostamenti */
+}
+
+/* Effetto hover */
+.btn:hover {
+    transform: scale(1.1);   /* Effetto zoom al passaggio del mouse */
+}
+
+/* Personalizzazione individuale dei margini */
+.btn:nth-child(1) {
+    margin-top: 30px;        /* Sposta il primo pulsante verso il basso */
+    margin-right: 40px;
+}
+
+.btn:nth-child(2) {
+    margin-left: 30px;       /* Sposta il secondo pulsante leggermente a destra */
+}
+
+.btn:nth-child(3) {
+    margin-bottom: 40px;     /* Aggiunge spazio sotto il terzo pulsante */
+    margin-right: 40px;
+}
+
+
+
+
+
+
+/*style footer*/
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: rgb(52, 217, 49);
+    text-align: left;
+    justify-content: space-between;
+    align-items: center; /* Allinea verticalmente il logo e il titolo */
+    border: 3px solid  #6ee61e;
+    border-radius: 20px 20px 0px 0px; 
+    background-color: #000000;
+    z-index: 1000;
+    }
+
+/*style marquee*/
+
+/* Contenitore del testo */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;  /* Nasconde il testo fuori dai bordi */
+    background-color: #222;
+    border: 2px solid white;
+    padding: 10px 0;
+    position: relative;
+  }
+  
+  /* Testo scorrevole */
+  .marquee {
+    display: inline-block;
+    white-space: nowrap;        /* Impedisce il ritorno a capo */
+    padding-left: 100%;         /* Parte da fuori schermo a destra */
+    animation: scroll 55s linear infinite;  /* Animazione continua + velocità */
+  }
+  
+  /* Definizione dell'animazione */
+  @keyframes scroll {
+    from {
+        transform: translateX(0%);   /* Inizia da destra */
+    }
+    to {
+        transform: translateX(-100%); /* Scorre tutto a sinistra */
+    }
+  }
+  
+
+
+  
