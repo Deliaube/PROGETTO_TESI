@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="transmigrator.css">
+    <link rel="stylesheet" href="timer.css">
+  
+</head>
+<body>
+
+ <svg style="display: none;">
+  <defs>
+    <filter id="hand-drawn" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" />
+    </filter>
+  </defs>
+</svg>
+
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="new_index_CHANGES REVISED.html">☯</a>
+        </div>
+        <div class="title" >
+            <h1>CYBERMID_</h1>
+        </div>
+
+
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">🔗</button>
+          <div id="myDropdown" class="dropdown-content">
+            <button onclick="resetChoices()" class="btn default reset">✨ Reset</button>
+            <span class="tooltip-text1">Caution, rebooting will erase everything in memory</span>
+          </div>
+        </div>
+
+
+    </nav>
+</header>
+
+
+<div class="fragment f1">Skin_01</div>
+<div class="fragment f2">Trans_Log</div>
+
+
+<section class="container-corpo">
+  <div class="text">
+    <p>In today’s world, integrating a new avatar has become an everyday habit, 
+      almost a mundane commodity of human life. 
+      Yet, it’s often overlooked how the ecocyber ecosystem may encounter regrettable breakdowns 
+      or disruptions in its environmental behavior. <br> 
+      <p>At CybeMID, we firmly believe that a clean folder reflects a clear mind.  </p>
+      <p>We invite you to participate in our test to uncover potential ailments your virtual identity might be suffering from. </p>
+      <br>
+      <p>Please note: the results are primarily indicative, and consulting a professional is recommended for a more precise diagnosis.</p>
+  </div>
+<!--immagini___________________________________________________________-->
+
+<div class="video-container">
+    <video id="myVideo" class="custom-video" muted loop playsinline preload="auto">
+        <source src="images/img transmigrator/transmigratordoll.webm" type="video/webm">
+        
+        <source src="images/img transmigrator/transmigrator.mp4" type="video/mp4">
+        
+        Il tuo browser non supporta il video.
+    </video>
+    <p class="photo-caption">Transmigrator_Log_01</p>
+</div>
+
+<!--filtro___________________________________________________________-->
+<svg style="display: none;">
+  <defs>
+    <filter id="hand-drawn" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
+    </filter>
+  </defs>
+</svg>
+
+<div id="the-migrant">
+    <span class="migrant-coords"></span>
+</div>
+
+
+<!--bottoni___________________________________________________________-->
+
+<div class="button-container">
+
+    <button class="btn default" type ="button" onclick="window.location.href='controindicazioni.html'" title="controllo indicazioni">
+        <div class="triangle punta-alto"></div>
+    </button>
+
+    <button class="btn default" type ="button" onclick="window.location.href='dosaggio.html'" title="dosaggio">
+        <div class="triangle punta-destra"></div>  
+    </button>
+
+    <button class="btn default" type ="button" onclick="window.location.href='draggable_cards.html'" title="combinazioni">
+        <div class="triangle punta-basso"></div>
+    </button>
+
+</div>
+
+</section>
+
+<!--Stile per il contenuto IMMAGINI e TESTO della pagina___________________________
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4;
+}
+
+.container-corpo {
+    display: flex;
+    justify-content: space-between; /* Distribuisce le colonne */
+    align-items: flex-start;         /* Allinea in alto */
+    margin: 5% auto;                 /* Margine del 5% ai lati */
+    padding: 20px;
+    max-width: 90%;                  /* Limita la larghezza massima */
+    gap: 20px;                       /* Spazio tra le colonne */
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/* Colonne */
+.text, .immagine, .button {
+    flex: 1;                        /* Ogni colonna occupa lo stesso spazio */
+    padding: 15px;
+    text-align: center;
+    border: 1px dotted blue;
+}
+
+/* Hover sul testo */
+.text p:hover {
+    color: darkblue;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/* Tooltip */
+.immagine {
+    position: relative;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.immagine:hover .tooltip {
+    display: block;
+}
+
+/* Bottoni */
+.button button {
+    display: block;
+    margin: 10px auto; /** Spazio tra i bottoni- togliere per avvicinarli all'img*/
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .container-corpo {
+        flex-direction: column; /* Le colonne diventano righe */
+        align-items: center;
+    }
+}
+
+</style> -->
+
+<!--script Resetta scelte BUTTON
+<script>
+                      function resetChoices() {
+                        localStorage.removeItem('totalSum');
+                        location.reload();
+                      }
+</script>
+
+the one workink is below 
+<script>
+function resetChoices() {
+  try {
+    // Verifica se la chiave esiste prima di rimuoverla
+    if (localStorage.getItem('totalSum') !== null) {
+      localStorage.removeItem('totalSum');
+    }
+    
+    // Ricarica la pagina senza cache per evitare problemi
+    window.location.reload(true);
+  } catch (error) {
+    console.error("Errore durante il reset:", error);
+    alert("Si è verificato un errore durante il reset. Riprova.");
+  }
+}
+</script> -->
+
+<!--PARTE 2 SCRIPT RIGO 31/ UPDATE IMG BASED ON SUMM-                
+  <script>
+    function updateImageBasedOnSum() {
+      // Ottieni la somma salvata
+      const totalSum = localStorage.getItem('totalSum') || '';
+    
+      // Seleziona l'immagine e il messaggio
+      const placeholder = document.getElementById('placeholder');
+      const message = document.getElementById('message');
+    
+      // Controllo per le combinazioni - cambia immagini con compatibili 
+      if (totalSum === 'AAA') {
+        placeholder.src = 'images/microwave.png';
+        message.textContent = 'Combinazione AAA scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else if (totalSum === 'ABC') {
+        placeholder.src = 'images/closet.png';
+        message.textContent = 'Combinazione ABC scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else if (totalSum === 'BBB') {
+        placeholder.src = 'images/pill.png';
+        message.textContent = 'Combinazione BBB scelta!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else if (totalSum.includes('A') && totalSum.includes('B') && totalSum.includes('C')) {
+        placeholder.src = 'images/Designer(8).jpeg';
+        message.textContent = 'Tutte le opzioni sono state selezionate!';
+        placeholder.style.width = '300px';
+        placeholder.style.height = 'auto';
+      } else {
+        message.textContent = 'Completa le scelte per vedere il risultato.';
+      }
+    }
+    
+    // Esegui al caricamento
+    window.onload = updateImageBasedOnSum;
+    
+  </script>  -->
+  
+
+<!--FOOTER_________________________________________________________________________________-->
+        <footer>
+          <p class="marquee">Delia Scaccianoce - 2025 Beware of any infections ----This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data 
+           ---- This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data
+          </p>
+        </footer>
+
+<!--dove avviene il cambio immagine e la selezione immagine-->
+      <script src="new_index_CHANGES REVISED.js"></script>
+      <!-- Timer Scripts -->
+      <script src="timer.js"></script>
+
+      <script>
+       const video = document.getElementById('myVideo');
+
+      video.addEventListener('click', () => {
+       if (video.paused) {
+        video.play();
+        // Opzionale: aggiunge una classe per effetti CSS quando il video è in play
+        video.classList.add('video-is-playing');
+      } else {
+        video.pause();
+        video.classList.remove('video-is-playing');
+      }
+    });
+      </script>
+
+<script>
+    const cursor = document.getElementById('lcd-cursor');
+const states = ["@transmigrator", "unknown_id", "shifting...", "no_place"];
+let stateIndex = 0;
+
+// Cambia skin/testo del cursore ogni 2 secondi
+setInterval(() => {
+    stateIndex = (stateIndex + 1) % states.length;
+    cursor.innerHTML = `<span style="font-size:10px; color:#3c3c3c; margin-left:15px;">${states[stateIndex]}</span>`;
+}, 2000);
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const fragmentsContent = [
+        "@transmigrator", "ID_unknown", "SYSTEM_SHIFT", "root/mutant", 
+        "010110", "skin_v2.0", "no_fixed_root", "void_traveler",
+        "data_leak", "trans_log_04", "fragment.tmp", "shifting_id"
+    ];
+
+    const container = document.body;
+
+    // Genera 8 frammenti casuali
+    for (let i = 0; i < 8; i++) {
+        const fragment = document.createElement('div');
+        fragment.className = 'fragment';
+        
+        // Scegli testo casuale
+        fragment.innerText = fragmentsContent[Math.floor(Math.random() * fragmentsContent.length)];
+        
+        // Posizionamento casuale (evitando il centro perfetto dove c'è il container)
+        const posX = Math.random() * 90; // 0-90% della larghezza
+        const posY = Math.random() * 90; // 0-90% dell'altezza
+        
+        fragment.style.left = posX + 'vw';
+        fragment.style.top = posY + 'vh';
+        
+        // Ritardo casuale per l'animazione float per non farli muovere tutti insieme
+        fragment.style.animationDelay = (Math.random() * 5) + 's';
+        
+        container.appendChild(fragment);
+    }
+});
+</script>
+
+<script>
+    const migrant = document.getElementById('the-migrant');
+const coords = migrant.querySelector('.migrant-coords');
+const photo = document.querySelector('.video-container');
+
+let mouseX = 0, mouseY = 0;
+let migrantX = 0, migrantY = 0;
+
+// Tracciamento posizione mouse
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animate() {
+    // 1. Movimento fluido (Inseguimento elastico)
+    migrantX += (mouseX - migrantX) * 0.15;
+    migrantY += (mouseY - migrantY) * 0.15;
+
+    migrant.style.transform = `translate(${migrantX}px, ${migrantY}px)`;
+
+    // 2. Controllo Collisione (Sostituisce mouseenter/mouseleave per maggior precisione)
+    if (photo) {
+        const rect = photo.getBoundingClientRect();
+        const isInside = (
+            mouseX >= rect.left && 
+            mouseX <= rect.right && 
+            mouseY >= rect.top && 
+            mouseY <= rect.bottom
+        );
+
+        if (isInside) {
+            if (!migrant.classList.contains('scanning')) {
+                migrant.classList.add('scanning');
+                coords.style.opacity = "1";
+            }
+            coords.innerText = `EXTRACTING_DATA: [${Math.round(migrantX)},${Math.round(migrantY)}]`;
+        } else {
+            migrant.classList.remove('scanning');
+            coords.innerText = `loc: ${Math.round(migrantX)},${Math.round(migrantY)}`;
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+// Avvio del loop
+animate();
+</script>
+
+</body>
+</html>
