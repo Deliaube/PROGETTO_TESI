@@ -9,7 +9,7 @@
   
 </head>
 <body>
- 
+ <div id="lcd-cursor"></div>
   <header>
     <nav>
         <div class="logo">
@@ -250,6 +250,58 @@ video.addEventListener('click', () => {
     }
 });
 </script>
+
+<script>
+    const cursor = document.getElementById('lcd-cursor');
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateCursor() {
+    // Effetto "ritardo" (scia LCD): il cursore insegue il mouse
+    // Cambia 0.2 per aumentare/diminuire la fluidità (più basso = più scia)
+    cursorX += (mouseX - cursorX) * 0.2;
+    cursorY += (mouseY - cursorY) * 0.2;
+
+    cursor.style.left = `${cursorX}px`;
+    cursor.style.top = `${cursorY}px`;
+
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Effetto al click (si restringe come un pixel che si spegne)
+document.addEventListener('mousedown', () => {
+    cursor.style.transform = 'scale(0.7) rotate(45deg)';
+    cursor.style.backgroundColor = '#fff'; // Diventa bianco per un istante
+});
+document.addEventListener('mouseup', () => {
+    cursor.style.transform = 'scale(1) rotate(0deg)';
+    cursor.style.backgroundColor = 'rgb(0, 255, 42)';
+});
+
+
+
+const clickables = document.querySelectorAll('button, a, .custom-video');
+clickables.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+        cursor.style.clipPath = 'none'; // Diventa un quadrato di selezione
+        cursor.style.borderRadius = '0';
+    });
+    el.addEventListener('mouseleave', () => {
+        cursor.style.width = '10px';
+        cursor.style.height = '10px';
+        cursor.style.clipPath = 'polygon(...)'; // Ripristina il mirino
+    });
+});
+</script>
+
 
 </body>
 </html>
