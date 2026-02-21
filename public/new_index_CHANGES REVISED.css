@@ -199,13 +199,66 @@ nav {
     display: block;
 }
 
-/* Bottoni */
-/*
-.button-container{
-    border: 1px solid red;
-    border-style: dotted;
+.triangle {
+  --r: 20px; 
+  height: 180px;
+  aspect-ratio: cos(30deg);
+  display: inline-block; /* Essenziale per la rotazione */
+  
+  --_g: calc(tan(60deg)*var(--r)) left var(--r),#000 98%,#0000 101%;
+  -webkit-mask:
+    conic-gradient(from 60deg at calc(3*var(--r)/2 - 100%),#000 60deg,#0000 0)
+    0 0/calc(100% - 3*var(--r)/2) 100% no-repeat,
+    radial-gradient(var(--r) at calc(100% - 2*var(--r)) 50%,#000 98%,#0000 101%),
+    radial-gradient(var(--r) at top    var(--_g)),
+    radial-gradient(var(--r) at bottom var(--_g));
+  clip-path: polygon(100% 50%,0 100%,0 0);
+  background: linear-gradient(45deg,#5e5d5d,#5c5b5b);
+  
+  /* Transizione fluida se decidi di animarli */
+  transition: transform 0.3s ease;
 }
-    */ 
+
+/* Direzioni basate sul tuo codice originale (che punta a DESTRA) */
+/*.punta-destra   { transform: rotate(0deg); } */ /* Non serve, è la posizione di default */
+.punta-sinistra { transform: rotate(180deg); }
+.punta-alto     { transform: rotate(-90deg); }
+.punta-basso    { transform: rotate(90deg); }
+
+/* Rotazioni per i diversi bottoni (Polygon 4, 3, 2) */
+.rotate-right { transform: rotate(360deg); }
+ /*CENTRALE*/
+.rotate-up    { transform: rotate(-180deg); } /* giù */
+
+/* Effetto al passaggio del mouse */
+.btn:hover .triangle-shape {
+    filter: brightness(1.1);
+    transform: scale(1.05) rotate(inherit); /* Mantiene la rotazione */
+}
+
+.triangle {
+  /* Dimensioni dinamiche */
+  --size: 15vw; /* 15% della larghezza dello schermo */
+  --r: calc(var(--size) / 8); /* Il raggio proporzionale alla dimensione */
+
+  height: var(--size);
+  min-height: 40px; /* Non diventerà mai troppo piccolo */
+  max-height: 120px; /* Non diventerà mai troppo grande */
+  
+  aspect-ratio: cos(30deg);
+  display: inline-block;
+  
+  /* Mantieni tutto il resto del tuo codice (mask, clip-path, background) */
+  --_g: calc(tan(60deg)*var(--r)) left var(--r),#000 98%,#0000 101%;
+  -webkit-mask:
+    conic-gradient(from 60deg at calc(3*var(--r)/2 - 100%),#000 60deg,#0000 0)
+    0 0/calc(100% - 3*var(--r)/2) 100% no-repeat,
+    radial-gradient(var(--r) at calc(100% - 2*var(--r)) 50%,#000 98%,#0000 101%),
+    radial-gradient(var(--r) at top    var(--_g)),
+    radial-gradient(var(--r) at bottom var(--_g));
+  clip-path: polygon(100% 50%,0 100%,0 0);
+  background: linear-gradient(45deg,#2c2c2c,#b4b4b4);
+}
 
 .button button {
     display: block;
