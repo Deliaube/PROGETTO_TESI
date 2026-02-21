@@ -352,6 +352,37 @@ footer {
     }
   }
   
-
-
+ .floating-img {
+  width: 300px; /* O la dimensione che preferisci */
+  border-radius: 50px; /* Arrotonda gli angoli per un look moderno */
   
+  /* L'ombra che crea l'effetto "staccato" dal fondo */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  
+  /* Transizione fluida per l'animazione */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effetto quando passi il mouse (opzionale ma consigliato) */
+.floating-img:hover {
+  transform: translateY(-10px); /* L'immagine sale leggermente */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3); /* L'ombra si espande */
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-img {
+  animation: float 4s ease-in-out infinite;
+}
+  
+/* Classe universale per la tesi */
+.img-responsive {
+  max-width: 100%;    /* Impedisce all'immagine di uscire dai bordi */
+  height: auto;       /* Mantiene le proporzioni originali (fondamentale!) */
+  display: block;      /* Elimina spazi vuoti indesiderati sotto l'immagine */
+  margin: 10px auto;  /* Centra l'immagine se il contenitore è più largo */
+}
