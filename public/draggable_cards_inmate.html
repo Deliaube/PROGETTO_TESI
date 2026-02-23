@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable Cards</title>
+    <link rel="stylesheet" href="new_index_CHANGES REVISED.css">
+    <link rel="stylesheet" href="inmate_style.css">
+    <link rel="stylesheet" href="options.css">
+    <link rel="stylesheet" href="timer.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  </head>
+<body class="page-cards">
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="new_index_CHANGES REVISED.html">🧩</a>
+        </div>
+        <div class="title" >
+            <h1>CYBERMAD_</h1>
+        </div>
+
+    </nav>
+</header>
+
+<!-- New Card Controls -->
+<div style="padding: 15px 20px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; display: flex; align-items: center; gap: 15px;">
+  <button id="createOutsideCardBtn" title="Create a new card in the left of the container" style="padding: 8px 16px; font-size: 16px; cursor: pointer;">➕ New Card</button>
+  <div id="createColorPalette" class="color-palette" role="radiogroup" aria-label="Choose post-it color" style="display:flex;align-items:center;gap:10px;">
+    <button class="color-sphere selected" data-color="yellow" title="Yellow post-it" aria-pressed="true" role="radio"></button>
+    <button class="color-sphere" data-color="pink" title="Pink post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere" data-color="green" title="Green post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere" data-color="blue" title="Blue post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere" data-color="transparent" title="Transparent post-it" aria-pressed="false" role="radio"></button>
+  </div>
+  <button id="cleanerBtn" title="Delete all cards at once" style="padding: 8px 16px; font-size: 16px; cursor: pointer; background: #ff4444; color: white; border: none; border-radius: 6px;">🗑️ Cleaner</button>
+</div>
+
+<!-- Container for all cards -->
+ <section class="container-corpo">
+          <!-- Background draggabile con style -->
+          <div class="background-draggable"></div> 
+
+<div id="cardContainer">
+
+    <div class="draggable" id="card-1" style="top: 100px; left: 100px;">
+      <div class="draggable-header">Pick me GID</div>
+      <p> <b>1. Glitch Identity Disorder (GID) </b>
+        Description: The avatar exhibits inconsistencies in appearance or behavior, creating a fragmented and unstable digital persona—a direct counterpart to an identity crisis.
+        <br> Causes: Overlapping filters, imperfect algorithms, or excessive modifications imposed by the user.
+        <br>Symptoms:
+        Random variations in physical traits (visual glitches).
+        Behavioral inconsistencies.</p>
+    </div>
+    <div class="draggable" id="card-1" style="top: 160px; left: 120px;">
+        <div class="draggable-header">Drag here</div>
+        <p>
+         <b> 2. Hyper-Performative Syndrome </b>
+Description: The avatar is forced to continuously perform an idealized role imposed by the user, reducing it to a hollow product.
+Causes: The need to conform to unrealistic aesthetic, social, or algorithmic standards (e.g., “perfect” social media avatars).
+<br>Symptoms:
+Excessive symbolic burden on the character.
+Struggles to appear authentic.    </p>
+      </div>
+
+    <div class="draggable" id="card-2" style="top: 200px; left: 150px;">
+      <div class="draggable-header">Drag here</div>
+      <img src="images/Designer (10).jpeg" alt="Immagine Card 2" style="width: 100%;">
+    </div>
+  
+    <div class="draggable" id="card-2" style="top: 260px; left: 180px;">
+        <div class="draggable-header">Info point</div>
+        <img src="images/closet.png" alt="Immagine Card 2" style="width: 100%;">
+      </div>
+
+    <div class="draggable" id="card-3" style="top: 350px; left: 270px;">
+      <div class="draggable-header">Info point</div>
+      <p>
+       <b> 3. Parasitic Algorithm Syndrome (PAS) </b>
+Description: Advertising algorithms or data-mining processes latch onto the avatar, distorting its autonomy for commercial purposes.
+Causes: Tracking, targeting, and profiling user interactions.
+<br>Symptoms:
+Behavior solely geared toward promoting content.
+A sensation of lost narrative autonomy.      </p>
+    </div>
+
+    <div class="draggable" id="card-3" style="top: 370px; left: 370px;">
+      <div class="draggable-header">Drag here</div>
+      <p>
+      <b> 4. Emotional Oversaturation Disorder (EOD)</b> 
+        Description: The avatar becomes overloaded with emotions projected by the user, losing its ability to reflect true states of mind.
+        Causes: Using avatars to express amplified or entirely detached emotions from the user's actual identity.
+        <br>Symptoms:
+        Exaggerated expressivity (excessive reactions or emotive distortions).
+        Emotional disconnect between user and avatar.      </p>
+    </div>
+
+    <div class="draggable" id="card-3" style="top: 400px; left: 200px;">
+        <div class="draggable-header">Drag here</div>
+        <p>
+        <b>  5. Static Existence Disorder (SED)</b>
+Description: The avatar is trapped in a fixed role or configuration, unable to evolve, leading to obsolescence.
+Causes: Platform limitations or lack of personalized interaction options.
+<br>Symptoms:
+Figurative immobility.
+Decline in social or cultural relevance.        </p>
+      </div>
+
+      <div class="draggable" id="card-3" style="top: 450px; left: 220px;">
+        <div class="draggable-header">Listen here</div>
+        <p>
+        <b> 6. Viral Meme Syndrome </b> 
+Description: The avatar becomes "infected" by external narratives like memes or trends, losing its original uniqueness.
+Causes: Appropriation of its appearance or persona within online circuits.
+<br>Symptoms:
+Uncontrolled multiplication of its likeness or messages taken out of context.        </p>
+      </div>
+
+      <div class="draggable" id="card-3" style="top: 480px; left: 300px;">
+        <div class="draggable-header">Info point</div>
+        <p>
+        <b> 7. Digital Burnout </b> 
+          Description: The avatar becomes exhausted from constant interaction and excessive demands from the user.
+          Causes: Intensive and continuous use in digital spaces without recovery periods.
+         <br> Symptoms:
+          Sluggish or incomplete animations.
+          Error messages (e.g., “Too tired to load”).        </p>
+      </div>
+  </div>
+</section>
+
+<!-- Card Statistics -->
+<div id="cardStats" style="margin: 20px; padding: 15px; background-color: #f0f0f0; border-radius: 8px; display: flex; gap: 30px; justify-content: center; font-family: monospace;">
+  <div style="text-align: center;">
+    <div style="font-size: 24px; font-weight: bold; color: #2196F3;" id="totalCreated">0</div>
+    <div style="font-size: 12px; color: #666;">Total Created</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="font-size: 24px; font-weight: bold; color: #4CAF50;" id="currentCards">0</div>
+    <div style="font-size: 12px; color: #666;">Current Cards</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="font-size: 24px; font-weight: bold; color: #f44336;" id="deletedCards">0</div>
+    <div style="font-size: 12px; color: #666;">Deleted Cards</div>
+  </div>
+</div>
+
+  <!---script drag n drop__________________________________________________________________-->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const cardContainer = document.getElementById('cardContainer');
+
+    // Hidden state system
+    const STATE_KEYS = {
+      transmigrator: 'hiddenState_transmigrator_v1',
+      egregore: 'hiddenState_egregore_v1',
+      inmate: 'hiddenState_inmate_v1'
+    };
+    const STATE_MIN = 0;
+    const STATE_MAX = 10;
+
+    function clampState(value) {
+      return Math.max(STATE_MIN, Math.min(STATE_MAX, value));
+    }
+
+    function getState(key) {
+      const raw = localStorage.getItem(STATE_KEYS[key]);
+      const num = parseInt(raw || '0', 10);
+      return clampState(Number.isNaN(num) ? 0 : num);
+    }
+
+    function setState(key, value) {
+      localStorage.setItem(STATE_KEYS[key], String(clampState(value)));
+    }
+
+    function incrementState(key, delta) {
+      const current = getState(key);
+      setState(key, current + (delta || 0));
+    }
+
+    // State persistence: use localStorage
+    const STORAGE_KEY = 'draggableCards_state_v1';
+    const DELETED_KEY = 'draggableCards_deleted_v1';
+    const COUNTER_KEY = 'draggableCards_counter_v1';
+
+    // Reset localStorage if corrupted (check for URL param ?reset=1)
+    if (window.location.search.includes('reset=1')) {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(DELETED_KEY);
+      localStorage.removeItem(COUNTER_KEY);
+      localStorage.removeItem('draggableCards_nextCreateIndex_v1');
+      console.log('localStorage cleared');
+      // Remove ?reset=1 from URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    function saveDeletedState(arr) { localStorage.setItem(DELETED_KEY, JSON.stringify(arr || [])); }
+    function loadDeletedState() { try { return JSON.parse(localStorage.getItem(DELETED_KEY) || '[]') || []; } catch(e) { return []; } }
+    
+    let deletedCards = loadDeletedState();
+
+    function saveAllCardsState() {
+      const arr = Array.from(document.querySelectorAll('.draggable')).map(getCardStateFromElem);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+      console.log('Saved cards state:', arr.length);
+      updateCardStats();
+    }
+    
+    function loadAllCardsState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || null; } catch (e) { return null; }
+    }
+
+    function updateCardStats() {
+      const currentCount = document.querySelectorAll('.draggable').length;
+      const deletedCount = deletedCards.length;
+      const totalCreated = parseInt(localStorage.getItem(COUNTER_KEY) || '0');
+      
+      document.getElementById('totalCreated').textContent = totalCreated;
+      document.getElementById('currentCards').textContent = currentCount;
+      document.getElementById('deletedCards').textContent = deletedCount;
+    }
+
+    function refreshTrashList() {
+      const list = document.getElementById('trashList');
+      if (!list) return;
+      list.innerHTML = '';
+      deletedCards.forEach((c, idx) => {
+        const item = document.createElement('div');
+        item.className = 'trash-item';
+        item.innerHTML = `<div class="trash-title">${(c.headerText||'Card')} - <small>${new Date(c.deletedAt).toLocaleString()}</small></div><div class="trash-actions"><button data-idx="${idx}" class="restoreBtn">Restore</button> <button data-idx="${idx}" class="permDelBtn">Delete permanently</button></div>`;
+        list.appendChild(item);
+      });
+      list.querySelectorAll('.restoreBtn').forEach(b => b.addEventListener('click', (e) => { const i = parseInt(b.dataset.idx); restoreDeletedCard(i); }));
+      list.querySelectorAll('.permDelBtn').forEach(b => b.addEventListener('click', (e) => { const i = parseInt(b.dataset.idx); if (confirm('Delete permanently?')) { deletedCards.splice(i,1); saveDeletedState(deletedCards); refreshTrashList(); } }));
+    }
+
+    function getCardStateFromElem(card) {
+      const id = card.id || ('card-temp-' + Math.round(Math.random()*1e6));
+      const header = card.querySelector('.draggable-header');
+      const content = card.querySelector('.card-content');
+      
+      let headerText = '';
+      if (header) {
+        const deleteBtn = header.querySelector('.inline-delete');
+        const clonedHeader = header.cloneNode(true);
+        const clonedDeleteBtn = clonedHeader.querySelector('.inline-delete');
+        if (clonedDeleteBtn) clonedDeleteBtn.remove();
+        headerText = clonedHeader.textContent.trim();
+      }
+      
+      return {
+        id: id,
+        left: parseFloat(card.style.left) || 0,
+        top: parseFloat(card.style.top) || 0,
+        zIndex: parseInt(card.style.zIndex) || 0,
+        width: card.style.width ? parseFloat(card.style.width) : card.offsetWidth,
+        height: card.style.height ? parseFloat(card.style.height) : card.offsetHeight,
+        headerText: headerText,
+        contentHTML: (content && content.innerHTML) || '',
+        colorClass: Array.from(card.classList).find(c => c.startsWith('postit-')) || 'postit-yellow'
+      };
+    }
+
+    function deleteCard(card) {
+      const state = getCardStateFromElem(card);
+      state.deletedAt = Date.now();
+      deletedCards.push(state);
+      saveDeletedState(deletedCards);
+      card.remove();
+      incrementState('inmate', 1);
+      saveAllCardsState();
+      refreshTrashList();
+      updateCardStats();
+    }
+
+    function createCardFromState(obj) {
+      const newCard = document.createElement('div');
+      newCard.className = 'draggable';
+      newCard.id = obj.id;
+      newCard.style.left = (obj.left || 12) + 'px';
+      newCard.style.top = (obj.top || 12) + 'px';
+      if (obj.zIndex) newCard.style.zIndex = obj.zIndex;
+      if (obj.width) newCard.style.width = obj.width + 'px';
+      if (obj.height) newCard.style.height = obj.height + 'px';
+      newCard.innerHTML = `
+        <div class="draggable-header">${obj.headerText || ''}</div>
+        <div class="card-content" contenteditable="true">${obj.contentHTML || ''}</div>
+        <div class="resize-handle"></div>
+      `;
+      if (obj.colorClass) newCard.classList.add(obj.colorClass);
+      return newCard;
+    }
+
+    function restoreDeletedCard(index) {
+      const obj = deletedCards.splice(index,1)[0];
+      saveDeletedState(deletedCards);
+      const c = createCardFromState(obj);
+      document.getElementById('cardContainer').appendChild(c);
+      ensureContentElem(c);
+      dragElement(c);
+      makeResizable(c);
+      saveAllCardsState();
+      refreshTrashList();
+      updateCardStats();
+    }
+
+    // Drag behavior
+    function dragElement(elmnt) {
+      const header = elmnt.querySelector('.draggable-header');
+      if (!header) return;
+
+      header.style.touchAction = 'none';
+      header.style.cursor = 'grab';
+
+      let pointerId = null;
+      let startX = 0, startY = 0;
+      let startLeft = 0, startTop = 0;
+
+      function onPointerDown(e) {
+        e.preventDefault();
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        startY = e.clientY;
+        startLeft = parseFloat(elmnt.style.left) || elmnt.offsetLeft || 0;
+        startTop = parseFloat(elmnt.style.top) || elmnt.offsetTop || 0;
+        try { header.setPointerCapture(pointerId); } catch (err) {}
+        header.style.cursor = 'grabbing';
+        document.addEventListener('pointermove', onPointerMove);
+        document.addEventListener('pointerup', onPointerUp);
+      }
+
+      function onPointerMove(e) {
+        if (pointerId === null || e.pointerId !== pointerId) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        let newLeft = Math.round(startLeft + dx);
+        let newTop = Math.round(startTop + dy);
+        const minLeft = -elmnt.offsetWidth + 50;
+        const minTop = 0;
+        newLeft = Math.max(minLeft, newLeft);
+        newTop = Math.max(minTop, newTop);
+        elmnt.style.left = newLeft + 'px';
+        elmnt.style.top = newTop + 'px';
+      }
+
+      function onPointerUp(e) {
+        if (pointerId === null || e.pointerId !== pointerId) return;
+        try { header.releasePointerCapture(pointerId); } catch (err) {}
+        pointerId = null;
+        header.style.cursor = 'grab';
+        document.removeEventListener('pointermove', onPointerMove);
+        document.removeEventListener('pointerup', onPointerUp);
+        try { saveAllCardsState(); } catch (err) { console.warn('save failed', err); }
+      }
+
+      header.addEventListener('pointerdown', onPointerDown);
+      header.addEventListener('pointercancel', onPointerUp);
+    }
+
+    function makeResizable(card) {
+      const handle = card.querySelector('.resize-handle');
+      if (!handle) return;
+
+      handle.style.touchAction = 'none';
+      handle.style.cursor = 'nwse-resize';
+
+      let pointerId = null;
+      let startWidth = 0, startHeight = 0;
+      let startX = 0, startY = 0;
+
+      function onPointerDown(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        startY = e.clientY;
+        startWidth = card.offsetWidth;
+        startHeight = card.offsetHeight;
+        try { handle.setPointerCapture(pointerId); } catch (err) {}
+        document.addEventListener('pointermove', onPointerMove);
+        document.addEventListener('pointerup', onPointerUp);
+      }
+
+      function onPointerMove(e) {
+        if (pointerId === null || e.pointerId !== pointerId) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        const newWidth = Math.max(150, startWidth + dx);
+        const newHeight = Math.max(100, startHeight + dy);
+        card.style.width = newWidth + 'px';
+        card.style.height = newHeight + 'px';
+      }
+
+      function onPointerUp(e) {
+        if (pointerId === null || e.pointerId !== pointerId) return;
+        try { handle.releasePointerCapture(pointerId); } catch (err) {}
+        pointerId = null;
+        document.removeEventListener('pointermove', onPointerMove);
+        document.removeEventListener('pointerup', onPointerUp);
+        try { saveAllCardsState(); } catch (err) {}
+      }
+
+      handle.addEventListener('pointerdown', onPointerDown);
+      handle.addEventListener('pointercancel', onPointerUp);
+    }
+
+    function ensureContentElem(card) {
+      let content = card.querySelector('.card-content');
+      if (!content) {
+        content = document.createElement('div');
+        content.className = 'card-content';
+        // move existing children (p, img, text) into content
+        const toMove = [];
+        card.childNodes.forEach(node => {
+          if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('draggable-header')) return;
+          if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) return;
+          toMove.push(node);
+        });
+        if (toMove.length) {
+          toMove.forEach(n => content.appendChild(n));
+        } else {
+          content.textContent = '';
+        }
+        card.appendChild(content);
+      }
+      // make editable and attach handlers
+      content.setAttribute('contenteditable','true');
+      content.setAttribute('tabindex','0');
+      content.style.cursor = 'text';
+
+      content.addEventListener('click', (e) => { e.stopPropagation(); content.focus(); });
+
+      // Track content edits to improve transmigrator
+      content.addEventListener('input', () => {
+        const now = Date.now();
+        const last = parseInt(content.dataset.lastEditAt || '0', 10);
+        if (Number.isNaN(last) || (now - last) > 2000) {
+          incrementState('transmigrator', 1);
+          content.dataset.lastEditAt = String(now);
+        }
+      });
+
+      // Paste images from clipboard
+      content.addEventListener('paste', function(e) {
+        const clipboard = (e.clipboardData || window.clipboardData);
+        if (!clipboard || !clipboard.items) return;
+        for (let i = 0; i < clipboard.items.length; i++) {
+          const item = clipboard.items[i];
+          if (item.type.indexOf('image') !== -1) {
+            const file = item.getAsFile();
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+              const img = document.createElement('img');
+              img.src = evt.target.result;
+              img.style.maxWidth = '100%';
+              content.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+            e.preventDefault();
+          }
+        }
+      });
+
+      // Drop files into content
+      content.addEventListener('drop', function(e) {
+        e.preventDefault();
+        const files = e.dataTransfer.files;
+        if (files && files.length) {
+          for (let f of files) {
+            if (f.type && f.type.startsWith('image/')) {
+              const reader = new FileReader();
+              reader.onload = function(evt) {
+                const img = document.createElement('img');
+                img.src = evt.target.result;
+                img.style.maxWidth = '100%';
+                content.appendChild(img);
+              };
+              reader.readAsDataURL(f);
+            }
+          }
+        }
+      });
+      content.addEventListener('dragover', (e) => e.preventDefault());
+
+      // Add inline delete (X) to header - top right corner
+      const header = card.querySelector('.draggable-header');
+      if (header && !header.querySelector('.inline-delete')) {
+        const del = document.createElement('button');
+        del.className = 'inline-delete';
+        del.title = 'Delete card';
+        del.setAttribute('aria-label','Delete card');
+        del.innerText = '✖';
+        // Prevent clicks on the button from starting a drag
+        del.addEventListener('pointerdown', (ev) => { ev.stopPropagation(); });
+        del.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          ev.preventDefault();
+          deleteCard(card);
+        });
+        header.appendChild(del);
+      }
+
+      // Add resize handle if not present
+      if (!card.querySelector('.resize-handle')) {
+        const resizeHandle = document.createElement('div');
+        resizeHandle.className = 'resize-handle';
+        card.appendChild(resizeHandle);
+      }
+
+      return content;
+    }
+
+    // INITIALIZATION
+    let saved = loadAllCardsState();
+    let cardCounter = parseInt(localStorage.getItem(COUNTER_KEY) || '0');
+
+    if (saved && saved.length) {
+      // clear existing and load saved
+      document.querySelectorAll('.draggable').forEach(d => d.remove());
+      const container = document.getElementById('cardContainer');
+      saved.forEach(obj => { 
+        const c = createCardFromState(obj); 
+        container.appendChild(c); 
+        ensureContentElem(c); 
+        dragElement(c);
+        makeResizable(c);
+        // Update cardCounter based on loaded card IDs
+        const cardNum = parseInt((obj.id||'card-0').split('-').pop()||0);
+        cardCounter = Math.max(cardCounter, cardNum);
+      });
+      // Save updated counter
+      localStorage.setItem(COUNTER_KEY, String(cardCounter));
+      console.log('Loaded saved cards:', saved.length);
+    } else {
+      // no saved state: normalize IDs and save initial DOM
+      const existing = Array.from(document.querySelectorAll('.draggable'));
+      existing.forEach((card, idx) => {
+        if (!card.id) card.id = `card-${idx+1}`;
+        cardCounter = Math.max(cardCounter, parseInt((card.id||'card-0').split('-').pop()||0));
+        ensureContentElem(card);
+        dragElement(card);
+        makeResizable(card);
+      });
+      localStorage.setItem(COUNTER_KEY, String(cardCounter));
+      saveAllCardsState();
+    }
+
+    // Track card count for unique ids
+    const currentCardCount = document.querySelectorAll('.draggable').length;
+    cardCounter = Math.max(cardCounter, currentCardCount);
+    let nextCreateIndex = parseInt(localStorage.getItem('draggableCards_nextCreateIndex_v1') || String(cardCounter)) || cardCounter;
+
+    // Initialize stats
+    updateCardStats();
+
+    // Button to create a new card
+    const createBtn = document.getElementById('createOutsideCardBtn');
+    const colorPalette = document.getElementById('createColorPalette');
+
+    // initialize palette behavior (single selection, keyboard accessible)
+    if (colorPalette) {
+      const buttons = Array.from(colorPalette.querySelectorAll('.color-sphere'));
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-pressed','false'); });
+          btn.classList.add('selected'); btn.setAttribute('aria-pressed','true');
+        });
+        btn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } });
+      });
+      // ensure default
+      if (!colorPalette.querySelector('.color-sphere.selected')) {
+        const def = colorPalette.querySelector('[data-color="yellow"]'); if (def) { def.classList.add('selected'); def.setAttribute('aria-pressed','true'); }
+      }
+    }
+
+    if (createBtn) {
+      createBtn.addEventListener('click', () => {
+        cardCounter++;
+        const sel = colorPalette && colorPalette.querySelector('.color-sphere.selected');
+        const chosenColor = sel ? sel.dataset.color : 'yellow';
+        const newCard = document.createElement('div');
+        newCard.className = 'draggable';
+        newCard.id = `card-${cardCounter}`;
+        newCard.style.zIndex = 999;
+        newCard.innerHTML = `
+          <div class="draggable-header"></div>
+          <div class="card-content" contenteditable="true"></div>
+          <div class="resize-handle"></div>
+        `;
+        // append to cardContainer so it's inside the container on the left
+        const container = document.getElementById('cardContainer');
+        // compute an offset so new cards don't stack exactly
+        const contRect = container.getBoundingClientRect();
+        const stepX = 26, stepY = 18;
+        const maxX = Math.max(40, Math.floor(contRect.width - 120));
+        const maxY = Math.max(40, Math.floor(contRect.height - 80));
+        const ox = (nextCreateIndex * stepX) % maxX;
+        const oy = (nextCreateIndex * stepY) % maxY;
+        newCard.style.left = (12 + ox) + 'px';
+        newCard.style.top = (12 + oy) + 'px';
+        nextCreateIndex = (nextCreateIndex || 0) + 1;
+        localStorage.setItem('draggableCards_nextCreateIndex_v1', String(nextCreateIndex));
+
+        container.appendChild(newCard);
+        // apply color class
+        newCard.classList.add('postit-' + chosenColor);
+        ensureContentElem(newCard);
+        dragElement(newCard);
+        makeResizable(newCard);
+        incrementState('egregore', 2);
+        // focus content for immediate editing
+        const content = newCard.querySelector('.card-content');
+        if (content) { content.focus(); }
+        // save
+        localStorage.setItem(COUNTER_KEY, String(cardCounter));
+        saveAllCardsState();
+        updateCardStats();
+      });
+    }
+
+    // Cleaner button - delete all cards at once
+    const cleanerBtn = document.getElementById('cleanerBtn');
+    if (cleanerBtn) {
+      cleanerBtn.addEventListener('click', () => {
+        console.log('Cleaner button clicked');
+        const currentCards = Array.from(document.querySelectorAll('.draggable'));
+        console.log('Current cards count:', currentCards.length);
+        
+        if (currentCards.length === 0) {
+          alert('No cards to delete!');
+          return;
+        }
+        
+        const confirmed = confirm(`Are you sure you want to permanently delete all ${currentCards.length} cards? This will also clear the trash bin to free up space.`);
+        if (confirmed) {
+          console.log('User confirmed deletion');
+          
+          // Remove all cards from DOM
+          currentCards.forEach(card => card.remove());
+
+          incrementState('inmate', Math.min(3, currentCards.length));
+          
+          // Clear trash bin to free up localStorage space
+          deletedCards = [];
+          saveDeletedState(deletedCards);
+          
+          // Save empty state and update stats
+          saveAllCardsState();
+          refreshTrashList();
+          updateCardStats();
+          console.log('All cards deleted and trash cleared');
+        }
+      });
+      console.log('Cleaner button initialized');
+    } else {
+      console.error('Cleaner button not found!');
+    }
+  });
+  </script>
+
+<!-- STYLE  Background draggabile DENTRO CONTAINER-CORPO -->
+ <style> 
+  .container-corpo {
+  position: relative; /* Importante per il posizionamento assoluto interno */
+  width: 100%;
+  height: 800px; /* Altezza a piacere */
+  overflow: hidden;
+  border: 2px solid black;
+}
+
+.background-draggable {
+  position: absolute; /* Posizionato sotto le cards */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%; /* Estende il background oltre i bordi */
+  height: 200%;
+  /* background-image viene impostata dinamicamente via JavaScript */
+  background-size: contain; /* Mostra l'immagine completa senza tagliarla */
+  background-repeat: no-repeat; /* Evita ripetizioni */
+  background-position: center;
+  cursor: move; /* Mostra il cursore di spostamento */
+  z-index: 1; /* Sotto le cards */
+}
+
+#cardContainer {
+  position: relative;
+  z-index: 2; /* Sopra il background */
+}
+
+.draggable-bg {
+  position: absolute;
+  cursor: grab;
+  backdrop-filter: blur(5px); /* Effetto per far risaltare il testo */
+
+}
+
+ </style>
+ <!--per il background draggabile dentro al container-corpo-->
+<script> 
+(function() {
+  const background = document.querySelector('.background-draggable');
+  if (!background) return;
+  
+  // Random background image selection
+  const backgroundImages = [
+    'images/background_temporaneo.jpg',
+    'images/background_temporaneo 2.jpg',
+    'images/background_temporaneo 3.jpg',
+    'images/background_temporaneo 2 (1).jpg'
+  ];
+  
+  // Seleziona una immagine random
+  const randomImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+  background.style.backgroundImage = `url('${randomImage}')`;
+  
+  let isDragging = false, startX, startY, posX = 0, posY = 0;
+
+  background.addEventListener('mousedown', function(e) {
+    // Ignora se si clicca su una card
+    if (e.target !== background) return;
+    
+    isDragging = true;
+    startX = e.clientX - posX;
+    startY = e.clientY - posY;
+    background.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+
+    posX = e.clientX - startX;
+    posY = e.clientY - startY;
+
+    // Calcola i limiti in base alle dimensioni effettive
+    const container = background.parentElement;
+    const bgWidth = background.offsetWidth;
+    const bgHeight = background.offsetHeight;
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+
+    // Limiti completi: permetti di trascinare fino ai bordi del background
+    const maxMovementX = (bgWidth - containerWidth) / 2;
+    const maxMovementY = (bgHeight - containerHeight) / 2;
+
+    const maxX = maxMovementX;
+    const minX = -maxMovementX;
+    const maxY = maxMovementY;
+    const minY = -maxMovementY;
+
+    // Applica limiti di movimento
+    posX = Math.max(minX, Math.min(maxX, posX));
+    posY = Math.max(minY, Math.min(maxY, posY));
+
+    background.style.transform = `translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px))`;
+  });
+
+  document.addEventListener('mouseup', function() {
+    if (isDragging) {
+      isDragging = false;
+      background.style.cursor = 'move';
+    }
+  });
+
+  // Supporto touch per dispositivi mobili
+  background.addEventListener('touchstart', function(e) {
+    if (e.target !== background) return;
+    isDragging = true;
+    const touch = e.touches[0];
+    startX = touch.clientX - posX;
+    startY = touch.clientY - posY;
+    e.preventDefault();
+  });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    posX = touch.clientX - startX;
+    posY = touch.clientY - startY;
+
+    const container = background.parentElement;
+    const maxMovementX = (background.offsetWidth - container.offsetWidth) / 2;
+    const maxMovementY = (background.offsetHeight - container.offsetHeight) / 2;
+
+    const maxX = maxMovementX;
+    const minX = -maxMovementX;
+    const maxY = maxMovementY;
+    const minY = -maxMovementY;
+
+    posX = Math.max(minX, Math.min(maxX, posX));
+    posY = Math.max(minY, Math.min(maxY, posY));
+
+    background.style.transform = `translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px))`;
+    e.preventDefault();
+  });
+
+  document.addEventListener('touchend', function() {
+    if (isDragging) {
+      isDragging = false;
+      background.style.cursor = 'move';
+    }
+  });
+})();
+</script>
+
+
+
+  <!--bg drag prova_______________________________________________________
+  <p class='text-center' style='margin-bottom:20px;'>
+    Click and drag the image around
+  </p>
+  <div class='container'></div>
+<script src="bg_drag_prova.js"></script> -->
+
+
+<!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
+
+<!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->
+<section class="options">
+  <div id="finished">
+   <p>Finished? Please chose your way out</p>
+ </div>
+ <div class="buttons-options">
+  <button onclick="updateSum('A')">
+      <img src="icone/Roll_alt_light_light.svg" alt="Opzione A" class="icon-button">
+  </button>
+  <button onclick="updateSum('B')">
+      <img src="icone/Pointers_light.svg" alt="Opzione B" class="icon-button">
+  </button>
+  <button onclick="updateSum('C')">
+      <img src="icone/Lock_duotone_line.svg" alt="Opzione C" class="icon-button">
+  </button>
+</div>
+</section>
+
+<script src="options.js"></script>
+<script src="timer.js"></script>
+
+<script>
+    // Seleziona tutte le card nella pagina specifica
+const cards = document.querySelectorAll('.page-cards .draggable');
+
+cards.forEach(card => {
+    const header = card.querySelector('.draggable-header');
+    
+    // Variabili per calcolare la posizione
+    let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
+
+    header.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+        e.preventDefault();
+        // Prende la posizione iniziale del mouse
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+        
+        // Effetto visivo Inmate durante il trascinamento
+        card.style.zIndex = "1000"; 
+        card.style.boxShadow = "0 0 20px #6ee61e";
+    }
+
+    function elementDrag(e) {
+        e.preventDefault();
+        // Calcola lo spostamento
+        posX = mouseX - e.clientX;
+        posY = mouseY - e.clientY;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Imposta la nuova posizione della card
+        card.style.top = (card.offsetTop - posY) + "px";
+        card.style.left = (card.offsetLeft - posX) + "px";
+    }
+
+    function closeDragElement() {
+        // Ferma il movimento quando il mouse viene rilasciato
+        document.onmouseup = null;
+        document.onmousemove = null;
+        card.style.zIndex = "9";
+        card.style.boxShadow = "0 8px 20px rgba(0,0,0,0.15)";
+    }
+});
+</script>
+
+  <!--FOOTER_________________________________________________________________________________-->
+  <footer>
+    <p class="marquee">Delia Scaccianoce - 2025 Beware of any infections ----This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data 
+     ---- This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data
+    </p>
+  </footer>
+</body>
+</html>
