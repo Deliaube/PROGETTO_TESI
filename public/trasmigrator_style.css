@@ -763,14 +763,39 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background: #dcd7c5;
+    z-index: 1000;
+
+    /*layout*/
+    display: flex;
     text-align: left;
     justify-content: space-between;
     align-items: center; /* Allinea verticalmente il logo e il titolo */
-    border: 3px solid var(--ink-black);
-    border-radius: 20px 20px 0px 0px; 
-    background-color: rgba(177, 189, 136, 0.349);
-    z-index: 1000;
+    
+    padding: 10px 20px;
+    box-sizing: border-box;
+
+    /* Sfondo: usiamo lo stesso gradiente fluido della nav */
+    background: linear-gradient(-45deg, 
+        rgba(177, 189, 136, 0.4), 
+        rgba(255, 250, 240, 0.3), 
+        rgba(177, 189, 136, 0.4));
+    background-size: 400% 400%;
+    backdrop-filter: blur(8px);
+
+    /* Bordo: Dash per l'incertezza, come la nav */
+    border-left: 2px solid transparent; 
+    border-right: 2px solid transparent;
+
+    /* Animazione Morphing adattata: solo gli angoli superiori cambiano */
+    border-radius: 60px 20px 0px 0px / 20px 60px 0px 0px; 
+    
+    /* Applichiamo le animazioni */
+    animation: 
+        gradientMove 12s ease infinite, 
+        footerMorphing 7s ease-in-out infinite alternate;
+    
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+    transition: all 0.5s ease;
     }
 
 /*style marquee*/
