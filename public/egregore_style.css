@@ -1,0 +1,718 @@
+/* --- FONT E BASI --- */
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Varela+Round&display=swap');
+
+:root {
+    --accent-pink: #ff85c1;
+    --soft-pink: #ffc0cb;
+    --kawaii-white: #fffafa;
+    --magic-purple: #e9b0eb;
+    --egregore-glow: rgba(255, 133, 193, 0.4);
+    --border-radius-soft: 25px;
+}
+
+
+body {
+  /* Creiamo un cursore usando un piccolo trucco SVG */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
+}
+
+/* Assicurati che il cursore rimanga anche sui link e bottoni */
+a, button {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), pointer;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round', 'Shadows Into Light', cursive;
+ /* Cursore a cuore per tutto il corpo */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffc0cb; /* Il tuo rosa */
+    min-height: 100vh;
+    position: relative;
+}
+/* ============================================================
+   2. SFONDO EGREGORE (PATTERN A CROCI)
+   ============================================================ */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    --cross-size: 40px;
+    --grid-gap: 60px;
+    --s: calc(var(--cross-size) + var(--grid-gap));
+
+    background-color: white;
+    opacity: 0.25; /* Croci molto discrete */
+
+    /* Maschera SVG per creare il pattern spirituale */
+    --svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="38" y="10" width="24" height="80" rx="12"/><rect x="10" y="38" width="80" height="24" rx="12"/></svg>');
+
+    -webkit-mask-image: var(--svg), var(--svg);
+    mask-image: var(--svg), var(--svg);
+    -webkit-mask-size: var(--s) var(--s);
+    mask-size: var(--s) var(--s);
+    -webkit-mask-position: 0 0, calc(var(--s) / 2) calc(var(--s) / 2);
+    mask-position: 0 0, calc(var(--s) / 2) calc(var(--s) / 2);
+}
+
+/* Stile per la barra di navigazione
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Allinea verticalmente il logo e il titolo 
+    padding: 10px 20px;
+    border: 3px solid rgb(253, 2, 170);
+    border-radius: 20px;
+    background-color: rgba(253, 132, 186, 0.349);
+    margin: 3px;
+}*/
+/* --- NAVIGAZIONE NUVOLA --- */
+
+/* ============================================================
+   3. NAVIGAZIONE E HEADER
+   ============================================================ */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    background: rgba(255, 255, 255, 0.5); /* Effetto vetro */
+    backdrop-filter: blur(5px);
+    border: 3px solid var(--p-accent);
+    border-radius: 30px;
+    margin: 10px;
+    box-shadow: 0 4px 15px var(--p-soft-glow);
+}
+
+
+.logo a {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black
+}
+
+/* nelle altre pag il title sarà a dx----------------------------------*/
+.title h1 {
+    margin: 0; /* Rimuove il margine predefinito */
+    font-size: 34px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: var(--p-accent);
+    text-shadow: 2px 2px 0px white;
+}
+/*_______________________________________________________________________*/
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo, .title {
+        margin: 5px 0;
+    }
+}
+
+/* ============================================================
+   4. CONTENITORI PRINCIPALI (Pulizia aloni verdi)
+   ============================================================ */
+section.container-corpo, .interactive-area, .grid-drop-container {
+    border: 2px dotted var(--p-accent); /* Tratteggio Kawaii */
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    /* Ombra rosa molto più leggera */
+    box-shadow: 0 10px 25px rgba(255, 133, 193, 0.15);
+    transition: transform 0.3s ease;
+}
+
+section.container-corpo:hover {
+    transform: translateY(-3px); /* Leggera elevazione invece di bagliori verdi */
+}
+
+
+
+.container-corpo:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Effetto bordi luminosi al passaggio */
+section:hover {
+    box-shadow: 0 0 20px 0px var(--accent-pink);
+    transition: box-shadow 0.3s ease;
+}
+
+/* --- BOTTONI KAWAII --- */
+button, .dropbtn {
+    background: white;
+    border: 2px solid var(--accent-pink) !important;
+    border-radius: 20px !important;
+    color: var(--accent-pink) !important;
+    font-weight: bold;
+    padding: 12px 25px !important;
+    box-shadow: 0 4px 0px var(--accent-pink);
+    transition: 0.2s;
+}
+
+button:hover {
+    background: var(--p-accent);
+    color: rgb(209, 61, 189);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px var(--p-soft-glow);
+}
+
+/* --- ELEMENTI TRASCINABILI (DOLLFACE) --- */
+.image-container {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.draggable {
+    filter: drop-shadow(5px 5px 10px var(--egregore-glow));
+    transition: transform 0.3s;
+}
+
+.draggable:hover {
+    transform: scale(1.1);
+    filter: none; /* Torna al colore originale quando le prendi */
+}
+
+
+/* --- ANIMAZIONE SCROLL --- */
+@keyframes scroll-left {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* per pagina dosaggio_inmate.html */
+  .interactive-area {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      background-color: #ee8ef193;
+      border: 5px dotted #b07ebe;
+      overflow: hidden;
+
+    }
+    
+    .point {
+      position: absolute;
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    .point:hover {
+      transform: scale(1.5);
+    }
+    
+    .popup {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      border: 2px solid #d600a1;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      width: 250px;
+      z-index: 1000;
+    }
+    
+    .popup p {
+      margin: 0;
+      font-size: 16px;
+      color: #000000;
+    }
+    
+    .popup .close {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+ .popup-dark {
+    display: none;
+    position: absolute;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1001;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .popup-dark p {
+    margin: 0;
+    color: #ffffff;
+  }
+
+
+   textarea {
+      width: 100%;
+      height: 50px;
+      margin-top: 10px;
+      resize: none;
+    }
+
+/*per pagina controindicazioni_inmate,html ____________________________________________________*/
+/* Solo per la pagina controindicazioni */
+.page-controindicazioni .image-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    position: sticky;
+    top: 20px;
+}
+
+.page-controindicazioni .image-container .draggable {
+    width: 80px;
+    height: auto;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .page-controindicazioni .image-container {
+        position: static; /* Torna nel flusso normale, uno sotto l'altro */
+       
+    }
+}
+
+/* --- CONFIGURAZIONE SMARTPHONE --- */
+@media (max-width: 768px) {
+    .page-controindicazioni.image-container {
+        flex-direction: row;    /* Diventa una riga orizzontale */
+        width: 100%;            /* Occupa tutta la larghezza */
+        height: auto;
+        position: static;       /* Torna nel flusso normale sotto la griglia */
+        
+        justify-content: center;/* Centra le dollface nella riga */
+        flex-wrap: wrap;        /* Se sono troppe, vanno a capo invece di uscire dallo schermo */
+        
+        /* Opzionale: se preferisci lo scroll orizzontale invece di andare a capo */
+        /* flex-wrap: nowrap; */
+        /* overflow-x: auto; */
+        
+        margin: 20px 0;
+        padding: 15px;
+    }
+
+    .page-controindicazioni.draggable {
+        max-width: 60px; /* Ridimensiona le dollface per il touch */
+    }
+}
+
+  section.container-corpo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+/************************************************************************************************/
+/*per pagina draggable_cards_inmate.html _________________________________________________*/
+/* --- AREA CONTENITORE --- */
+/* Usiamo l'ID che il tuo JS probabilmente usa per calcolare i confini */
+.page-cards #cardContainer {
+    position: relative; 
+    width: 100%;
+    min-height: 80vh;
+    overflow: hidden;
+    padding: 10px;
+}
+
+/* --- LE CARD DRAGGABILI --- */
+.page-cards .draggable {
+    position: absolute; /* Deve restare absolute per il JS */
+    z-index: 9;
+    width: 260px;
+    min-height: 120px;
+    color: #222;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-radius: 6px;
+    padding: 10px;
+    font-family: "Comic Sans MS", Arial, sans-serif;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+    touch-action: none; 
+}
+
+/* --- I COLORI (Senza il prefisso .page-cards per evitare conflitti JS) --- */
+.postit-yellow { background: linear-gradient(180deg, #fff99a 0%, #fff58f 100%) !important; }
+.postit-pink   { background: linear-gradient(180deg, #ffd9f0 0%, #ffcde6 100%) !important; }
+.postit-green  { background: linear-gradient(180deg, #dfffda 0%, #c6fcc6 100%) !important; }
+.postit-blue   { background: linear-gradient(180deg, #dff4ff 0%, #cfefff 100%) !important; }
+
+/* Speciale Trasparente egregore */
+.postit-transparent { 
+    backdrop-filter: blur(5px);
+}
+
+@media (max-width: 600px) {
+    /* Non cambiamo la position, ma scaliamo l'area */
+    .page-cards .draggable {
+        max-width: 180px; /* Card più piccole su smartphone */
+        min-height: 100px;
+    }
+    
+    .page-cards .draggable-header {
+        padding: 12px; /* Area di presa più grande per le dita */
+    }
+}
+
+
+  /* Ottimizzazione per Smartphone */
+@media (max-width: 600px) {
+    .page-cards .draggable {
+        /* Se le card sono troppe, su mobile è meglio che tornino in colonna 
+           invece di sovrapporsi tutte in alto a sinistra (0,0) */
+        position: relative !important; 
+        left: 0 !important;
+        top: 0 !important;
+        margin: 15px auto; /* Centra le card e le distanzia */
+        width: 100%;
+    }
+    
+    #cardContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+  .page-cards .draggable:before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    background: rgba(255,255,255,0.6);
+    transform: rotate(-18deg);
+    box-shadow: -3px 3px 6px rgba(0,0,0,0.06);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .draggable:nth-child(odd) { transform: rotate(-1.8deg); }
+  .draggable:nth-child(even) { transform: rotate(1.6deg); }
+  .draggable:active { transform: scale(0.995); box-shadow: 0 12px 28px rgba(0,0,0,0.2); }
+
+  .draggable-header {
+    padding: 6px 8px;
+    cursor: move;
+    z-index: 10;
+    background: transparent;
+    color: #6b4b3a;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .card-content {
+    min-height: 80px;
+    padding: 10px;
+    outline: none;
+    background: transparent; /* removed white inner background to blend with post-it */
+    text-align: left;
+    cursor: text;
+  }
+  .card-content img { max-width: 100%; height: auto; display: block; margin: 8px 0; }
+
+.inline-delete {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #6b4b3a;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+.inline-delete:hover { background: rgba(0,0,0,0.06); }
+
+/* Resize handle - bottom right corner */
+.resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.15) 50%);
+  z-index: 10;
+}
+.resize-handle:hover {
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.3) 50%);
+}
+
+/* Create button styling (in toolbar below header) */
+#createOutsideCardBtn {
+  background: #fffbdd;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  font-weight: 700;
+  transition: transform 0.2s;
+}
+#createOutsideCardBtn:hover { transform: translateY(-1px); }
+
+/* color palette classes for new cards */
+.page-cards .draggable .postit-yellow { background: linear-gradient(180deg, #fff99a 0%, #fff58f 100%); }
+.page-cards .draggable .postit-pink { background: linear-gradient(180deg, #ffd9f0 0%, #ffcde6 100%); }
+.page-cards .draggable .postit-green { background: linear-gradient(180deg, #dfffda 0%, #c6fcc6 100%); }
+.page-cards .draggable .postit-blue { background: linear-gradient(180deg, #dff4ff 0%, #cfefff 100%); }
+.page-cards .draggable .postit-transparent { background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+
+#createColorSelect { margin-left: 6px; padding: 6px 8px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.06); background: #fff; }
+
+/* Color palette (spheres) */
+.color-palette { display:inline-flex; gap:8px; align-items:center; }
+.color-sphere { width:22px; height:22px; border-radius:50%; border:2px solid rgba(0,0,0,0.06); cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+.color-sphere.selected { outline: 3px solid rgba(0,0,0,0.08); transform: translateY(-2px); }
+.color-sphere[data-color="yellow"] { background: linear-gradient(180deg,#fff99a,#fff58f); }
+.color-sphere[data-color="pink"] { background: linear-gradient(180deg,#ffd9f0,#ffcde6); }
+.color-sphere[data-color="green"] { background: linear-gradient(180deg,#dfffda,#c6fcc6); }
+.color-sphere[data-color="blue"] { background: linear-gradient(180deg,#dff4ff,#cfefff); }
+.color-sphere[data-color="transparent"] { background: rgba(255,255,255,0.3); border: 2px dashed rgba(0,0,0,0.3); }
+
+/* Trash panel */
+
+/* Toolbar o sezione bottoni */
+.color-palette {
+    display: flex;
+    flex-wrap: wrap; /* Permette alle sfere di andare a capo se lo schermo è stretto */
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.color-sphere {
+    width: 35px;  /* Più grandi per il touch */
+    height: 35px;
+}
+
+#createOutsideCardBtn {
+    width: 100%; /* Su mobile il bottone "Crea" occupa tutta la riga */
+    max-width: 300px;
+    padding: 12px;
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    .resize-handle {
+        width: 25px; /* Aumenta l'area di contatto */
+        height: 25px;
+        background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.2) 50%);
+    }
+    
+    .draggable-header {
+        padding: 12px; /* Area di trascinamento più grande */
+    }
+}
+
+.page-cards .container-corpo {
+    position: relative; /* Fondamentale: le card 'absolute' si muoveranno rispetto a qui */
+    width: 100%;
+    min-height: 80vh;   /* Spazio verticale per trascinare */
+    background: rgba(0, 5, 0, 0.9); /* Sfondo scuro Inmate */
+    box-shadow: inset 0 0 20px rgba(110, 230, 30, 0.2);
+    overflow: hidden;   /* Impedisce alle card di uscire dai bordi */
+    padding: 20px;
+    display: block;     /* Assicura che si comporti come un blocco solido */
+}
+
+.page-cards .draggable-header {
+    cursor: grab;       /* Cambia cursore in 'mano' per indicare che si può trascinare */
+    user-select: none;  /* Impedisce di selezionare il testo mentre trascini */
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.page-cards .draggable-header:active {
+    cursor: grabbing;   /* Quando tieni premuto */
+}
+
+.card-content img {
+    pointer-events: none; /* L'immagine non intercetta il click, che passa alla card sotto */
+    user-drag: none;
+    -webkit-user-drag: none;
+}
+
+/* --- CARD E POST-IT (SOGNI DRAGGABILI) --- */
+.page-cards .draggable {
+    border-radius: 15px !important;
+    border: 2px solid white !important;
+    box-shadow: 10px 10px 20px var(--egregore-glow) !important;
+}
+
+.postit-pink { background: linear-gradient(135deg, #fff0f6 0%, #ffcde6 100%) !important; }
+.postit-blue { background: linear-gradient(135deg, #e6f7ff 0%, #b3e5fc 100%) !important; }
+
+/* Invece del glitch verde, usiamo un "shimmer" magico */
+@keyframes magic-shimmer {
+    0% { filter: hue-rotate(0deg) brightness(1); }
+    100% { filter: hue-rotate(360deg) brightness(1.2); }
+}
+
+.glitch-active {
+    animation: magic-shimmer 2s infinite linear !important;
+    background: white !important;
+    border: 2px solid gold !important;
+}
+
+/* ============================================================
+   8. ANIMAZIONI MAGICHE (Sostituiscono il Glitch)
+   ============================================================ */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+ /* Definizione dell'animazione */
+  @keyframes scroll {
+    from {
+        transform: translateX(0%);   /* Inizia da destra */
+    }
+    to {
+        transform: translateX(-100%); /* Scorre tutto a sinistra */
+    }
+  }
+  
+.item .item clone{
+    border-radius: 5px;
+
+}
+
+  .sparkle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none; /* Non blocca i click */
+    z-index: 9999;
+    box-shadow: 0 0 10px white, 0 0 20px #ff00ff; /* Bagliore rosa/bianco */
+    animation: fadeOut 0.8s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.5) translateY(20px); opacity: 0; }
+}
+
+#sparkleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Fondamentale: clicchi attraverso il canvas */
+    z-index: 99999; /* Sopra a ogni cosa */
+}
+
+/*musica*/
+.audio-wrapper {
+    position: fixed;
+    bottom: 25px;
+    left: 25px; /* Spostiamolo a sinistra per non coprire altri tasti */
+    z-index: 100000; /* Sopra anche al canvas dei brillantini */
+}
+
+.music-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.music-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.music-btn.playing {
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+
+/*style footer*/
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: rgb(217, 49, 217);
+    text-align: left;
+    justify-content: space-between;
+    align-items: center; /* Allinea verticalmente il logo e il titolo */
+    border: 3px solid rgba(253, 132, 186, 0.349);
+    border-radius: 20px 20px 0px 0px; 
+    background-color: rgba(253, 132, 186, 0.349);
+    z-index: 1000;
+    }
+
+/*style marquee*/
+
+/* Contenitore del testo */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;  /* Nasconde il testo fuori dai bordi */
+    background-color: #222;
+    border: 2px solid white;
+    padding: 10px 0;
+    position: relative;
+  }
+  
+  /* Testo scorrevole */
+  .marquee {
+    display: inline-block;
+    white-space: nowrap;        /* Impedisce il ritorno a capo */
+    padding-left: 100%;         /* Parte da fuori schermo a destra */
+    animation: scroll 55s linear infinite;  /* Animazione continua + velocità */
+  }
+
+  .marquee-container {
+    background-color: var(--accent-pink);
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+  
+ 
