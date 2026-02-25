@@ -1,203 +1,134 @@
+/* =========================
+   RESET
+========================= */
 
-
-/* Contenitore della griglia */
-.grid-drop-container {
-    display: grid; /* Imposta il layout a griglia */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Colonne responsive */
-    column-gap: 30px; /* Spazio orizzontale tra le colonne */
-    row-gap: 5px; /* Spazio verticale tra le righe */
-    width: 100%;
-    min-width: 0; /* Evita overflow nel container */
-    max-width: 100%; /* Mantiene la griglia dentro al container */
-    margin: 0 auto; /* Centra il contenitore nella pagina */
-    padding: 20px; /* Spaziatura interna */
+* {
     box-sizing: border-box;
-    float: none;
 }
 
-.image-container {
-    width: auto;
-    margin-bottom: 5px;
+body {
+    margin: 0;
+    padding: 0 24px; /* margine laterale minimo */
+}
+
+
+/* =========================
+   CONTAINER CENTRALE
+========================= */
+
+.container-corpo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 0;
+
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    position: absolute;
-    right: 20px;
-    top: 150px;
-    z-index: 10;
-    /*border: 1px solid black;*/
+    gap: 40px;
+}
+
+
+/* =========================
+   IMAGE CONTAINER
+========================= */
+
+.image-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+
+/* =========================
+   SMARTPHONE
+   → una riga scrollabile
+========================= */
+
+@media (max-width: 768px) {
+
+    .image-container {
+        flex-wrap: nowrap;      /* NON vanno a capo */
+        overflow-x: auto;       /* scroll orizzontale */
+        overflow-y: hidden;
+        padding-bottom: 8px;
+    }
 
 }
 
 
+/* =========================
+   DESKTOP
+   → sticky + più righe
+========================= */
+
+@media (min-width: 769px) {
+
+    .image-container {
+        position: sticky;
+        top: 20px;
+        z-index: 10;
+
+        flex-wrap: wrap;        /* QUI vanno a capo */
+        justify-content: flex-start; /* restano in righe naturali */
+        overflow: visible;      /* niente scrollbar */
+    }
+
+}
+
+
+/* =========================
+   DRAGGABLE
+========================= */
+
 .draggable {
-    margin: 5px;
-    cursor: grab;
-    border: none;
-    border-radius: 8px;
-    max-width: 90px;
+    flex: 0 0 auto;  /* IMPORTANTISSIMO: evita che diventino colonna */
+    width: 85px;
     height: auto;
+    object-fit: contain;
+    cursor: grab;
 }
 
 .draggable:active {
     cursor: grabbing;
 }
 
+
+/* =========================
+   GRID DROP AREA
+========================= */
+
+.grid-drop-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+
+/* Mobile drop area */
+@media (max-width: 600px) {
+    .grid-drop-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================
+   DROP AREA
+========================= */
+
 .drop-area {
-    width: 100%; /* Larghezza adattiva al container */
-    min-width: 0; /* Permette di restringersi */
-    height: 390px; /* Ridotto di 10px */
-    border: 2px dashed #ccc;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
     border-radius: 12px;
+
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     gap: 10px;
     padding: 10px;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s ease;
-    margin: 5px; /* Margin ridotto */
 }
-
-#dropArea1 {
-    background-image: url("images/avatar\ nt\ 4.jpeg");
-    background-size: cover;        /* Adatta l’immagine a riempire l’area */
-    background-position: center;   /* Centra l’immagine */
-    background-repeat: no-repeat;  /* Evita la ripetizione */
-}
-
-#dropArea2 {
-    background-image: url("images/avatar\ eg\ 4.jpeg");
-    background-size: cover;        /* Adatta l’immagine a riempire l’area */
-    background-position: center;   /* Centra l’immagine */
-    background-repeat: no-repeat;  /* Evita la ripetizione */
-}
-
-#dropArea3 {
-    background-image: url("images/avatar\ tr\ 4.jpeg");
-    background-size: cover;        /* Adatta l’immagine a riempire l’area */
-    background-position: center;   /* Centra l’immagine */
-    background-repeat: no-repeat;  /* Evita la ripetizione */
-}
-
-#dropArea4 {
-    background-image: url("images/avatar\ in\ 4.jpeg");
-    background-size: cover;        /* Adatta l’immagine a riempire l’area */
-    background-position: center;   /* Centra l’immagine */
-    background-repeat: no-repeat;  /* Evita la ripetizione */
-}
-
-.drop-area.dragover {
-    background-color: #e0e0e0;
-}
-
-.drop-area img {
-    max-width: 80px; /* Ridimensiona le immagini dollface */
-    max-height: 80px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    object-fit: contain; /* Mantiene il rapporto d'aspetto */
-}
-
-@media (max-width: 900px) {
-    .grid-drop-container {
-        grid-template-columns: 1fr;
-        padding: 10px;
-    }
-
-    .drop-area {
-        height: auto;
-        min-height: 260px;
-    }
-}
-
-/*OPTIONS _____________________________________________*/
-
-.options {
-    display: flex;               /* Attiva il layout flexbox */
-    float: right;
-    flex-direction: column;      /* Disposizione verticale */
-    align-items: center;         /* Centra orizzontalmente */
-    gap: 20px;                   /* Spazio tra gli elementi */
-    background-color: rgb(235, 235, 235);
-    width:20%;
-    border: 4px double black;    /* Bordo doppio */
-    border-radius: 20px;
-    padding: 10px;               /* Spaziatura interna */
-    box-sizing: border-box;      /* Include il padding nella larghezza */
-    margin-bottom: 100px;
-}
-
-#finished {
-    text-align: center;          /* Centra il testo */
-    padding: 6px;
-    border: 1px solid black;    /* Bordo doppio */
-    border-radius: 20px;
-    display: flex;
-}
-
-.buttons-options {
-    display: flex;               /* Flexbox per i bottoni */
-    gap: 10px;                   /* Spazio tra i bottoni */
-}
-
-.options button {
-    background-color: rgb(232, 219, 219);
-    border-radius: 10px;
-    padding: 10px 20px;          /* Migliora la dimensione dei bottoni */
-    border: 1px solid black;
-    cursor: pointer;             /* Cambia il cursore al passaggio */
-    transition: background 0.3s; /* Effetto hover fluido */
-}
-
-.options button:hover {
-    background-color: rgb(200, 200, 200); /* Cambio colore al passaggio */
-}
-
-
-/** CONTAINER RIGA  risultato + options*/
-.container-riga {
-    display: flex;       /* Attiva il flexbox */
-    justify-content: space-between;  /* Spazio tra le sezioni */
-    align-items: flex-start;          /* Allineamento verticale in alto */
-    gap: 20px;                        /* Distanza tra le sezioni */
-  }
-  
-  /* confirm btn + risposta */
-  #confirmBtn {
-    padding: 10px 20px;   
-    border: 3px double black;
-    border-radius: 10px;
-    cursor: pointer;             /* Cambia il cursore al passaggio */
-    transition: background 0.3s; /* Effetto hover fluido */
-    margin: 10px;
-    margin-left: 10%;
-  }
-  
-  #confirmBtn:hover {
-    background-color:  rgba(253, 132, 186, 1);
-  }
-  
-    #resultSection {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 3px double #000000;
-    border-radius: 10px;
-    width: 50%;
-    margin-bottom: 5%;
-  }
-  
-  .result-text {
-    display: none; 
-    padding: 15px;
-    background-color: #e0e0e0;
-    border: 1px solid #aaa;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-  }

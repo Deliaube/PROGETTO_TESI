@@ -355,29 +355,28 @@ nav {
     align-items: flex-start;
     padding: 20px;
 }
-
+/*
 .image-container {
-    /* Rimuovi position: absolute, top, right */
-    position: sticky; /* Resta visibile mentre scorri */
+    /* Rimuovi position: absolute, top, right 
+    position: sticky; /* Resta visibile mentre scorri 
     top: 20px;
-    flex-shrink: 0;   /* Impedisce che si rimpicciolisca troppo */
-    width: 120px;     /* Larghezza fissa per le dollface */
-    /* ... il resto dei tuoi stili ... */
+    flex-shrink: 0;   /* Impedisce che si rimpicciolisca troppo 
+    width: 120px;     /* Larghezza fissa per le dollface 
+    /* ... il resto dei tuoi stili ... 
 }
 
 .container-corpo {
-    flex-grow: 1;     /* La griglia prende tutto lo spazio rimanente */
+    flex-grow: 1;     /* La griglia prende tutto lo spazio rimanente 
 }
 
-/* Responsive: se lo schermo è piccolo, metti le immagini sopra la griglia */
+/* Responsive: se lo schermo è piccolo, metti le immagini sopra la griglia 
 @media (max-width: 1000px) {
     .main-content-wrapper {
         flex-direction: column-reverse;
     }
     .image-container {
-        width: 100%;
-        flex-direction: row; /* Dollface allineate in orizzontale su mobile */
+        flex-direction: row; /* Dollface allineate in orizzontale su mobile 
         overflow-x: auto;
         position: static;
     }
-}
+}*/

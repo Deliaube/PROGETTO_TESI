@@ -29,8 +29,9 @@ body, html {
     padding: 0;
     box-sizing: border-box;
     font-family: 'Varela Round', 'Shadows Into Light', cursive;
- /* Cursore a cuore per tutto il corpo */
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🖋</text></svg>data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
+    color: var(--ink-black);
+    line-height: 1.6;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🖋</text></svg>'), auto;
 }
 
 body {
@@ -274,7 +275,6 @@ button::after {
 
 /* --- ELEMENTI TRASCINABILI (DOLLFACE) --- */
 .image-container {
-    width: 100px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -798,6 +798,17 @@ footer {
     transition: all 0.5s ease;
     }
 
+    /* Animazione specifica per il footer (non vogliamo che si stacchi dal fondo) */
+@keyframes footerMorphing {
+    0% {
+        border-radius: 80px 15px 0 0 / 25px 50px 0 0;
+        transform: translateY(2px);
+    }
+    100% {
+        border-radius: 15px 80px 0 0 / 50px 25px 0 0;
+        transform: translateY(0px);
+    }
+}
 /*style marquee*/
 
 /* Contenitore del testo */

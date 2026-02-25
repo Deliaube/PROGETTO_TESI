@@ -12,42 +12,11 @@ body, html {
     overflow-x: hidden;
     min-height: 100vh;
     /* Puntatore personalizzato - assicurati di avere il file cursor.svg */
-   cursor: url('cursor.svg'), auto;
-
+    cursor: url(cursor.svg), auto;
+    
 animation: glitch-border 5s infinite; /* Il glitch accade ogni 5 secondi */
 }
 
-#lcd-cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-
-
-
-    
-    background-color: rgb(0, 255, 42);
-    /* Effetto pixel: bordi netti e glow */
-    box-shadow: 
-        0 0 10px rgb(0, 255, 42), 
-        0 0 20px rgba(0, 255, 42, 0.5);
-    pointer-events: none;
-    z-index: 999999;
-    
-    /* Forma a mirino retrò */
-    clip-path: polygon(
-        0% 45%, 45% 45%, 45% 0%, 55% 0%, 55% 45%, 100% 45%, 
-        100% 55%, 55% 55%, 55% 100%, 45% 100%, 45% 55%, 0% 55%
-    );
-
-    /* Animazione di sfarfallio (flicker) */
-    animation: lcd-flicker 0.1s infinite;
-}
-
-@keyframes lcd-flicker {
-    0% { opacity: 1; }
-    50% { opacity: 0.8; transform: scale(0.98); }
-    100% { opacity: 0.9; }
-}
 
 /* --- EFFETTO SCANLINE (VECCHIO MONITOR) --- */
 body::before {
@@ -138,7 +107,6 @@ button:hover {
 
 /* --- ELEMENTI TRASCINABILI (DOLLFACE) --- */
 .image-container {
-    width: 120px;
     display: flex;
     flex-direction: column;
     gap: 15px;
