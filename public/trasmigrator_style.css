@@ -1,24 +1,27 @@
-/* --- FONT E BASI --- */
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Varela+Round&display=swap');
+/* --- TRASMIGRATOR CORE --- */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Homemade+Apple&family=Architects+Daughter&display=swap');
 
 :root {
-    --accent-pink: #ff85c1;
-    --soft-pink: #ffc0cb;
-    --kawaii-white: #fffafa;
-    --magic-purple: #e9b0eb;
-    --egregore-glow: rgba(255, 133, 193, 0.4);
-    --border-radius-soft: 25px;
+    --paper-bg: #e8e2d2;      /* Carta antica */
+    --ink-black: #2b2b2b;     /* Inchiostro sbiadito */
+    --pencil-grey: #555555;   /* Grafite */
+    --sketch-red: #a33b3b;    /* Note di correzione */
+    --border-rough: 2px solid var(--ink-black);
 }
-
 
 body {
-  /* Creiamo un cursore usando un piccolo trucco SVG */
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
+    /* Cursore: una punta di matita o una vecchia stilografica */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🖋</text></svg>data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
+    background-color: var(--paper-bg);
+    font-family: 'Architects Daughter', cursive;
+    color: var(--ink-black);
+    line-height: 1.6;
 }
+
 
 /* Assicurati che il cursore rimanga anche sui link e bottoni */
 a, button {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), pointer;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🖋</text></svg>'), pointer;
 }
 
 body, html {
@@ -27,18 +30,17 @@ body, html {
     box-sizing: border-box;
     font-family: 'Varela Round', 'Shadows Into Light', cursive;
  /* Cursore a cuore per tutto il corpo */
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🖋</text></svg>data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: #ffc0cb; /* Il tuo rosa */
     min-height: 100vh;
     position: relative;
 }
 /* ============================================================
-   2. SFONDO EGREGORE (PATTERN A CROCI)
+   2. SFONDO DI GRANA
    ============================================================ */
 body::before {
     content: "";
@@ -46,22 +48,12 @@ body::before {
     top: 0; left: 0;
     width: 100%; height: 100%;
     z-index: -1;
-    --cross-size: 40px;
-    --grid-gap: 60px;
-    --s: calc(var(--cross-size) + var(--grid-gap));
-
-    background-color: white;
-    opacity: 0.25; /* Croci molto discrete */
-
-    /* Maschera SVG per creare il pattern spirituale */
-    --svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="38" y="10" width="24" height="80" rx="12"/><rect x="10" y="38" width="80" height="24" rx="12"/></svg>');
-
-    -webkit-mask-image: var(--svg), var(--svg);
-    mask-image: var(--svg), var(--svg);
-    -webkit-mask-size: var(--s) var(--s);
-    mask-size: var(--s) var(--s);
-    -webkit-mask-position: 0 0, calc(var(--s) / 2) calc(var(--s) / 2);
-    mask-position: 0 0, calc(var(--s) / 2) calc(var(--s) / 2);
+    /* Effetto grana e macchie di inchiostro */
+    background-image: 
+        url('https://www.transparenttextures.com/patterns/handmade-paper.png'),
+        linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: auto, 100% 30px; /* Righe da quaderno */
+    opacity: 0.6;
 }
 
 /* Stile per la barra di navigazione
@@ -80,7 +72,76 @@ nav {
 /* ============================================================
    3. NAVIGAZIONE E HEADER
    ============================================================ */
+@keyframes morphing {
+    0% { border-radius: 30px 90px 30px 90px / 90px 30px 90px 30px; }
+    50% { border-radius: 90px 30px 90px 30px / 30px 90px 30px 90px; }
+    100% { border-radius: 30px 90px 30px 90px / 90px 30px 90px 30px; }
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    margin: 15px;
+    
+    /* Sfondo cangiante e semi-trasparente */
+    background: linear-gradient(-45deg, rgba(255,255,255,0.4), rgba(var(--p-accent-rgb), 0.2), rgba(255,255,255,0.4));
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite, morphing 8s ease-in-out infinite;
+    
+    backdrop-filter: blur(8px);
+    border: 2px dashed var(--p-accent); /* Tratto tratteggiato = incertezza */
+    
+    /* Ombra che fluttua */
+    box-shadow: 0 10px 20px -10px var(--p-soft-glow);
+    transition: all 0.5s ease-in-out;
+}
+
+/* Il Logo che riflette se stesso */
+.logo a {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    letter-spacing: 1px;
+    transition: letter-spacing 0.8s ease;
+}
+
+nav:hover .logo a {
+    letter-spacing: 4px; /* Si espande quando lo guardi */
+    font-style: italic;
+}
+
+/* Il Titolo con un'ombra che "dubita" */
+.title h1 {
+    margin: 0;
+    font-size: clamp(24px, 5vw, 34px); /* Responsive font size */
+    color: var(--p-accent);
+    text-shadow: 1px 1px 0px white, -1px -1px 0px rgba(0,0,0,0.1);
+    filter: opacity(0.8);
+    transition: filter 0.3s;
+}
+
+.title h1:hover {
+    filter: opacity(1);
+    /* Leggera vibrazione come un pensiero nervoso */
+    animation: tremor 0.2s infinite;
+}
+
+@keyframes tremor {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(0.5px, -0.5px); }
+    100% { transform: translate(-0.5px, 0.5px); }
+}
+
+   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -95,7 +156,7 @@ nav {
 
 
 .logo a {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
     text-decoration: none;
     color: black
@@ -105,7 +166,6 @@ nav {
 .title h1 {
     margin: 0; /* Rimuove il margine predefinito */
     font-size: 34px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: var(--p-accent);
     text-shadow: 2px 2px 0px white;
 }
@@ -127,19 +187,49 @@ nav {
    4. CONTENITORI PRINCIPALI (Pulizia aloni verdi)
    ============================================================ */
 section.container-corpo, .interactive-area, .grid-drop-container {
-    border: 2px dotted var(--p-accent); /* Tratteggio Kawaii */
-    border-radius: 20px;
-    padding: 20px;
+    background: #fdfaf0;
+    border: 2px solid var(--ink-black);
+    /* Bordi irregolari "fatti a mano" */
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; 
+    padding: 30px;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1); /* Ombra dura da foglio */
     position: relative;
-    /* Ombra rosa molto più leggera */
-    box-shadow: 0 10px 25px rgba(255, 133, 193, 0.15);
-    transition: transform 0.3s ease;
+    transform: rotate(-0.5deg); /* Leggera inclinazione per sembrare appoggiato male */
+
+/* Fondamentale per la responsività */
+    width: 92%;           /* Lascia un po' di margine ai lati */
+    max-width: 1200px;    /* Larghezza massima su desktop */
+    margin: 20px auto;    /* Centra il contenitore */
+    box-sizing: border-box; /* Include padding e bordo nel calcolo della larghezza */
+    transition: all 0.3s ease;
 }
 
+/* --- ADATTAMENTO DESKTOP (Schermi sopra i 768px) --- */
+@media (min-width: 768px) {
+    section.container-corpo, 
+    .interactive-area, 
+    .grid-drop-container {
+        padding: 40px;
+        /* Qui ripristiniamo l'effetto irregolare forte */
+        border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+        transform: rotate(-0.5deg);
+    }
+}
+
+/* --- EFFETTI HOVER (Solo per dispositivi con mouse) --- */
+@media (hover: hover) {
+    section.container-corpo:hover {
+        transform: rotate(0deg) translateY(-5px);
+        border-width: 3px;
+    }
+}
+
+
+/* Effetto "Bozza": al passaggio del mouse il bordo si ispessisce come ricalcato */
 section.container-corpo:hover {
-    transform: translateY(-3px); /* Leggera elevazione invece di bagliori verdi */
+    transform: rotate(0deg) translateY(-2px);
+    border-width: 3px;
 }
-
 
 
 .container-corpo:hover {
@@ -153,23 +243,33 @@ section:hover {
     transition: box-shadow 0.3s ease;
 }
 
-/* --- BOTTONI KAWAII --- */
+/* --- BOTTONI  --- */
 button, .dropbtn {
     background: white;
-    border: 2px solid var(--accent-pink) !important;
-    border-radius: 20px !important;
-    color: var(--accent-pink) !important;
-    font-weight: bold;
-    padding: 12px 25px !important;
-    box-shadow: 0 4px 0px var(--accent-pink);
-    transition: 0.2s;
+    font-family: 'Special Elite', serif; /* Font macchina da scrivere */
+    border: 2px solid var(--ink-black);
+    border-radius: 0px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 0px var(--ink-black);
+    transition: 0.1s;
+    position: relative;
 }
 
 button:hover {
-    background: var(--p-accent);
-    color: rgb(209, 61, 189);
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px var(--p-soft-glow);
+    background: #eee;
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--ink-black);
+}
+
+/* Aggiungiamo uno "spillo" o "nastro adesivo" virtuale */
+button::after {
+    content: "";
+    position: absolute;
+    top: -10px; left: 40%;
+    width: 40px; height: 15px;
+    background: rgba(200, 182, 100, 0.664); /* Nastro adesivo */
+    transform: rotate(-5deg);
 }
 
 /* --- ELEMENTI TRASCINABILI (DOLLFACE) --- */
@@ -202,8 +302,8 @@ button:hover {
       position: relative;
       width: 100%;
       height: 80vh;
-      background-color: #ee8ef193;
-      border: 5px dotted #b07ebe;
+      background-color: #d3f18e93;
+      border: 5px wave #7ebeb0;
       overflow: hidden;
 
     }
@@ -607,22 +707,7 @@ button:hover {
 
 }
 
-  .sparkle {
-    position: fixed;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    pointer-events: none; /* Non blocca i click */
-    z-index: 9999;
-    box-shadow: 0 0 10px white, 0 0 20px #ff00ff; /* Bagliore rosa/bianco */
-    animation: fadeOut 0.8s ease-out forwards;
-}
 
-@keyframes fadeOut {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(0.5) translateY(20px); opacity: 0; }
-}
 
 #sparkleCanvas {
     position: fixed;
@@ -678,13 +763,13 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    color: rgb(217, 49, 217);
+    background: #dcd7c5;
     text-align: left;
     justify-content: space-between;
     align-items: center; /* Allinea verticalmente il logo e il titolo */
-    border: 3px solid rgba(253, 132, 186, 0.349);
+    border: 3px solid var(--ink-black);
     border-radius: 20px 20px 0px 0px; 
-    background-color: rgba(253, 132, 186, 0.349);
+    background-color: rgba(177, 189, 136, 0.349);
     z-index: 1000;
     }
 
@@ -698,6 +783,7 @@ footer {
     border: 2px solid white;
     padding: 10px 0;
     position: relative;
+    font-family: 'special elite', serif;
   }
   
   /* Testo scorrevole */
@@ -714,3 +800,10 @@ footer {
     color: white;
     font-weight: bold;
 }
+  
+ 
+  /* Animazione */
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
