@@ -33,10 +33,11 @@
 
 <section class="options">
     <h1>Pagina Avvertenze</h1>
-    <button onclick="updateSum('A')">Scegli Opzione A</button>
-    <button onclick="updateSum('B')">Scegli Opzione B</button>
-    <button onclick="updateSum('C')">Scegli Opzione C</button>
+    <button onclick="Variazione('C'); updateSum('A')">Scegli Opzione A</button>
+    <button onclick="Variazione('U'); updateSum('B')">Scegli Opzione B</button>
+    <button onclick="Variazione('D'); updateSum('C')">Scegli Opzione C</button>
     </section>
+    <script src="state_model.js"></script>
     <script>
     function updateSum(value) {
           // Recupera la somma attuale da localStorage

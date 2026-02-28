@@ -27,15 +27,15 @@
 
 <!-- New Card Controls -->
 <div style="padding: 15px 20px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; display: flex; align-items: center; gap: 15px;">
-  <button id="createOutsideCardBtn" title="Create a new card in the left of the container" style="padding: 8px 16px; font-size: 16px; cursor: pointer;">➕ New Card</button>
+  <button id="createOutsideCardBtn" title="Create a new card in the left of the container" style="padding: 8px 16px; font-size: 16px; cursor: pointer;" onclick="Variazione('C')">➕ New Card</button>
   <div id="createColorPalette" class="color-palette" role="radiogroup" aria-label="Choose post-it color" style="display:flex;align-items:center;gap:10px;">
-    <button class="color-sphere selected" data-color="yellow" title="Yellow post-it" aria-pressed="true" role="radio"></button>
-    <button class="color-sphere" data-color="pink" title="Pink post-it" aria-pressed="false" role="radio"></button>
-    <button class="color-sphere" data-color="green" title="Green post-it" aria-pressed="false" role="radio"></button>
-    <button class="color-sphere" data-color="blue" title="Blue post-it" aria-pressed="false" role="radio"></button>
-    <button class="color-sphere" data-color="transparent" title="Transparent post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere selected" onclick="Variazione('U')" data-color="yellow" title="Yellow post-it" aria-pressed="true" role="radio"></button>
+    <button class="color-sphere" onclick="Variazione('U')" data-color="pink" title="Pink post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere" onclick="Variazione('U')" data-color="green" title="Green post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere" onclick="Variazione('U')" data-color="blue" title="Blue post-it" aria-pressed="false" role="radio"></button>
+    <button class="color-sphere" onclick="Variazione('U')" data-color="transparent" title="Transparent post-it" aria-pressed="false" role="radio"></button>
   </div>
-  <button id="cleanerBtn" title="Delete all cards at once" style="padding: 8px 16px; font-size: 16px; cursor: pointer; background: #ff4444; color: white; border: none; border-radius: 6px;">🗑️ Cleaner</button>
+  <button id="cleanerBtn" title="Delete all cards at once" style="padding: 8px 16px; font-size: 16px; cursor: pointer; background: #ff4444; color: white; border: none; border-radius: 6px;" onclick="Variazione('A')">🗑️ Cleaner</button>
 </div>
 
 <!-- Container for all cards -->
@@ -147,9 +147,16 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
   </div>
 </div>
 
+  <script src="state_model.js"></script>
   <!---script drag n drop__________________________________________________________________-->
   <script>
   document.addEventListener('DOMContentLoaded', function() {
+    function applyVariazioneSafe(code) {
+      if (typeof window.Variazione === 'function') {
+        window.Variazione(code);
+      }
+    }
+
     const cardContainer = document.getElementById('cardContainer');
 
     // Hidden state system
@@ -492,11 +499,14 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
         del.title = 'Delete card';
         del.setAttribute('aria-label','Delete card');
         del.innerText = '✖';
+        del.onclick = 'Variazione("D")';
+        del.onclick = () => Variazione("D");
         // Prevent clicks on the button from starting a drag
         del.addEventListener('pointerdown', (ev) => { ev.stopPropagation(); });
         del.addEventListener('click', (ev) => {
           ev.stopPropagation();
           ev.preventDefault();
+          applyVariazioneSafe('D');
           deleteCard(card);
         });
         header.appendChild(del);
@@ -824,13 +834,13 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
    <p>Finished? Please chose your way out</p>
  </div>
  <div class="buttons-options">
-  <button onclick="updateSum('A')">
+    <button onclick="Variazione('C'); updateSum('A')">
       <img src="icone/Roll_alt_light_light.svg" alt="Opzione A" class="icon-button">
   </button>
-  <button onclick="updateSum('B')">
+    <button onclick="Variazione('U'); updateSum('B')">
       <img src="icone/Pointers_light.svg" alt="Opzione B" class="icon-button">
   </button>
-  <button onclick="updateSum('C')">
+    <button onclick="Variazione('D'); updateSum('C')">
       <img src="icone/Lock_duotone_line.svg" alt="Opzione C" class="icon-button">
   </button>
 </div>

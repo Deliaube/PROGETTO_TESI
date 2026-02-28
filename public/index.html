@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="timer.css">
 
     <title>Homepage Confirmation</title>
+    <script src="state_model.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            if (window.CybermidStateModel && typeof window.CybermidStateModel.getModel === "function") {
+                const initializedModel = window.CybermidStateModel.getModel();
+                console.log("[Cybermid] Stato inizializzato:", initializedModel);
+            }
+
             const confirmAccess = () => {
                 const userConfirmed = confirm("Do you think you can access the homepage?");
                 if (!userConfirmed) {

@@ -64,15 +64,15 @@
 
 <div class="button-container">
 
-    <button class="btn default" type ="button" onclick="window.location.href='controindicazioni.html'" title="controllo indicazioni">
+    <button class="btn default" type ="button" onclick="routeTriangleByState('up')" title="controllo indicazioni">
         <div class="triangle punta-alto"></div>
     </button>
 
-    <button class="btn default" type ="button" onclick="window.location.href='dosaggio.html'" title="dosaggio">
+    <button class="btn default" type ="button" onclick="routeTriangleByState('right')" title="dosaggio">
         <div class="triangle punta-destra"></div>  
     </button>
 
-    <button class="btn default" type ="button" onclick="window.location.href='draggable_cards.html'" title="combinazioni">
+    <button class="btn default" type ="button" onclick="routeTriangleByState('down')" title="combinazioni">
         <div class="triangle punta-basso"></div>
     </button>
 
@@ -242,6 +242,7 @@ function resetChoices() {
         </footer>
 
 <!--dove avviene il cambio immagine e la selezione immagine-->
+      <script src="state_model.js"></script>
       <script src="new_index_CHANGES REVISED.js"></script>
       <!-- Timer Scripts -->
       <script src="timer.js"></script>

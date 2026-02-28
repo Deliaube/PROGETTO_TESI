@@ -81,3 +81,87 @@ function updateImageBasedOnSum() {
   
   // Esegui al caricamento
   window.onload = updateImageBasedOnSum;
+
+const ROUTING_BUG_FLAG_KEY = 'cybermid_route_bug_enabled_v1';
+const STATE_MODEL_STORAGE_KEY = 'cybermid_state_model_v1';
+
+const ROUTE_MAP = {
+  up: {
+    egregore: 'controindicazioni_egregore.html',
+    transmigrator: 'controindicazioni_trasmigrator.html',
+    inmate: 'controindicazioni_inmate.html',
+    default: 'controindicazioni.html'
+  },
+  right: {
+    egregore: 'dosaggio_egregore.html',
+    transmigrator: 'dosaggio_trasmigrator.html',
+    inmate: 'dosaggio_inmate.html',
+    default: 'dosaggio.html'
+  },
+  down: {
+    egregore: 'draggable_cards_egregore.html',
+    transmigrator: 'draggable_cards_trasmigrator.html',
+    inmate: 'draggable_cards_inmate.html',
+    default: 'draggable_cards.html'
+  }
+};
+
+function setRoutingBugMode(enabled) {
+  localStorage.setItem(ROUTING_BUG_FLAG_KEY, enabled ? '1' : '0');
+  return enabled;
+}
+
+function isRoutingBugModeEnabled() {
+  return localStorage.getItem(ROUTING_BUG_FLAG_KEY) === '1';
+}
+
+function readStateModelSafe() {
+  if (window.CybermidStateModel && typeof window.CybermidStateModel.getModel === 'function') {
+    return window.CybermidStateModel.getModel();
+  }
+
+  try {
+    const raw = localStorage.getItem(STATE_MODEL_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function resolveRouteByState(direction) {
+  const group = ROUTE_MAP[direction] || ROUTE_MAP.up;
+  const candidates = [group.egregore, group.transmigrator, group.inmate, group.default];
+
+  if (isRoutingBugModeEnabled()) {
+    return candidates[Math.floor(Math.random() * candidates.length)];
+  }
+
+  const model = readStateModelSafe();
+  const stato = model && model.Key && model.Key.Stato ? model.Key.Stato : {};
+
+  const egregore = Number(stato.Egregore) || 0;
+  const transmigrator = Number(stato.Trasmigrator) || 0;
+  const inmate = Number(stato.Inmate) || 0;
+
+  if (egregore > 50) {
+    return group.egregore;
+  }
+  if (transmigrator > 50) {
+    return group.transmigrator;
+  }
+  if (inmate > 50) {
+    return group.inmate;
+  }
+
+  return group.default;
+}
+
+function routeTriangleByState(direction) {
+  const targetPage = resolveRouteByState(direction);
+  window.location.href = targetPage;
+}
+
+window.setRoutingBugMode = setRoutingBugMode;
+window.isRoutingBugModeEnabled = isRoutingBugModeEnabled;
+window.resolveRouteByState = resolveRouteByState;
+window.routeTriangleByState = routeTriangleByState;

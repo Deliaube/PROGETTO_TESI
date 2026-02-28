@@ -116,7 +116,14 @@
     <p>i don't think so</p>
   </div>
 </section>
+  <script src="state_model.js"></script>
   <script>
+    function applyVariazioneSafe(code) {
+      if (typeof window.Variazione === 'function') {
+        window.Variazione(code);
+      }
+    }
+
     const points = document.querySelectorAll('.point');
     const popup = document.getElementById('popup');
     const popupContent = document.getElementById('popup-content');
@@ -132,6 +139,7 @@
         popupContent.textContent = this.getAttribute('data-message');
         commentBox.value = localStorage.getItem(currentPointId) || '';
         popup.style.display = 'block';
+        applyVariazioneSafe('C');
       });
     });
     
@@ -139,6 +147,7 @@
     
     document.querySelector('.popup .close').addEventListener('click', function () {
       popup.style.display = 'none';
+      applyVariazioneSafe('D');
       
       // Mostra il popup nero in posizione random
       darkPopup.style.top = `${Math.random() * 80}%`;
@@ -156,6 +165,17 @@
         localStorage.setItem(currentPointId, commentBox.value);
       }
     });
+
+    const placeholderObserver = new MutationObserver((mutations) => {
+      const hasPlaceholderUpdate = mutations.some((mutation) => mutation.attributeName === 'placeholder');
+      if (hasPlaceholderUpdate) {
+        applyVariazioneSafe('U');
+      }
+    });
+
+    if (commentBox) {
+      placeholderObserver.observe(commentBox, { attributes: true, attributeFilter: ['placeholder'] });
+    }
   </script>
 
   
@@ -165,13 +185,13 @@
    <p>Finished? Please chose your way out</p>
  </div>
  <div class="buttons-options">
-  <button onclick="updateSum('A')">
+    <button onclick="Variazione('C'); updateSum('A')">
       <img src="icone/Roll_alt_light_light.svg" alt="Opzione A" class="icon-button">
   </button>
-  <button onclick="updateSum('B')">
+    <button onclick="Variazione('U'); updateSum('B')">
       <img src="icone/Pointers_light.svg" alt="Opzione B" class="icon-button">
   </button>
-  <button onclick="updateSum('C')">
+    <button onclick="Variazione('D'); updateSum('C')">
       <img src="icone/Lock_duotone_line.svg" alt="Opzione C" class="icon-button">
   </button>
 </div>
