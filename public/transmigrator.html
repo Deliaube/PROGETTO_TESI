@@ -19,6 +19,10 @@
   </defs>
 </svg>
 
+<div id="the-migrant">
+    <div class="migrant-coords"></div>
+</div>
+
   <header>
     <nav>
         <div class="logo">
@@ -68,7 +72,17 @@
         Il tuo browser non supporta il video.
     </video>
     <p class="photo-caption">Transmigrator_Log_01</p>
+
+
+     <div>
+<button class="btn-transfer" type="button" onclick="location.href='#'" aria-label="Ottieni il tuo avatar">
+    <div class="transfer">Transfer your <br> Trasmigrator out</div>
+   </button>
 </div>
+</div>
+  
+   
+ 
 
 <!--filtro___________________________________________________________-->
 <svg style="display: none;">
@@ -286,17 +300,7 @@ function resetChoices() {
     });
       </script>
 
-<script>
-    const cursor = document.getElementById('lcd-cursor');
-const states = ["@transmigrator", "unknown_id", "shifting...", "no_place"];
-let stateIndex = 0;
-
-// Cambia skin/testo del cursore ogni 2 secondi
-setInterval(() => {
-    stateIndex = (stateIndex + 1) % states.length;
-    cursor.innerHTML = `<span style="font-size:10px; color:#3c3c3c; margin-left:15px;">${states[stateIndex]}</span>`;
-}, 2000);
-</script>
+<!-- Script rimosso: l'elemento lcd-cursor non esiste, il cursore personalizzato è gestito da #the-migrant -->
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -332,53 +336,22 @@ setInterval(() => {
 </script>
 
 <script>
-    const migrant = document.getElementById('the-migrant');
+// Script per il cursore personalizzato
+const migrant = document.getElementById('the-migrant');
 const coords = migrant.querySelector('.migrant-coords');
-const photo = document.querySelector('.video-container');
 
-let mouseX = 0, mouseY = 0;
-let migrantX = 0, migrantY = 0;
-
-// Tracciamento posizione mouse
 document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+
+    const x = e.clientX;
+    const y = e.clientY;
+
+    // Posizionamento preciso
+    migrant.style.left = x + 'px';
+    migrant.style.top = y + 'px';
+
+    // Coordinate
+    coords.textContent = `loc: ${x}, ${y}`;
 });
-
-function animate() {
-    // 1. Movimento fluido (Inseguimento elastico)
-    migrantX += (mouseX - migrantX) * 0.15;
-    migrantY += (mouseY - migrantY) * 0.15;
-
-    migrant.style.transform = `translate(${migrantX}px, ${migrantY}px)`;
-
-    // 2. Controllo Collisione (Sostituisce mouseenter/mouseleave per maggior precisione)
-    if (photo) {
-        const rect = photo.getBoundingClientRect();
-        const isInside = (
-            mouseX >= rect.left && 
-            mouseX <= rect.right && 
-            mouseY >= rect.top && 
-            mouseY <= rect.bottom
-        );
-
-        if (isInside) {
-            if (!migrant.classList.contains('scanning')) {
-                migrant.classList.add('scanning');
-                coords.style.opacity = "1";
-            }
-            coords.innerText = `EXTRACTING_DATA: [${Math.round(migrantX)},${Math.round(migrantY)}]`;
-        } else {
-            migrant.classList.remove('scanning');
-            coords.innerText = `loc: ${Math.round(migrantX)},${Math.round(migrantY)}`;
-        }
-    }
-
-    requestAnimationFrame(animate);
-}
-
-// Avvio del loop
-animate();
 </script>
 
 </body>

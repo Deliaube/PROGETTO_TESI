@@ -14,7 +14,6 @@ body, html {
         inset 0 0 10px rgba(30, 255, 0, 0.4);     /* Bagliore interno sui bordi */
     
     position: relative;
-    overflow: hidden; /* Importante per contenere gli effetti successivi */
 }
 
 /* Stile per la barra di navigazione*/
@@ -201,12 +200,12 @@ nav {
 }
 
 .custom-video {
-    width: 100%;       /* Regola questa percentuale o usa i px (es. 400px) */
+    width: 70%;       /* Regola questa percentuale o usa i px (es. 400px) */
     max-width: 600px;  /* Limite massimo di larghezza */
     height: auto;      /* Mantiene le proporzioni */
     cursor: pointer;   /* Fa capire che è cliccabile */
     border-radius: 100px; /* Opzionale: per arrotondare i bordi */
-    display: block;
+    display: flex;
 }
 
 .custom-video {
@@ -431,6 +430,18 @@ nav {
     100% { opacity: 0.9; }
 }
 
+
+.face{
+    font-size: 18px;
+    font-weight: bold;
+    color: #6ee61e;
+    text-align: center;
+
+    display: flex;
+    flex: wrap;
+    justify-content: center;
+
+}
 
 
 /*style footer*/
