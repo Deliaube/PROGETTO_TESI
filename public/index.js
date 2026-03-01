@@ -15,7 +15,7 @@ import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyACU1m0BXF1c5NjVsjiPvfwpPimOK8LmZg",
+  apiKey: "your_api_key",
 
   authDomain: "test-universitario.firebaseapp.com",
 
