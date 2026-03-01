@@ -19,13 +19,13 @@
     return lastKey;
   }
 
-  // Carica l'ultimo stato dal db e lo reinvia con una PUT
+  // Carica l'ultimo stato dal db e lo reinvia con una POST
   async function loadAndResendLastState(firebaseBaseUrl, path) {
-    if (!global.CybermidStateModel || typeof global.CybermidStateModel.loadFromFirebase !== 'function' || typeof global.CybermidStateModel.putToFirebase !== 'function') return;
+    if (!global.CybermidStateModel || typeof global.CybermidStateModel.loadFromFirebase !== 'function' || typeof global.CybermidStateModel.postToFirebase !== 'function') return;
     const lastKey = await getLastSessionKey(firebaseBaseUrl, path);
     if (!lastKey) return;
     await global.CybermidStateModel.loadFromFirebase(firebaseBaseUrl, path, lastKey);
-    await global.CybermidStateModel.putToFirebase(firebaseBaseUrl, path, lastKey);
+    await global.CybermidStateModel.postToFirebase(firebaseBaseUrl, path);
   }
 (function (global) {
   const LOCAL_STORAGE_KEY = 'cybermid_state_model_v1';
@@ -241,6 +241,7 @@
     loadFromFirebase,
     getLastSessionKey,
     loadAndResendLastState
+    // ora la funzione loadAndResendLastState effettua una POST invece di una PUT
   };
 
   global.CybermidStateModel = api;
