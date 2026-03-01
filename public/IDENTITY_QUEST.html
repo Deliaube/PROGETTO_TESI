@@ -15,34 +15,27 @@
     <div class="Alerts" data-aos="zoom-in">
            <p> Welcome, please select your status</p>
         <ul>
-            <li>  <button onclick="selectUserStatus('Guest')"> Guest </button> </li>
-            <li>  <button onclick="selectUserStatus('Killer')"> Killer </button> </li>
-            <li>  <button onclick="selectUserStatus('User')"> User </button> </li>
-            <li>  <button onclick="selectUserStatus('Abuser')"> Abuser </button> </li>
-            <li>  <button onclick="selectUserStatus('Bug')"> Bug </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Guest'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Guest </button> </li> 
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Killer'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Killer </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'User'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> User </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Abuser'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Abuser </button> </li>
+            <li>  <button onclick="enableCustomCursor(); localStorage.setItem('userStatus', 'Bug'); document.getElementById('durata-section').scrollIntoView({behavior: 'smooth'})"> Bug </button> </li>
         </ul>
     </div>
   </section>
     
 <!--script bottoni evidenziati-->
 <script>
-function selectUserStatus(status) {
-  enableCustomCursor();
-  localStorage.setItem('userStatus', status);
+// Seleziona solo i pulsanti Alerts nella sezione iniziale
+document.addEventListener('DOMContentLoaded', () => {
+  const statusButtons = document.querySelectorAll('.quest .Alerts button');
+  if (!statusButtons.length) return;
 
-  const isBugMode = status === 'Bug';
-  localStorage.setItem('cybermid_route_bug_enabled_v1', isBugMode ? '1' : '0');
-
-  document.getElementById('durata-section').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Seleziona tutti i pulsanti (o usa un id/classe specifica)
-const buttons = document.querySelectorAll('button');
-
-buttons.forEach(button => {
-  button.addEventListener('click', function() {
-    // toggle() aggiunge la classe se non c'è, e la toglie se c'è
-    this.classList.toggle('selected');
+  statusButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      statusButtons.forEach(btn => btn.classList.remove('selected'));
+      this.classList.add('selected');
+    });
   });
 });
 </script>
