@@ -6,10 +6,14 @@ body {
   scroll-behavior: smooth;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 .quest {
-  margin-top: 20%;
+  margin-top: clamp(24px, 10vh, 160px);
   width: 100%;
-  height: 20vh; /*100vh*/
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +27,16 @@ li {
   margin-left: 20px;
   text-decoration: none;
   font-size: 18px
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
 
 button {
@@ -58,9 +72,9 @@ button.selected {
 }
 
 section {
-  margin-top: 20%;
+  margin-top: clamp(24px, 10vh, 160px);
   width: 100%;
-  height: 20vh; /*100vh*/
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,12 +120,71 @@ section {
 }
 
 .durata-selection {
-  margin-top: 50vh;
+  margin-top: clamp(48px, 18vh, 240px);
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 20vh;
+  height: auto;
+}
+
+.duration-slider {
+  width: 100%;
+  max-width: 480px;
+}
+
+.slider-labels,
+.slider-value {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  .quest,
+  section {
+    margin-top: 12vh;
+    height: auto;
+  }
+
+  li {
+    margin-left: 0;
+  }
+
+  button {
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+
+  #progressContainer {
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
+
+  .quest,
+  section,
+  .durata-selection {
+    margin-top: 8vh;
+  }
+
+  button {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .duration-slider,
+  .slider-labels,
+  .slider-value {
+    max-width: 100%;
+  }
 }
 
 .start-cyberoute-btn {

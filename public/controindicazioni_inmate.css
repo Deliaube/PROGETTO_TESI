@@ -310,7 +310,7 @@ nav {
   }
   
   /* confirm btn + risposta */
-  #confirmBtn {
+  #confirmBtn, #ignoreBtn, #repeatBtn {
     padding: 10px 20px;   
     border: 3px double black;
     border-radius: 10px;
