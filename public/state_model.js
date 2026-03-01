@@ -1,3 +1,32 @@
+  // Recupera la chiave della sessione più recente dal db Firebase
+  async function getLastSessionKey(firebaseBaseUrl, path) {
+    const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
+    const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
+    const res = await fetch(`${sanitizedBase}/${sanitizedPath}.json`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!data) return null;
+    let lastKey = null;
+    let lastTimestamp = null;
+    for (const [key, value] of Object.entries(data)) {
+      if (value && value.Timestamp) {
+        if (!lastTimestamp || value.Timestamp > lastTimestamp) {
+          lastTimestamp = value.Timestamp;
+          lastKey = key;
+        }
+      }
+    }
+    return lastKey;
+  }
+
+  // Carica l'ultimo stato dal db e lo reinvia con una PUT
+  async function loadAndResendLastState(firebaseBaseUrl, path) {
+    if (!global.CybermidStateModel || typeof global.CybermidStateModel.loadFromFirebase !== 'function' || typeof global.CybermidStateModel.putToFirebase !== 'function') return;
+    const lastKey = await getLastSessionKey(firebaseBaseUrl, path);
+    if (!lastKey) return;
+    await global.CybermidStateModel.loadFromFirebase(firebaseBaseUrl, path, lastKey);
+    await global.CybermidStateModel.putToFirebase(firebaseBaseUrl, path, lastKey);
+  }
 (function (global) {
   const LOCAL_STORAGE_KEY = 'cybermid_state_model_v1';
   const FIREBASE_KEY_STORAGE = 'cybermid_firebase_key_v1';
@@ -154,24 +183,23 @@
     };
   }
 
-  async function postToFirebase(firebaseBaseUrl, path) {
+
+  async function putToFirebase(firebaseBaseUrl, path, key) {
     const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
     const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
-    const response = await fetch(`${sanitizedBase}/${sanitizedPath}.json`, {
-      method: 'POST',
+    const resolvedKey = key || getFirebaseKey() || getOrCreateSessionUserId();
+    const response = await fetch(`${sanitizedBase}/${sanitizedPath}/${resolvedKey}.json`, {
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(buildPayload())
     });
 
     if (!response.ok) {
-      throw new Error(`POST Firebase fallita: ${response.status}`);
+      throw new Error(`PUT Firebase fallita: ${response.status}`);
     }
 
     const result = await response.json();
-    if (result && result.name) {
-      setFirebaseKey(result.name);
-    }
-
+    setFirebaseKey(resolvedKey);
     return result;
   }
 
@@ -209,8 +237,10 @@
     buildEnvelope,
     getFirebaseKey,
     setFirebaseKey,
-    postToFirebase,
-    loadFromFirebase
+    putToFirebase,
+    loadFromFirebase,
+    getLastSessionKey,
+    loadAndResendLastState
   };
 
   global.CybermidStateModel = api;

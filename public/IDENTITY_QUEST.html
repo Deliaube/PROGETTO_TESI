@@ -149,4 +149,14 @@ buttons.forEach(button => {
 </script>
 
 </body>
+<script src="state_model.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Richiama la funzione pulita dallo state_model.js
+  window.CybermidStateModel.loadAndResendLastState(
+    'https://test-universitario-default-rtdb.europe-west1.firebasedatabase.app/',
+    'sessioni'
+  );
+});
+</script>
 </html>

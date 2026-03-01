@@ -845,6 +845,17 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
 </section>
 
 <script src="state_model.js"></script>
+<script>
+// Wrapper per Variazione: chiama anche postToFirebase dopo ogni variazione
+const oldVariazione = window.Variazione;
+window.Variazione = function(code) {
+  const result = oldVariazione(code);
+    if (window.CybermidStateModel && typeof window.CybermidStateModel.putToFirebase === 'function') {
+      window.CybermidStateModel.putToFirebase('https://test-universitario-default-rtdb.europe-west1.firebasedatabase.app/', 'sessioni').catch(()=>{});
+    }
+  return result;
+};
+</script>
 <script src="options.js"></script>
 <script src="timer.js"></script>
 
