@@ -21,7 +21,7 @@ const STATE_MODEL_STORAGE_KEY = 'cybermid_state_model_v1';
 const ROUTE_MAP = {
   back: {
     egregore: 'egregore.html',
-    transmigrator: 'trasmigrator.html',
+    transmigrator: 'transmigrator.html',
     inmate: 'inmate.html',
     default: 'new_index_CHANGES REVISED.html'
   }
