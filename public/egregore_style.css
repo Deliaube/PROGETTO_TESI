@@ -295,6 +295,43 @@ button:hover {
     border: none;
 }
 
+.page-controindicazioni .drop-area {
+    border: 3px dotted #ff85c1;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 280px;
+}
+
+.page-controindicazioni #dropArea1 {
+    background-image: url("images/drop-area/egregore_droparea1.gif");
+}
+
+.page-controindicazioni #dropArea2 {
+    background-image: url("images/drop-area/egregore_droparea2.png");
+}
+
+.page-controindicazioni #dropArea3 {
+    background-image: url("images/drop-area/egregore_droparea4.png");
+}
+
+.page-controindicazioni #dropArea4 {
+    background-image: url("images/drop-area/egregore_droparea3.gif");
+}
+
+.page-controindicazioni .drop-area.dragover {
+    border-color: #ff4fb0;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.page-controindicazioni .drop-area .egregore-pin {
+    width: clamp(42px, 12vw, 72px);
+    max-width: 72px;
+    height: auto;
+    object-fit: contain;
+}
+
 @media (max-width: 768px) {
     .page-controindicazioni .image-container {
         position: static; /* Torna nel flusso normale, uno sotto l'altro */
@@ -323,6 +360,60 @@ button:hover {
 
     .page-controindicazioni.draggable {
         max-width: 60px; /* Ridimensiona le dollface per il touch */
+    }
+}
+
+@media (max-width: 600px) {
+    .page-controindicazioni .main-content-wrapper {
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .page-controindicazioni .container-corpo {
+        padding: 12px;
+        width: 100%;
+    }
+
+    .page-controindicazioni .text {
+        margin: 8px;
+    }
+
+    .page-controindicazioni .text h3 {
+        font-size: 20px;
+    }
+
+    .page-controindicazioni .text p,
+    .page-controindicazioni .text li {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .page-controindicazioni .grid-drop-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 8px;
+    }
+
+    .page-controindicazioni .drop-area {
+        min-height: 220px;
+        padding: 8px;
+    }
+
+    .page-controindicazioni .image-container {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .page-controindicazioni .image-container .egregore-pin {
+        width: 58px;
+    }
+
+    .page-controindicazioni .drop-area .egregore-pin {
+        width: 48px;
+        max-width: 48px;
     }
 }
 

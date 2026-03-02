@@ -161,6 +161,29 @@ nav {
      overflow: hidden;
 }
 
+.drop-area{
+   width: 100%;            /* Prende tutta la larghezza della colonna della griglia */
+    aspect-ratio: 1 / 1;    /* Opzionale: rende l'area quadrata (molto utile per le griglie) */
+    position: relative;     /* Necessario se vuoi sovrapporre elementi all'interno */
+    overflow: hidden;       /* Taglia l'immagine se esce dai bordi arrotondati */
+    border-radius: 10px;    /* Opzionale: per bordi smussati */
+    border: 2px dashed #ccc; /* Opzionale: stile classico drop-area */
+}
+
+/* Rendi l'immagine responsive al 100% della drop-area */
+.background-img {
+    width: 100%;
+    height: 100%;
+    display: block;         /* Rimuove lo spazio bianco sotto l'immagine */
+    
+    /* Questa è la proprietà magica: */
+    object-fit: cover;      
+    /* 'cover' riempie l'area tagliando i bordi in eccesso. 
+       Se preferisci vedere l'immagine intera (con possibili bordi vuoti), usa 'contain' */
+    
+    object-position: center; /* Centra l'immagine nell'area */
+}
+
 .image-container {
     width: auto;
     margin-bottom: 5px;
@@ -188,44 +211,64 @@ nav {
 }
 
 .drop-area {
-    width: 100%; /* Larghezza adattiva al container */
-    min-width: 0; /* Permette di restringersi */
-    height: 390px; /* Ridotto di 10px */
-    border: 2px dashed #000000;
-    border-radius: 12px;
+    width: 100%;            /* Si adatta alla colonna della griglia */
+    height: 390px;          /* Altezza fissa che desideravi */
+    position: relative;     /* Necessario per posizionare le dollface all'interno */
+    
+    /* Gestione Sfondo */
+    background-size: cover;      /* L'immagine copre l'area senza deformarsi */
+    background-position: center; /* Centra l'immagine */
+    background-repeat: no-repeat;
+    
+    /* Layout interno per gli oggetti trascinati */
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     gap: 10px;
     padding: 10px;
-    background-color: #f9f9f9;
+    
+    /* Stile estetico */
+    border: 3px solid #6ee61e;
+    border-radius: 12px;
     transition: background-color 0.3s ease;
-    margin: 5px; /* Margin ridotto */
+    box-sizing: border-box; /* Importante per non far sommare padding al width */
+}
+
+@media (max-width: 900px) {
+    .grid-drop-container {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .drop-area {
+        height: 250px; /* Riduciamo l'altezza su mobile per renderla proporzionata */
+        min-height: 220px;
+    }
 }
 
 #dropArea1 {
-    background-image: url("images/avatar\ nt\ 4.jpeg");
+    background-image: url("images/drop-area/inmate_droparea1.jpg");
     background-size: cover;        /* Adatta l’immagine a riempire l’area */
     background-position: center;   /* Centra l’immagine */
     background-repeat: no-repeat;  /* Evita la ripetizione */
 }
 
 #dropArea2 {
-    background-image: url("images/avatar\ eg\ 4.jpeg");
+    background-image: url("images/drop-area/inmate_droparea2.png");
     background-size: cover;        /* Adatta l’immagine a riempire l’area */
     background-position: center;   /* Centra l’immagine */
     background-repeat: no-repeat;  /* Evita la ripetizione */
 }
 
 #dropArea3 {
-    background-image: url("images/avatar\ tr\ 4.jpeg");
+    background-image: url("images/drop-area/inmate_droparea3.png");
     background-size: cover;        /* Adatta l’immagine a riempire l’area */
     background-position: center;   /* Centra l’immagine */
     background-repeat: no-repeat;  /* Evita la ripetizione */
 }
 
 #dropArea4 {
-    background-image: url("images/avatar\ in\ 4.jpeg");
+    background-image: url("images/drop-area/inmate_droparea4.jpg");
     background-size: cover;        /* Adatta l’immagine a riempire l’area */
     background-position: center;   /* Centra l’immagine */
     background-repeat: no-repeat;  /* Evita la ripetizione */
@@ -233,6 +276,7 @@ nav {
 
 .drop-area.dragover {
     background-color: #e0e0e0;
+    border-color: #00ff0d;
 }
 
 .drop-area img {
@@ -253,6 +297,60 @@ nav {
     .drop-area {
         height: auto;
         min-height: 260px;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-content-wrapper {
+        padding: 10px;
+        gap: 12px;
+    }
+
+    section.container-corpo {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+    .text {
+        margin: 10px;
+    }
+
+    .container-corpo .text,
+    .text p,
+    .text li {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .text h3 {
+        font-size: 20px;
+    }
+
+    .grid-drop-container {
+        grid-template-columns: 1fr;
+        row-gap: 12px;
+        column-gap: 12px;
+        padding: 10px;
+    }
+
+    .drop-area {
+        min-height: 220px;
+        padding: 8px;
+    }
+
+    .image-container {
+        position: static;
+        width: 100%;
+        right: auto;
+        top: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .draggable {
+        max-width: 64px;
     }
 }
 

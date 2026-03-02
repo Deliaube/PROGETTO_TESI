@@ -391,6 +391,46 @@ button::after {
     border: none;
 }
 
+.page-controindicazioni .drop-area {
+    border: 2px solid var(--ink-black);
+    border-radius: 18px 28px 16px 26px / 24px 16px 26px 18px;
+    box-shadow: 2px 2px 0 rgba(43, 43, 43, 0.35), inset 0 0 0 1px rgba(43, 43, 43, 0.25);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.35);
+    min-height: 280px;
+}
+
+.page-controindicazioni #dropArea1 {
+    background-image: url("images/drop-area/trasmigrator_droparea1.jpg");
+}
+
+.page-controindicazioni #dropArea2 {
+    background-image: url("images/drop-area/trasmigrator_droparea2.gif");
+}
+
+.page-controindicazioni #dropArea3 {
+    background-image: url("images/drop-area/trasmigrator_droparea3.jpeg");
+}
+
+.page-controindicazioni #dropArea4 {
+    background-image: url("images/drop-area/trasmigrator_droparea4.jpeg");
+}
+
+.page-controindicazioni .drop-area.dragover {
+    border-width: 3px;
+    border-style: dashed;
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+.page-controindicazioni .drop-area .transmigrator-pin {
+    width: clamp(42px, 12vw, 70px);
+    max-width: 70px;
+    height: auto;
+    object-fit: contain;
+}
+
 @media (max-width: 768px) {
     .page-controindicazioni .image-container {
         position: static; /* Torna nel flusso normale, uno sotto l'altro */
@@ -419,6 +459,60 @@ button::after {
 
     .page-controindicazioni.draggable {
         max-width: 60px; /* Ridimensiona le dollface per il touch */
+    }
+}
+
+@media (max-width: 600px) {
+    .page-controindicazioni .main-content-wrapper {
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .page-controindicazioni .container-corpo {
+        padding: 12px;
+        width: 100%;
+    }
+
+    .page-controindicazioni .text {
+        margin: 8px;
+    }
+
+    .page-controindicazioni .text h3 {
+        font-size: 20px;
+    }
+
+    .page-controindicazioni .text p,
+    .page-controindicazioni .text li {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .page-controindicazioni .grid-drop-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 8px;
+    }
+
+    .page-controindicazioni .drop-area {
+        min-height: 220px;
+        padding: 8px;
+    }
+
+    .page-controindicazioni .image-container {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .page-controindicazioni .image-container .transmigrator-pin {
+        width: 58px;
+    }
+
+    .page-controindicazioni .drop-area .transmigrator-pin {
+        width: 46px;
+        max-width: 46px;
     }
 }
 
