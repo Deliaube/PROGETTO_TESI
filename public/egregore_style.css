@@ -309,7 +309,7 @@ button:hover {
 }
 
 .page-controindicazioni #dropArea2 {
-    background-image: url("images/drop-area/egregore_droparea2.png");
+    background-image: url("images/drop-area/egregore_droparea5.jpg");
 }
 
 .page-controindicazioni #dropArea3 {
@@ -415,6 +415,14 @@ button:hover {
         width: 48px;
         max-width: 48px;
     }
+}
+
+.result-text {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #d600a1;
+    margin: 25px;
 }
 
   section.container-corpo {

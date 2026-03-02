@@ -82,7 +82,7 @@ body {
 
 .draggable {
     flex: 0 0 auto;  /* IMPORTANTISSIMO: evita che diventino colonna */
-    width: 85px;
+    width: 65px;
     height: auto;
     object-fit: contain;
     cursor: grab;
@@ -131,4 +131,27 @@ body {
     align-content: flex-start;
     gap: 10px;
     padding: 10px;
+}
+
+body:not(.page-controindicazioni) .drop-area {
+    border: 2px solid #000;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body:not(.page-controindicazioni) #dropArea1 {
+    background-image: url("images/drop-area/neutral_droparea1 (1).gif");
+}
+
+body:not(.page-controindicazioni) #dropArea2 {
+    background-image: url("images/drop-area/neutral_droparea1 (2).gif");
+}
+
+body:not(.page-controindicazioni) #dropArea3 {
+    background-image: url("images/drop-area/neutral_droparea1 (3).gif");
+}
+
+body:not(.page-controindicazioni) #dropArea4 {
+    background-image: url("images/drop-area/neutral_droparea1 (4).gif");
 }
