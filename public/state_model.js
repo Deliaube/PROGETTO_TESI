@@ -19,15 +19,15 @@
     return lastKey;
   }
 
-  // Carica l'ultimo stato dal db e lo reinvia con una POST
+  // Carica l'ultimo stato dal db e lo reinvia con una POST --!window.CybermidStateModel ||
   async function loadAndResendLastState(firebaseBaseUrl, path) {
-    if (!global.CybermidStateModel || typeof global.CybermidStateModel.loadFromFirebase !== 'function' || typeof global.CybermidStateModel.postToFirebase !== 'function') return;
+    //if ( typeof window.CybermidStateModel.loadFromFirebase !== 'function' || typeof window.CybermidStateModel.postToFirebase !== 'function') return;
     const lastKey = await getLastSessionKey(firebaseBaseUrl, path);
-    if (!lastKey) return;
-    await global.CybermidStateModel.loadFromFirebase(firebaseBaseUrl, path, lastKey);
-    await global.CybermidStateModel.postToFirebase(firebaseBaseUrl, path);
+    if (!lastKey) await window.CybermidStateModel.postToFirebase(firebaseBaseUrl, path);
+    await window.CybermidStateModel.loadFromFirebase(firebaseBaseUrl, path, lastKey);
+    await window.CybermidStateModel.postToFirebase(firebaseBaseUrl, path);
   }
-(function (global) {
+(function (window) {
   const LOCAL_STORAGE_KEY = 'cybermid_state_model_v1';
   const FIREBASE_KEY_STORAGE = 'cybermid_firebase_key_v1';
   const SESSION_STORAGE_KEY = 'cybermid_session_user_v1';
@@ -50,8 +50,8 @@
   }
 
   function generateSessionUserId() {
-    if (global.crypto && typeof global.crypto.randomUUID === 'function') {
-      return global.crypto.randomUUID();
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
     }
     return 'sess_' + Date.now() + '_' + Math.random().toString(16).slice(2);
   }
@@ -138,7 +138,7 @@
     updateTimestamp(model);
     saveModel(model);
 
-    global.dispatchEvent(new CustomEvent('cybermid:state:changed', {
+    window.dispatchEvent(new CustomEvent('cybermid:state:changed', {
       detail: {
         action: normalizedCode,
         model: model
@@ -227,6 +227,24 @@
     return model;
   }
 
+  async function clearSessioni(firebaseBaseUrl) {
+    const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
+    if (!sanitizedBase) {
+      throw new Error('URL Firebase non valido');
+    }
+
+    const response = await fetch(`${sanitizedBase}/sessioni.json`, {
+      method: 'DELETE'
+    });
+
+    if (!response.ok) {
+      throw new Error(`DELETE Firebase fallita: ${response.status}`);
+    }
+
+    localStorage.removeItem(FIREBASE_KEY_STORAGE);
+    return true;
+  }
+
   const api = {
     MIN_VALUE,
     MAX_VALUE,
@@ -239,13 +257,14 @@
     setFirebaseKey,
     putToFirebase,
     loadFromFirebase,
+    clearSessioni,
     getLastSessionKey,
     loadAndResendLastState
     // ora la funzione loadAndResendLastState effettua una POST invece di una PUT
   };
 
-  global.CybermidStateModel = api;
-  global.Variazione = applyVariation;
+  window.CybermidStateModel = api;
+  window.Variazione = applyVariation;
 
   loadModel();
 })(window);
