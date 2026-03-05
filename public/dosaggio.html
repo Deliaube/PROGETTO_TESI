@@ -116,7 +116,7 @@
   </div>
 </section>
   <script src="state_model.js"></script>
-  <script>
+  <script>// Funzione per chiamare Variazione in modo sicuro pop up e placeholder
     function applyVariazioneSafe(code) {
       if (typeof window.Variazione === 'function') {
         window.Variazione(code);
@@ -176,11 +176,12 @@
       placeholderObserver.observe(commentBox, { attributes: true, attributeFilter: ['placeholder'] });
     }
   </script>
-
+  
+<div id="supplyButton">
 <button id="confirmButton">Confirm</button>
 <button id="ignoreButton">Ignore</button>
 <button id="repeatButton">Repeat</button>
-
+</div>
   
 <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->
 <section class="options">

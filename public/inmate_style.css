@@ -12,7 +12,7 @@ body, html {
     overflow-x: hidden;
     min-height: 100vh;
     /* Puntatore personalizzato - assicurati di avere il file cursor.svg */
-    cursor: url(cursor.svg), auto;
+    cursor: url(cursor.svg), auto !important;
     
 animation: glitch-border 5s infinite; /* Il glitch accade ogni 5 secondi */
 }

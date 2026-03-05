@@ -13,21 +13,21 @@
 
 body {
   /* Creiamo un cursore usando un piccolo trucco SVG */
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto !important;
 }
 
 /* Assicurati che il cursore rimanga anche sui link e bottoni */
 a, button {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), pointer;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), pointer !important;
 }
 
 body, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Varela Round', 'Shadows Into Light', cursive;
+    font-family: 'Varela Round', 'ShadowsInto Light', cursive;
  /* Cursore a cuore per tutto il corpo */
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24" x="0">❤</text></svg>'), auto !important;
 }
 
 body {
@@ -278,6 +278,98 @@ button:hover {
       margin-top: 10px;
       resize: none;
     }
+
+/* Responsive dedicato: dosaggio_egregore */
+.page-dosaggio-egregore {
+    padding-bottom: 110px;
+    overflow-x: hidden;
+}
+
+.page-dosaggio-egregore section.container-corpo,
+.page-dosaggio-egregore .interactive-area,
+.page-dosaggio-egregore .popup,
+.page-dosaggio-egregore #supplyButton {
+    box-sizing: border-box;
+}
+
+.page-dosaggio-egregore #supplyButton {
+    width: min(95%, 1200px);
+    margin: 0 auto 16px;
+    padding: 0 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.page-dosaggio-egregore #supplyButton button {
+    flex: 1 1 160px;
+    max-width: 220px;
+}
+
+@media (max-width: 768px) {
+    .page-dosaggio-egregore .title h1 {
+        font-size: 28px;
+    }
+
+    .page-dosaggio-egregore section.container-corpo {
+        width: 100%;
+        padding: 12px;
+        margin: 12px 0;
+    }
+
+    .page-dosaggio-egregore .interactive-area {
+        height: 62vh;
+        min-height: 360px;
+        border-width: 3px;
+        padding: 8px;
+    }
+
+    .page-dosaggio-egregore .point {
+        font-size: 18px;
+    }
+
+    .page-dosaggio-egregore .popup {
+        width: min(92vw, 340px);
+        padding: 14px;
+    }
+
+    .page-dosaggio-egregore .popup-dark {
+        max-width: 82vw;
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .page-dosaggio-egregore #supplyButton {
+        width: 100%;
+        padding: 0 8px;
+        margin-bottom: 12px;
+    }
+
+    .page-dosaggio-egregore #supplyButton button {
+        flex: 1 1 100%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-dosaggio-egregore .title h1 {
+        font-size: 24px;
+    }
+
+    .page-dosaggio-egregore .interactive-area {
+        height: 56vh;
+        min-height: 300px;
+    }
+
+    .page-dosaggio-egregore .point {
+        font-size: 16px;
+    }
+
+    .page-dosaggio-egregore .popup {
+        width: 94vw;
+    }
+}
 
 /*per pagina controindicazioni_inmate,html ____________________________________________________*/
 /* Solo per la pagina controindicazioni */

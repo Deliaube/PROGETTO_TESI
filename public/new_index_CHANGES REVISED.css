@@ -260,6 +260,35 @@ nav {
   background: linear-gradient(45deg,#2c2c2c,#b4b4b4);
 }
 
+  #supplyButton {
+    padding-left: 10%;
+  }
+
+  #confirmButton,
+  #ignoreButton,
+  #repeatButton,
+  #confirmBtn,
+  #ignoreBtn,
+  #repeatBtn {
+    margin: 10px auto; /** Spazio tra i bottoni- togliere per avvicinarli all'img*/
+    padding: 10px 20px;
+    border: none;
+    background-color: rgb(232, 219, 219);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+  }
+
+  #confirmButton:hover,
+  #ignoreButton:hover,
+  #repeatButton:hover,
+  #confirmBtn:hover,
+  #ignoreBtn:hover,
+  #repeatBtn:hover {
+    background-color: #8b8b8b;
+  }
+
 .button button {
     display: block;
     margin: 10px auto; /** Spazio tra i bottoni- togliere per avvicinarli all'img*/
