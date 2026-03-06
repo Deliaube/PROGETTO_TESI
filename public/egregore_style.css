@@ -424,6 +424,10 @@ button:hover {
     object-fit: contain;
 }
 
+.page-controindicazioni-egregore .container-riga {
+    margin-bottom: 80px;
+}
+
 @media (max-width: 768px) {
     .page-controindicazioni .image-container {
         position: static; /* Torna nel flusso normale, uno sotto l'altro */

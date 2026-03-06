@@ -38,7 +38,8 @@
     C: { Egregore: 10, Trasmigrator: -5, Inmate: -5 },
     U: { Egregore: -5, Trasmigrator: 10, Inmate: -5 },
     D: { Egregore: -10, Trasmigrator: -5, Inmate: 10 },
-    A: { Egregore: -15, Trasmigrator: -15, Inmate: 30 }
+    A: { Egregore: -15, Trasmigrator: -15, Inmate: 30 },
+    B: { Egregore: -15, Trasmigrator: -15, Inmate: -15 }
   };
 
   function clamp(value) {

@@ -9,6 +9,12 @@ function updateSum(value) {
     // Dopo aver aggiornato la somma, effettua il routing
     routeTriangleByState('back');
 }
+// Funzione per il routing basato sullo stato
+function Route() {
+       // Dopo aver aggiornato la somma, effettua il routing
+    routeTriangleByState('back');
+}
+
 
 
 // Esegui al caricamento (placeholder, evita errori se non definita)
@@ -80,6 +86,62 @@ function resolveRouteByState(direction) {
 function routeTriangleByState(direction) {
   const targetPage = resolveRouteByState(direction);
   window.location.href = targetPage;
+}
+
+function initOptionsVisibilityByButtons() {
+  const optionsSections = Array.from(document.querySelectorAll('section.options'));
+  if (!optionsSections.length) {
+    return;
+  }
+
+  const pathName = (window.location.pathname || '').toLowerCase();
+  const isControindicazioniInmatePage = pathName.endsWith('/controindicazioni_inmate.html') || pathName.endsWith('controindicazioni_inmate.html');
+  const unlockSelector = isControindicazioniInmatePage
+    ? '#confirmBtn, #repeatBtn'
+    : '#confirmBtn, #repeatBtn, #confirmButton, #repeatButton';
+
+  const unlockButtons = Array.from(document.querySelectorAll(unlockSelector));
+  if (!unlockButtons.length) {
+    return;
+  }
+
+  const showOptionsSections = () => {
+    optionsSections.forEach((section) => {
+      section.hidden = false;
+      section.style.display = '';
+    });
+  };
+
+  const hideOptionsSections = () => {
+    optionsSections.forEach((section) => {
+      section.hidden = true;
+      section.style.display = 'none';
+    });
+  };
+
+  hideOptionsSections();
+
+  unlockButtons.forEach((button) => {
+    button.addEventListener('click', showOptionsSections);
+  });
+
+  // Fallback per eventuali click su bottoni reinseriti dinamicamente nel DOM.
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element)) {
+      return;
+    }
+
+    const unlockButton = event.target.closest(unlockSelector);
+    if (unlockButton) {
+      showOptionsSections();
+    }
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initOptionsVisibilityByButtons);
+} else {
+  initOptionsVisibilityByButtons();
 }
 
 window.setRoutingBugMode = setRoutingBugMode;
