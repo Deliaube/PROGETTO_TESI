@@ -17,6 +17,15 @@
     margin-bottom: 100px;
 }
 
+#supplyButton,
+.page-dosaggio-egregore #supplyButton {
+    margin-bottom: 60px;
+}
+
+.container-riga {
+    margin-bottom: 80px;
+}
+
 /* Media query per tablet */
 @media (max-width: 1024px) {
     .options {

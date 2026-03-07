@@ -10,7 +10,7 @@
   <title>Interazione con Commenti</title>
   
 </head> 
-<body>
+<body class="page-dosaggio-egregore">
   <header>
     <nav>
         <div class="logo">
@@ -28,24 +28,22 @@
     <div class="point" data-message="chose your words wisely" data-id="point2">★</div>
     <div class="point" data-message="poin out your impressions" data-id="point3">⬤</div>
 
-    <div class="point" data-message="give me a heads up" data-id="point4">｡˚𖦹<br>𓆜</div>
-    <div class="point" data-message="blow your mind" data-id="point5">■</div>
-    <div class="point" data-message="beg your pardon?" data-id="point6">▲</div>
-    <div class="point" data-message="beg your pardon?" data-id="point7">𓆟⋆｡˚</div>
-    <div class="point" data-message="beg your pardon?" data-id="point8">⋆｡˚<br>𓆡</div>
-    <div class="point" data-message="beg your pardon?" data-id="point9">𓆉</div>
-    <div class="point" data-message="beg your pardon?" data-id="point10">𓆛˚</div>
-    <div class="point" data-message="beg your pardon?" data-id="point11">𓇼</div>
-    <div class="point" data-message="beg your pardon?" data-id="point11">𓇼</div>
-    <div class="point" data-message="beg your pardon?" data-id="point12">𓆈</div>
-    <div class="point" data-message="beg your pardon?" data-id="point13">𓆣</div>
-    <div class="point" data-message="beg your pardon?" data-id="point14">۰࿐·˚ ༘ 𓆛 〰</div>
-    <div class="point" data-message="beg your pardon?" data-id="point15">𓆞</div>
-    <div class="point" data-message="beg your pardon?" data-id="point16">𓆝</div>
-    <div class="point" data-message="beg your pardon?" data-id="point17">𓆜</div>
-    <div class="point" data-message="beg your pardon?" data-id="point18">𓆜</div>
-    <div class="point" data-message="beg your pardon?" data-id="point19">𓆜</div>
-    <div class="point" data-message="beg your pardon?" data-id="point20">𓆜</div>
+    <div class="point" data-message="How many hours do you spend in the digital world with me? Nyanyanya!~" data-id="point6">🐾</div>
+    <div class="point" data-message="How many puchi profiles can we create? ✨" data-id="point7">🎀</div>
+    <div class="point" data-message="How many versions of yourself are you updating today? Ganbare!~" data-id="point8">🍬</div>
+    <div class="point" data-message="And if you don't log in... will you miss me a little bit? Uuuh... 🥺" data-id="point9">☁️</div>
+    <div class="point" data-message="Do you change your avatar many times a day just to stay cute? 🎀" data-id="point10">🍭</div>
+    <div class="point" data-message="How much time do you spend choosing your digital outfit? It's all so moe!~" data-id="point11">🧸</div>
+    <div class="point" data-message="Do you feel a bit sad if your avatar isn't perfect? Come on, smile! 🌸" data-id="point12">💌</div>
+    <div class="point" data-message="Have you ever deleted an old you to become even more magical? ✨" data-id="point13">⭐</div>
+    <div class="point" data-message="Is your avatar braver and more active than you? Such an energetic type! ⚡" data-id="point14">🎡</div>
+    <div class="point" data-message="Do you think about how your avatar will look before your adventure even starts? Wah!~" data-id="point15">🍓</div>
+    <div class="point" data-message="Do you chat more with your avatar than in real life? Such a chatterbox! 💬" data-id="point16">🐱</div>
+    <div class="point" data-message="Is it hard to stay invisible when you're this cute online? 💫" data-id="point17">🌙</div>
+    <div class="point" data-message="If your profile disappeared tomorrow... would you cry a lot? Don't do it, I'm here! 💧" data-id="point18">🍦</div>
+    <div class="point" data-message="Does your avatar protect you like a magic shield? Protect me too! 🛡️" data-id="point19">👼</div>
+    <div class="point" data-message="When you turn off the screen, do you feel like a part of you is still dreaming? 💤" data-id="point20">🌌</div>
+    <div class="point" data-message="Eh? What did you say? I didn't understand, sorry... Gomene!~" data-id="point21">🍵</div>
   </div>
   
   <div class="popup" id="popup">
@@ -100,7 +98,13 @@
     });
   </script>
 
-  
+
+<div id="supplyButton">
+<button id="confirmButton">Confirm</button>
+<button id="ignoreButton" onclick="Variazione('B'); Route()">Ignore</button>
+<button id="repeatButton">Repeat</button>
+</div>  
+
 <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->
 <section class="options">
   <div id="finished">
@@ -139,6 +143,8 @@ function updateSum(value) {
 
 <script src="state_model.js"></script>
 <script src="options.js"></script>
+<script src="feeling.js"></script>
+<script src="dosaggio_feeling.js"></script>
 
 <script> // Sparkle Effect on Mouse Move
     document.addEventListener('mousemove', (e) => {

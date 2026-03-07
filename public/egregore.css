@@ -476,6 +476,82 @@ nav {
     width: 30%;
     display: flex;
     justify-content: center;
+
+    position: relative; /* Fondamentale */
+    overflow: visible;
+}
+
+
+.cloud-mask {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%; /* Più larga del nastro per coprire bene */
+    height: 150px; /* Regola l'altezza della sfumatura/nuvola */
+    z-index: 10; /* Sopra la gallery */
+    pointer-events: none; /* Permette di scrollare anche se clicchi sulla nuvola */
+    
+    /* Disegno della nuvola tramite background e clip-path */
+    background: white; 
+    filter: blur(10px); /* Sfuma i bordi per renderla soffice */
+}
+
+/* Posizionamento specifico */
+.cloud-mask.top {
+    top: -20px;
+    clip-path: ellipse(50% 40% at 50% 40%);
+}
+
+.cloud-mask.bottom {
+    bottom: -20px;
+    clip-path: ellipse(50% 40% at 50% 60%);
+}
+
+.cloud.top {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -50px; /* Sovrapposizione sulla gallery */
+    z-index: 100;
+    pointer-events: none;
+
+    /* --- RESPONSIVITÀ --- */
+    width: 140%; /* Più larga del contenitore */
+    max-width: 600px;
+    height: clamp(100px, 15vh, 180px); /* Altezza dinamica ma controllata */
+    
+    /* --- SHAPE RESPONSIVE (Tuo codice adattato) --- */
+    --g: radial-gradient(50% 50%, #000 98%, #0000) no-repeat;
+    
+    /* Usiamo mask-size fissa per i cerchi così non diventano ovali */
+    -webkit-mask: 
+        var(--g) 100% 100% / 30% 60%,
+        var(--g) 70% 0    / 50% 100%,
+        var(--g) 0 100%   / 36% 68%,
+        var(--g) 27% 18%  / 26% 40%,
+        linear-gradient(#000 0 0) bottom / 67% 58% no-repeat;
+    mask: 
+        var(--g) 100% 100% / 30% 60%,
+        var(--g) 70% 0    / 50% 100%,
+        var(--g) 0 100%   / 36% 68%,
+        var(--g) 27% 18%  / 26% 40%,
+        linear-gradient(#000 0 0) bottom / 67% 58% no-repeat;
+
+    /* --- EFFETTO VAPOROSO --- */
+    /* Gradiente invece di colore solido per profondità */
+    background: linear-gradient(to bottom, 
+        white 40%, 
+        rgba(255, 255, 255, 0.8) 80%, 
+        transparent 100%);
+    
+    /* Blur sui bordi per l'effetto nuvola vera */
+    filter: blur(4px) drop-shadow(0 5px 15px rgba(0,0,0,0.05));
+}
+
+/* Fix per assicurarci che la gallery non tagli la nuvola in alto */
+.main-gallery-container {
+    overflow: visible; 
+    position: relative;
 }
 
 .gallery-wrapper {
@@ -486,6 +562,14 @@ nav {
     scrollbar-width: none;
     background: var(--hole-color);
     position: relative;
+
+   z-index: 1;
+    border-radius: 20px; /* Opzionale: arrotonda i bordi della pellicola sotto */
+}
+
+/* Nasconde scrollbar su Chrome, Safari e Edge */
+.gallery-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .film-strip {

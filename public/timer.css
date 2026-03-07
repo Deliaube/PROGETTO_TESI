@@ -1,5 +1,21 @@
 /* Timer Widget Styles */
 
+/* Cursore globale allineato a IDENTITY_QUEST */
+html,
+body {
+  cursor: url('cursor.svg') 0 0, auto;
+}
+
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.dropbtn {
+  cursor: url('cursor.svg') 0 0, pointer;
+}
+
 /* Timer container in alto a destra */
 .timer-widget {
   position: fixed;

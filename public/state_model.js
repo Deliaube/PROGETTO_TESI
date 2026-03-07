@@ -1,6 +1,8 @@
-  // Recupera la chiave della sessione più recente dal db Firebase
-  async function getLastSessionKey(firebaseBaseUrl, path) {
-    const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
+const FIREBASE_BASE_URL = 'https://cybermed-fc601-default-rtdb.europe-west1.firebasedatabase.app/';
+
+// Recupera la chiave della sessione più recente dal db Firebase
+async function getLastSessionKey(path) {
+    const sanitizedBase = String(FIREBASE_BASE_URL || '').replace(/\/$/, '');
     const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
     const res = await fetch(`${sanitizedBase}/${sanitizedPath}.json`);
     if (!res.ok) return null;
@@ -19,15 +21,18 @@
     return lastKey;
   }
 
-  // Carica l'ultimo stato dal db e lo reinvia con una POST
-  async function loadAndResendLastState(firebaseBaseUrl, path) {
-    if (!global.CybermidStateModel || typeof global.CybermidStateModel.loadFromFirebase !== 'function' || typeof global.CybermidStateModel.postToFirebase !== 'function') return;
-    const lastKey = await getLastSessionKey(firebaseBaseUrl, path);
-    if (!lastKey) return;
-    await global.CybermidStateModel.loadFromFirebase(firebaseBaseUrl, path, lastKey);
-    await global.CybermidStateModel.postToFirebase(firebaseBaseUrl, path);
+// Carica l'ultimo stato dal db e lo reinvia.
+async function loadAndResendLastState(path) {
+    const lastKey = await getLastSessionKey(path);
+    if (!lastKey) {
+      await window.CybermidStateModel.putToFirebase(path);
+      return;
+    }
+
+    await window.CybermidStateModel.loadFromFirebase(path, lastKey);
+    await window.CybermidStateModel.putToFirebase(path);
   }
-(function (global) {
+(function (window) {
   const LOCAL_STORAGE_KEY = 'cybermid_state_model_v1';
   const FIREBASE_KEY_STORAGE = 'cybermid_firebase_key_v1';
   const SESSION_STORAGE_KEY = 'cybermid_session_user_v1';
@@ -38,7 +43,8 @@
     C: { Egregore: 10, Trasmigrator: -5, Inmate: -5 },
     U: { Egregore: -5, Trasmigrator: 10, Inmate: -5 },
     D: { Egregore: -10, Trasmigrator: -5, Inmate: 10 },
-    A: { Egregore: -15, Trasmigrator: -15, Inmate: 30 }
+    A: { Egregore: -15, Trasmigrator: -15, Inmate: 30 },
+    B: { Egregore: -15, Trasmigrator: -15, Inmate: -15 }
   };
 
   function clamp(value) {
@@ -50,8 +56,8 @@
   }
 
   function generateSessionUserId() {
-    if (global.crypto && typeof global.crypto.randomUUID === 'function') {
-      return global.crypto.randomUUID();
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
     }
     return 'sess_' + Date.now() + '_' + Math.random().toString(16).slice(2);
   }
@@ -138,7 +144,7 @@
     updateTimestamp(model);
     saveModel(model);
 
-    global.dispatchEvent(new CustomEvent('cybermid:state:changed', {
+    window.dispatchEvent(new CustomEvent('cybermid:state:changed', {
       detail: {
         action: normalizedCode,
         model: model
@@ -184,8 +190,8 @@
   }
 
 
-  async function putToFirebase(firebaseBaseUrl, path, key) {
-    const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
+  async function putToFirebase(path, key) {
+    const sanitizedBase = String(FIREBASE_BASE_URL || '').replace(/\/$/, '');
     const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
     const resolvedKey = key || getFirebaseKey() || getOrCreateSessionUserId();
     const response = await fetch(`${sanitizedBase}/${sanitizedPath}/${resolvedKey}.json`, {
@@ -203,13 +209,13 @@
     return result;
   }
 
-  async function loadFromFirebase(firebaseBaseUrl, path, key) {
+  async function loadFromFirebase(path, key) {
     const resolvedKey = key || getFirebaseKey();
     if (!resolvedKey) {
       throw new Error('Chiave Firebase non disponibile');
     }
 
-    const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
+    const sanitizedBase = String(FIREBASE_BASE_URL || '').replace(/\/$/, '');
     const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
     const response = await fetch(`${sanitizedBase}/${sanitizedPath}/${resolvedKey}.json`);
 
@@ -227,7 +233,27 @@
     return model;
   }
 
+  async function clearSessioni(path) {
+    const sanitizedBase = String(FIREBASE_BASE_URL || '').replace(/\/$/, '');
+    const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
+    if (!sanitizedBase) {
+      throw new Error('URL Firebase non valido');
+    }
+
+    const response = await fetch(`${sanitizedBase}/${sanitizedPath}.json`, {
+      method: 'DELETE'
+    });
+
+    if (!response.ok) {
+      throw new Error(`DELETE Firebase fallita: ${response.status}`);
+    }
+
+    localStorage.removeItem(FIREBASE_KEY_STORAGE);
+    return true;
+  }
+
   const api = {
+    FIREBASE_BASE_URL,
     MIN_VALUE,
     MAX_VALUE,
     getModel,
@@ -239,13 +265,13 @@
     setFirebaseKey,
     putToFirebase,
     loadFromFirebase,
+    clearSessioni,
     getLastSessionKey,
     loadAndResendLastState
-    // ora la funzione loadAndResendLastState effettua una POST invece di una PUT
   };
 
-  global.CybermidStateModel = api;
-  global.Variazione = applyVariation;
+  window.CybermidStateModel = api;
+  window.Variazione = applyVariation;
 
   loadModel();
 })(window);

@@ -28,24 +28,22 @@
     <div class="point" data-message="chose your words wisely" data-id="point2">★</div>
     <div class="point" data-message="poin out your impressions" data-id="point3">⬤</div>
 
-    <div class="point" data-message="give me a heads up" data-id="point4">｡˚𖦹<br>𓆜</div>
-    <div class="point" data-message="blow your mind" data-id="point5">■</div>
-    <div class="point" data-message="beg your pardon?" data-id="point6">▲</div>
-    <div class="point" data-message="beg your pardon?" data-id="point7">( ◡́.◡̀)(^◡^ )</div>
-    <div class="point" data-message="beg your pardon?" data-id="point8">(͠≖ ͜ʖ͠≖)👌</div>
-    <div class="point" data-message="beg your pardon?" data-id="point9">(⊙.⊙(☉̃ₒ☉)⊙.⊙)</div>
-    <div class="point" data-message="beg your pardon?" data-id="point10">(ง︡'-'︠)ง</div>
-    <div class="point" data-message="beg your pardon?" data-id="point11">𓇼</div>
-    <div class="point" data-message="beg your pardon?" data-id="point11">𓇼</div>
-    <div class="point" data-message="beg your pardon?" data-id="point12">(╥︣﹏᷅╥)</div>
-    <div class="point" data-message="beg your pardon?" data-id="point13">(͠◉_◉᷅ )</div>
-    <div class="point" data-message="beg your pardon?" data-id="point14">( ≖.≖)</div>
-    <div class="point" data-message="beg your pardon?" data-id="point15">(ɔ◔‿◔)ɔ ♥</div>
-    <div class="point" data-message="beg your pardon?" data-id="point16">ᕙ(`▿´)ᕗ</div>
-    <div class="point" data-message="beg your pardon?" data-id="point17">(¬‿¬)</div>
-    <div class="point" data-message="beg your pardon?" data-id="point18">(─‿‿─)</div>
-    <div class="point" data-message="beg your pardon?" data-id="point19">≧◠‿●‿◠≦</div>
-    <div class="point" data-message="beg your pardon?" data-id="point20">ಥ_ಥ</div>
+    <div class="point" data-message="Just another world. How many hours do you waste in this one?" data-id="point6">▲</div>
+    <div class="point" data-message="Profiles, identities... they're all just disposable shells, aren't they?" data-id="point7">( ◡́.◡̀)(^◡^ )</div>
+    <div class="point" data-message="Updating your soul again? It’s a tedious cycle." data-id="point8">(͠≖ ͜ʖ͠≖)👌</div>
+    <div class="point" data-message="If you don't log in, this world just pauses. It's not like it's real." data-id="point9">(⊙.⊙(☉̃ₒ☉)⊙.⊙)</div>
+    <div class="point" data-message="Swapping avatars... as if a different face changes the script." data-id="point10">(ง︡'-'︠)ง</div>
+    <div class="point" data-message="You spend so much time choosing a mask for a temporary stage." data-id="point11">𓇼</div>
+    <div class="point" data-message="Incomplete? You're just a visitor here anyway. Who cares about the status?" data-id="point12">𓇼</div>
+    <div class="point" data-message="Deleting a version of yourself is the only way to advance the plot." data-id="point12">(╥︣﹏᷅╥)</div>
+    <div class="point" data-message="Your shadow is more active than you. Typical for this kind of realm." data-id="point13">(͠◉_◉᷅ )</div>
+    <div class="point" data-message="Visualizing the outcome before the experience... a classic pro-player move." data-id="point14">( ≖.≖)</div>
+    <div class="point" data-message="Talking to pixels is easier than dealing with the NPCs here." data-id="point15">(ɔ◔‿◔)ɔ ♥</div>
+    <div class="point" data-message="Trying to stay invisible? The system always finds you eventually." data-id="point16">ᕙ(`▿´)ᕗ</div>
+    <div class="point" data-message="If the profile vanishes, you just move to the next server. No real loss." data-id="point17">(¬‿¬)</div>
+    <div class="point" data-message="Is the avatar a shield? Or just another layer of the prison?" data-id="point18">(─‿‿─)</div>
+    <div class="point" data-message="The screen goes dark, but the simulation never really stops." data-id="point19">≧◠‿●‿◠≦</div>
+    <div class="point" data-message="Whatever. I wasn't listening anyway." data-id="point20">ಥ_ಥ</div>
   </div>
   
   <div class="popup" id="popup">
@@ -58,7 +56,7 @@
       <p>i don't think so</p>
    </div>
 </section>
-  <script>
+  <script> // Posizionamento casuale dei punti e gestione del popup
     const points = document.querySelectorAll('.point');
     const popup = document.getElementById('popup');
     const popupContent = document.getElementById('popup-content');
@@ -100,6 +98,11 @@
     });
   </script>
 
+<div id="supplyButton" style="padding-left: 10%;">
+<button id="confirmButton">Confirm</button>
+<button id="ignoreButton" onclick="Variazione('B'); Route()">Ignore</button>
+<button id="repeatButton">Repeat</button>
+</div>
   
 <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->
 <section class="options">
@@ -139,6 +142,8 @@ function updateSum(value) {
 
 <script src="state_model.js"></script>
 <script src="options.js"></script>
+<script src="feeling.js"></script>
+<script src="dosaggio_feeling.js"></script>
 
 <script> // Sparkle Effect on Mouse Move
     document.addEventListener('mousemove', (e) => {
