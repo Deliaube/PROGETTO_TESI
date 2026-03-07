@@ -1,6 +1,8 @@
-  // Recupera la chiave della sessione più recente dal db Firebase
-  async function getLastSessionKey(firebaseBaseUrl, path) {
-    const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
+const FIREBASE_BASE_URL = 'https://cybermed-fc601-default-rtdb.europe-west1.firebasedatabase.app/';
+
+// Recupera la chiave della sessione più recente dal db Firebase
+async function getLastSessionKey(path) {
+    const sanitizedBase = String(FIREBASE_BASE_URL || '').replace(/\/$/, '');
     const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
     const res = await fetch(`${sanitizedBase}/${sanitizedPath}.json`);
     if (!res.ok) return null;
@@ -19,13 +21,16 @@
     return lastKey;
   }
 
-  // Carica l'ultimo stato dal db e lo reinvia con una POST --!window.CybermidStateModel ||
-  async function loadAndResendLastState(firebaseBaseUrl, path) {
-    //if ( typeof window.CybermidStateModel.loadFromFirebase !== 'function' || typeof window.CybermidStateModel.postToFirebase !== 'function') return;
-    const lastKey = await getLastSessionKey(firebaseBaseUrl, path);
-    if (!lastKey) await window.CybermidStateModel.postToFirebase(firebaseBaseUrl, path);
-    await window.CybermidStateModel.loadFromFirebase(firebaseBaseUrl, path, lastKey);
-    await window.CybermidStateModel.postToFirebase(firebaseBaseUrl, path);
+// Carica l'ultimo stato dal db e lo reinvia.
+async function loadAndResendLastState(path) {
+    const lastKey = await getLastSessionKey(path);
+    if (!lastKey) {
+      await window.CybermidStateModel.putToFirebase(path);
+      return;
+    }
+
+    await window.CybermidStateModel.loadFromFirebase(path, lastKey);
+    await window.CybermidStateModel.putToFirebase(path);
   }
 (function (window) {
   const LOCAL_STORAGE_KEY = 'cybermid_state_model_v1';
@@ -185,8 +190,8 @@
   }
 
 
-  async function putToFirebase(firebaseBaseUrl, path, key) {
-    const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
+  async function putToFirebase(path, key) {
+    const sanitizedBase = String(FIREBASE_BASE_URL || '').replace(/\/$/, '');
     const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
     const resolvedKey = key || getFirebaseKey() || getOrCreateSessionUserId();
     const response = await fetch(`${sanitizedBase}/${sanitizedPath}/${resolvedKey}.json`, {
@@ -204,13 +209,13 @@
     return result;
   }
 
-  async function loadFromFirebase(firebaseBaseUrl, path, key) {
+  async function loadFromFirebase(path, key) {
     const resolvedKey = key || getFirebaseKey();
     if (!resolvedKey) {
       throw new Error('Chiave Firebase non disponibile');
     }
 
-    const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
+    const sanitizedBase = String(FIREBASE_BASE_URL || '').replace(/\/$/, '');
     const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
     const response = await fetch(`${sanitizedBase}/${sanitizedPath}/${resolvedKey}.json`);
 
@@ -228,13 +233,14 @@
     return model;
   }
 
-  async function clearSessioni(firebaseBaseUrl) {
-    const sanitizedBase = String(firebaseBaseUrl || '').replace(/\/$/, '');
+  async function clearSessioni(path) {
+    const sanitizedBase = String(FIREBASE_BASE_URL || '').replace(/\/$/, '');
+    const sanitizedPath = String(path || 'sessioni').replace(/^\/+|\/+$/g, '');
     if (!sanitizedBase) {
       throw new Error('URL Firebase non valido');
     }
 
-    const response = await fetch(`${sanitizedBase}/sessioni.json`, {
+    const response = await fetch(`${sanitizedBase}/${sanitizedPath}.json`, {
       method: 'DELETE'
     });
 
@@ -247,6 +253,7 @@
   }
 
   const api = {
+    FIREBASE_BASE_URL,
     MIN_VALUE,
     MAX_VALUE,
     getModel,
@@ -261,7 +268,6 @@
     clearSessioni,
     getLastSessionKey,
     loadAndResendLastState
-    // ora la funzione loadAndResendLastState effettua una POST invece di una PUT
   };
 
   window.CybermidStateModel = api;

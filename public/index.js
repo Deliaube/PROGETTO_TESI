@@ -17,13 +17,13 @@ const firebaseConfig = {
 
   apiKey: "your_api_key",
 
-  authDomain: "test-universitario.firebaseapp.com",
+  authDomain: "cybermed-fc601.firebaseapp.com",
 
-  databaseURL: "https://test-universitario-default-rtdb.europe-west1.firebasedatabase.app/",
+  databaseURL: "https://cybermed-fc601-default-rtdb.europe-west1.firebasedatabase.app/",
 
-  projectId: "test-universitario",
+  projectId: "cybermed-fc601",
 
-  storageBucket: "test-universitario.firebasestorage.app",
+  storageBucket: "cybermed-fc601.appspot.com",
 
   messagingSenderId: "411918008907",
 

@@ -1,5 +1,13 @@
 {
   "rules": {
+    "feeling": {
+      ".read": true,
+      ".write": false
+    },
+    "sessioni": {
+      ".read": true,
+      ".write": false
+    },
     ".read": false,
     ".write": false
   }

@@ -845,7 +845,7 @@ const oldVariazione = window.Variazione;
 window.Variazione = function(code) {
   const result = oldVariazione(code);
     if (window.CybermidStateModel && typeof window.CybermidStateModel.putToFirebase === 'function') {
-      window.CybermidStateModel.putToFirebase('https://test-universitario-default-rtdb.europe-west1.firebasedatabase.app/', 'sessioni').catch(()=>{});
+      window.CybermidStateModel.putToFirebase('sessioni').catch(()=>{});
     }
   return result;
 };
