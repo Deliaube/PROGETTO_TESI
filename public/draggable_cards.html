@@ -148,6 +148,8 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
 </div>
 
   <script src="state_model.js"></script>
+  <script src="feeling.js"></script>
+  <script src="cards_action_popup.js"></script>
   <script src="cards_sync.js"></script>
   <script src="draggable_cards_counter_manager.js"></script>
   <script>
@@ -176,6 +178,12 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
     function applyVariazioneSafe(code) {
       if (typeof window.Variazione === 'function') {
         window.Variazione(code);
+      }
+    }
+
+    function showCardActionPopup(action) {
+      if (window.CybermidCardsActionPopup && typeof window.CybermidCardsActionPopup.show === 'function') {
+        window.CybermidCardsActionPopup.show(action);
       }
     }
 
@@ -325,6 +333,11 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
 
     function deleteCard(card) {
       const state = getCardStateFromElem(card);
+      if (cardCounterManager && typeof cardCounterManager.deleteCardFromDb === 'function') {
+        Promise.resolve(cardCounterManager.deleteCardFromDb(state.id)).catch(function (err) {
+          console.warn('[cards] delete db failed:', err);
+        });
+      }
       state.deletedAt = Date.now();
       deletedCards.push(state);
       saveDeletedState(deletedCards);
@@ -333,6 +346,7 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
       saveAllCardsState();
       refreshTrashList();
       updateCardStats();
+      showCardActionPopup('cancella');
     }
 
     function createCardFromState(obj) {
@@ -499,6 +513,7 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
         if (Number.isNaN(last) || (now - last) > 2000) {
           incrementState('transmigrator', 1);
           content.dataset.lastEditAt = String(now);
+          showCardActionPopup('modifica');
         }
 
         scheduleCardStateSave();
@@ -726,6 +741,7 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
         persistCardCounter();
         saveAllCardsState();
         updateCardStats();
+        showCardActionPopup('crea');
       });
     }
 
@@ -760,6 +776,7 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
           refreshTrashList();
           updateCardStats();
           console.log('All cards deleted and trash cleared');
+          showCardActionPopup('cancella tutto');
         }
       });
       console.log('Cleaner button initialized');

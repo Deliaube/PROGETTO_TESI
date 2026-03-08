@@ -120,4 +120,24 @@
 
 /* Trash panel */
 
+/* popup for card actions */
+.popup-dark {
+  display: none;
+  position: absolute;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 1001;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup-dark p {
+  margin: 0;
+  color: #ffffff;
+}
+
 
