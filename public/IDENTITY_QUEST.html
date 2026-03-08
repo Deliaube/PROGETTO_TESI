@@ -143,14 +143,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 <script src="state_model.js"></script>
+<script src="cards_sync.js"></script>
 <script src="options.js"></script>
 <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Richiama la funzione pulita dallo state_model.js
-  window.CybermidStateModel.loadAndResendLastState(
-    'sessioni'
-  );
+document.addEventListener('DOMContentLoaded', async function() {
+  const stateModel = window.CybermidStateModel;
+  if (!stateModel) {
+    return;
+  }
+
+  try {
+    await stateModel.loadAndResendLastState('sessioni');
+  } catch (error) {
+    console.error('[Cybermid] Failed to sync initial state from Firebase:', error);
+  }
+
+  if (typeof stateModel.captureInitialSnapshot === 'function') {
+    const snapshotResult = stateModel.captureInitialSnapshot();
+    if (snapshotResult && snapshotResult.created) {
+      console.log('[Cybermid] Initial snapshot captured.');
+    }
+  }
+
+  if (
+    window.CybermidCardsSync &&
+    typeof window.CybermidCardsSync.preloadLatestCardsToCache === 'function'
+  ) {
+    try {
+      const cachedCards = await window.CybermidCardsSync.preloadLatestCardsToCache(10);
+      console.log('[Cybermid] Cards cached for draggable page:', cachedCards.length);
+    } catch (error) {
+      console.error('[Cybermid] Failed to cache cards from Firebase:', error);
+    }
+  }
 });
 </script>
 </html>

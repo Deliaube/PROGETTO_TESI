@@ -10,11 +10,6 @@
     <script src="state_model.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            if (window.CybermidStateModel && typeof window.CybermidStateModel.getModel === "function") {
-                const initializedModel = window.CybermidStateModel.getModel();
-                console.log("[Cybermid] Stato inizializzato:", initializedModel);
-            }
-
             const confirmAccess = () => {
                 const userConfirmed = confirm("Do you think you can access the homepage?");
                 if (!userConfirmed) {
@@ -24,11 +19,19 @@
                 return true;
             };
 
-            document.getElementById("homepage-link").addEventListener("click", function(event) {
-                if (!confirmAccess()) {
-                    event.preventDefault();
-                }
-            });
+            const homepageLink = document.getElementById("homepage-link");
+            if (homepageLink) {
+                homepageLink.addEventListener("click", function(event) {
+                    if (!confirmAccess()) {
+                        event.preventDefault();
+                    }
+                });
+            }
+
+            if (window.CybermidStateModel && typeof window.CybermidStateModel.getModel === "function") {
+                const initializedModel = window.CybermidStateModel.getModel();
+                console.log("[Cybermid] Stato inizializzato:", initializedModel);
+            }
         });
     </script>
 </head>

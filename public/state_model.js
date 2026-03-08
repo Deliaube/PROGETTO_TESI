@@ -36,6 +36,10 @@ async function loadAndResendLastState(path) {
   const LOCAL_STORAGE_KEY = 'cybermid_state_model_v1';
   const FIREBASE_KEY_STORAGE = 'cybermid_firebase_key_v1';
   const SESSION_STORAGE_KEY = 'cybermid_session_user_v1';
+  const INITIAL_SNAPSHOT_STORAGE_KEY = 'cybermid_initial_snapshot_v1';
+  const STATE_CACHE_NAME = 'cybermid_state_cache_v1';
+  const STATE_CACHE_ENTRY_URL = '/__cybermid_state_cache__.json';
+  const INITIAL_SNAPSHOT_CACHE_ENTRY_URL = '/__cybermid_initial_snapshot_cache__.json';
   const MIN_VALUE = 0;
   const MAX_VALUE = 100;
 
@@ -102,8 +106,180 @@ async function loadAndResendLastState(path) {
     };
   }
 
+  function isCacheStorageAvailable() {
+    return typeof window !== 'undefined' &&
+      typeof window.caches !== 'undefined' &&
+      typeof window.caches.open === 'function';
+  }
+
+  async function saveModelToCache(model) {
+    if (!isCacheStorageAvailable()) {
+      return false;
+    }
+
+    try {
+      const cache = await window.caches.open(STATE_CACHE_NAME);
+      const response = new Response(JSON.stringify(model), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      await cache.put(STATE_CACHE_ENTRY_URL, response);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async function loadModelFromCacheStorage() {
+    if (!isCacheStorageAvailable()) {
+      return null;
+    }
+
+    try {
+      const cache = await window.caches.open(STATE_CACHE_NAME);
+      const response = await cache.match(STATE_CACHE_ENTRY_URL);
+      if (!response) {
+        return null;
+      }
+
+      const cachedModel = await response.json();
+      return normalizeModel(cachedModel);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async function saveInitialSnapshotToCache(snapshot) {
+    if (!isCacheStorageAvailable()) {
+      return false;
+    }
+
+    try {
+      const cache = await window.caches.open(STATE_CACHE_NAME);
+      const response = new Response(JSON.stringify(snapshot), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      await cache.put(INITIAL_SNAPSHOT_CACHE_ENTRY_URL, response);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async function loadInitialSnapshotFromCacheStorage() {
+    if (!isCacheStorageAvailable()) {
+      return null;
+    }
+
+    try {
+      const cache = await window.caches.open(STATE_CACHE_NAME);
+      const response = await cache.match(INITIAL_SNAPSHOT_CACHE_ENTRY_URL);
+      if (!response) {
+        return null;
+      }
+
+      const cachedSnapshot = await response.json();
+      return normalizeModel(cachedSnapshot);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function saveInitialSnapshot(snapshot) {
+    const normalizedSnapshot = normalizeModel(snapshot);
+    localStorage.setItem(INITIAL_SNAPSHOT_STORAGE_KEY, JSON.stringify(normalizedSnapshot));
+    saveInitialSnapshotToCache(normalizedSnapshot);
+    return normalizedSnapshot;
+  }
+
+  function getInitialSnapshot() {
+    try {
+      const raw = localStorage.getItem(INITIAL_SNAPSHOT_STORAGE_KEY);
+      if (!raw) {
+        return null;
+      }
+
+      const parsed = JSON.parse(raw);
+      const normalized = normalizeModel(parsed);
+      localStorage.setItem(INITIAL_SNAPSHOT_STORAGE_KEY, JSON.stringify(normalized));
+      return normalized;
+    } catch (error) {
+      localStorage.removeItem(INITIAL_SNAPSHOT_STORAGE_KEY);
+      return null;
+    }
+  }
+
+  function captureInitialSnapshot(options) {
+    const shouldOverwrite = !!(options && options.overwrite === true);
+    const existingSnapshot = getInitialSnapshot();
+
+    if (existingSnapshot && !shouldOverwrite) {
+      return {
+        created: false,
+        snapshot: existingSnapshot
+      };
+    }
+
+    const currentModel = getModel();
+    const snapshot = saveInitialSnapshot(currentModel);
+
+    return {
+      created: true,
+      snapshot: snapshot
+    };
+  }
+
+  function clearInitialSnapshot() {
+    localStorage.removeItem(INITIAL_SNAPSHOT_STORAGE_KEY);
+
+    if (isCacheStorageAvailable()) {
+      window.caches
+        .open(STATE_CACHE_NAME)
+        .then((cache) => cache.delete(INITIAL_SNAPSHOT_CACHE_ENTRY_URL))
+        .catch(() => {});
+    }
+
+    return true;
+  }
+
+  function buildStateDelta(initialState, currentState) {
+    return {
+      Egregore: (Number(currentState.Egregore) || 0) - (Number(initialState.Egregore) || 0),
+      Trasmigrator: (Number(currentState.Trasmigrator) || 0) - (Number(initialState.Trasmigrator) || 0),
+      Inmate: (Number(currentState.Inmate) || 0) - (Number(initialState.Inmate) || 0)
+    };
+  }
+
+  function computeDeltaFromInitialSnapshot(currentModel) {
+    const initialSnapshot = getInitialSnapshot();
+    const currentSnapshot = normalizeModel(currentModel || getModel());
+
+    if (!initialSnapshot) {
+      return {
+        ok: false,
+        reason: 'INITIAL_SNAPSHOT_MISSING',
+        message: 'Initial snapshot is not available.',
+        initial: null,
+        current: currentSnapshot,
+        delta: null,
+        computedAt: new Date().toISOString()
+      };
+    }
+
+    const initialState = initialSnapshot.Key && initialSnapshot.Key.Stato ? initialSnapshot.Key.Stato : {};
+    const currentState = currentSnapshot.Key && currentSnapshot.Key.Stato ? currentSnapshot.Key.Stato : {};
+
+    return {
+      ok: true,
+      initial: initialSnapshot,
+      current: currentSnapshot,
+      delta: buildStateDelta(initialState, currentState),
+      computedAt: new Date().toISOString()
+    };
+  }
+
   function saveModel(model) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(model));
+    saveModelToCache(model);
   }
 
   function loadModel() {
@@ -261,6 +437,12 @@ async function loadAndResendLastState(path) {
     Variazione: applyVariation,
     buildPayload,
     buildEnvelope,
+    loadModelFromCacheStorage,
+    loadInitialSnapshotFromCacheStorage,
+    captureInitialSnapshot,
+    getInitialSnapshot,
+    clearInitialSnapshot,
+    computeDeltaFromInitialSnapshot,
     getFirebaseKey,
     setFirebaseKey,
     putToFirebase,

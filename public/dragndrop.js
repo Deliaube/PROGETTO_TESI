@@ -50,6 +50,25 @@ images.forEach(image => {
         dropAreas.forEach((area) => area.classList.remove('dragover'));
     };
 
+    const emitDropAreaEvent = (dropArea, draggedImage, inputMode) => {
+        if (!dropArea || !draggedImage || typeof window.CustomEvent !== 'function') {
+            return;
+        }
+
+        const idMatch = /^dropArea(\d+)$/.exec(String(dropArea.id || ''));
+        const dropAreaIndex = idMatch ? Number(idMatch[1]) : null;
+
+        window.dispatchEvent(new CustomEvent('cybermid:droparea:dropped', {
+            detail: {
+                dropAreaId: String(dropArea.id || ''),
+                dropAreaIndex: dropAreaIndex,
+                imageId: String(draggedImage.id || ''),
+                inputMode: String(inputMode || 'unknown'),
+                droppedAt: new Date().toISOString()
+            }
+        }));
+    };
+
     // Drag and drop desktop
     dropAreas.forEach((dropArea) => {
         dropArea.addEventListener('dragover', (e) => {
@@ -68,8 +87,11 @@ images.forEach(image => {
             const imageId = e.dataTransfer.getData('text');
             const draggedImage = document.getElementById(imageId);
 
-            if (draggedImage && !dropArea.contains(draggedImage)) {
-                dropArea.appendChild(draggedImage);
+            if (draggedImage) {
+                if (!dropArea.contains(draggedImage)) {
+                    dropArea.appendChild(draggedImage);
+                }
+                emitDropAreaEvent(dropArea, draggedImage, 'mouse');
             }
         });
     });
@@ -186,8 +208,11 @@ images.forEach(image => {
             }
         }
 
-        if (activeDropArea && !activeDropArea.contains(activeImage)) {
-            activeDropArea.appendChild(activeImage);
+        if (activeDropArea && activeImage) {
+            if (!activeDropArea.contains(activeImage)) {
+                activeDropArea.appendChild(activeImage);
+            }
+            emitDropAreaEvent(activeDropArea, activeImage, 'touch');
         }
 
         clearDropHighlight();

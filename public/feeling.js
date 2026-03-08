@@ -162,10 +162,10 @@
 
   function resolveLevelFromValue(value) {
     // Bucket scelti su range [0..100] in 5 livelli.
-    if (value <= 20) return 1;
-    if (value <= 40) return 2;
-    if (value <= 60) return 3;
-    if (value <= 80) return 4;
+    if (value <= 60) return 1;
+    if (value <= 70) return 2;
+    if (value <= 80) return 3;
+    if (value <= 90) return 4;
     return 5;
   }
 

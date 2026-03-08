@@ -147,6 +147,7 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
   </div>
 </div>
 
+  <script src="draggable_cards_counter_manager.js"></script>
   <!---script drag n drop__________________________________________________________________-->
   <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -184,6 +185,27 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
     const STORAGE_KEY = 'draggableCards_state_v1';
     const DELETED_KEY = 'draggableCards_deleted_v1';
     const COUNTER_KEY = 'draggableCards_counter_v1';
+    const cardCounterManager =
+      window.CybermidCardsCounterManager &&
+      typeof window.CybermidCardsCounterManager.createCounterManager === 'function'
+        ? window.CybermidCardsCounterManager.createCounterManager({
+            counterKey: COUNTER_KEY,
+            initialCounter: localStorage.getItem(COUNTER_KEY)
+          })
+        : null;
+
+    function safeToInt(value, fallback) {
+      if (cardCounterManager && typeof cardCounterManager.toSafeNonNegativeInt === 'function') {
+        return cardCounterManager.toSafeNonNegativeInt(value, fallback);
+      }
+
+      const numeric = parseInt(String(value == null ? '' : value), 10);
+      if (!Number.isFinite(numeric) || numeric < 0) {
+        return fallback;
+      }
+
+      return numeric;
+    }
 
     // Reset localStorage if corrupted (check for URL param ?reset=1)
     if (window.location.search.includes('reset=1')) {
@@ -215,7 +237,7 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
     function updateCardStats() {
       const currentCount = document.querySelectorAll('.draggable').length;
       const deletedCount = deletedCards.length;
-      const totalCreated = parseInt(localStorage.getItem(COUNTER_KEY) || '0');
+      const totalCreated = safeToInt(localStorage.getItem(COUNTER_KEY), 0);
       
       document.getElementById('totalCreated').textContent = totalCreated;
       document.getElementById('currentCards').textContent = currentCount;
@@ -515,7 +537,37 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
 
     // INITIALIZATION
     let saved = loadAllCardsState();
-    let cardCounter = parseInt(localStorage.getItem(COUNTER_KEY) || '0');
+    let cardCounter = cardCounterManager ? cardCounterManager.get() : safeToInt(localStorage.getItem(COUNTER_KEY), 0);
+
+    function syncCardCounterFromId(cardId) {
+      if (cardCounterManager && typeof cardCounterManager.syncFromId === 'function') {
+        cardCounter = cardCounterManager.syncFromId(cardId);
+        return cardCounter;
+      }
+
+      return cardCounter;
+    }
+
+    function persistCardCounter() {
+      if (cardCounterManager && typeof cardCounterManager.persist === 'function') {
+        cardCounter = cardCounterManager.persist();
+        return cardCounter;
+      }
+
+      localStorage.setItem(COUNTER_KEY, String(cardCounter));
+      return cardCounter;
+    }
+
+    function buildNextUniqueCardId() {
+      if (cardCounterManager && typeof cardCounterManager.nextUniqueId === 'function') {
+        const nextId = cardCounterManager.nextUniqueId('.draggable');
+        cardCounter = cardCounterManager.get();
+        return nextId;
+      }
+
+      cardCounter = Math.max(0, safeToInt(cardCounter, 0)) + 1;
+      return `card-${cardCounter}`;
+    }
 
     if (saved && saved.length) {
       // clear existing and load saved
@@ -528,30 +580,43 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
         dragElement(c);
         makeResizable(c);
         // Update cardCounter based on loaded card IDs
-        const cardNum = parseInt((obj.id||'card-0').split('-').pop()||0);
-        cardCounter = Math.max(cardCounter, cardNum);
+        syncCardCounterFromId(obj.id);
       });
       // Save updated counter
-      localStorage.setItem(COUNTER_KEY, String(cardCounter));
+      persistCardCounter();
       console.log('Loaded saved cards:', saved.length);
     } else {
       // no saved state: normalize IDs and save initial DOM
       const existing = Array.from(document.querySelectorAll('.draggable'));
-      existing.forEach((card, idx) => {
-        if (!card.id) card.id = `card-${idx+1}`;
-        cardCounter = Math.max(cardCounter, parseInt((card.id||'card-0').split('-').pop()||0));
+      if (cardCounterManager && typeof cardCounterManager.normalizeSeedIds === 'function') {
+        cardCounterManager.normalizeSeedIds(existing);
+        cardCounter = cardCounterManager.get();
+      } else {
+        existing.forEach((card, idx) => {
+          if (!card.id) {
+            card.id = `card-${idx + 1}`;
+          }
+        });
+      }
+
+      existing.forEach((card) => {
+        syncCardCounterFromId(card.id);
         ensureContentElem(card);
         dragElement(card);
         makeResizable(card);
       });
-      localStorage.setItem(COUNTER_KEY, String(cardCounter));
+      persistCardCounter();
       saveAllCardsState();
     }
 
     // Track card count for unique ids
     const currentCardCount = document.querySelectorAll('.draggable').length;
-    cardCounter = Math.max(cardCounter, currentCardCount);
-    let nextCreateIndex = parseInt(localStorage.getItem('draggableCards_nextCreateIndex_v1') || String(cardCounter)) || cardCounter;
+    cardCounter = Math.max(safeToInt(cardCounter, 0), currentCardCount);
+    persistCardCounter();
+    let nextCreateIndex = safeToInt(
+      localStorage.getItem('draggableCards_nextCreateIndex_v1'),
+      cardCounter
+    );
 
     // Initialize stats
     updateCardStats();
@@ -578,12 +643,11 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
 
     if (createBtn) {
       createBtn.addEventListener('click', () => {
-        cardCounter++;
         const sel = colorPalette && colorPalette.querySelector('.color-sphere.selected');
         const chosenColor = sel ? sel.dataset.color : 'yellow';
         const newCard = document.createElement('div');
         newCard.className = 'draggable';
-        newCard.id = `card-${cardCounter}`;
+        newCard.id = buildNextUniqueCardId();
         newCard.style.zIndex = 999;
         newCard.innerHTML = `
           <div class="draggable-header"></div>
@@ -615,7 +679,7 @@ Uncontrolled multiplication of its likeness or messages taken out of context.   
         const content = newCard.querySelector('.card-content');
         if (content) { content.focus(); }
         // save
-        localStorage.setItem(COUNTER_KEY, String(cardCounter));
+        persistCardCounter();
         saveAllCardsState();
         updateCardStats();
       });

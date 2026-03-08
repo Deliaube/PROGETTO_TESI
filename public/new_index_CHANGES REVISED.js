@@ -84,6 +84,7 @@ function updateImageBasedOnSum() {
 
 const ROUTING_BUG_FLAG_KEY = 'cybermid_route_bug_enabled_v1';
 const STATE_MODEL_STORAGE_KEY = 'cybermid_state_model_v1';
+const LAST_DELTA_STORAGE_KEY = 'cybermid_last_delta_v1';
 
 const ROUTE_MAP = {
   up: {
@@ -161,7 +162,64 @@ function routeTriangleByState(direction) {
   window.location.href = targetPage;
 }
 
+function formatSignedNumber(value) {
+  const numeric = Number(value) || 0;
+  if (numeric > 0) {
+    return '+' + numeric;
+  }
+  return String(numeric);
+}
+
+function renderAvatarDeltaStatus(message, isError) {
+  const statusEl = document.getElementById('avatar-delta-status');
+  if (statusEl) {
+    statusEl.textContent = message;
+    statusEl.style.color = isError ? '#b00020' : '#155724';
+    return;
+  }
+
+  alert(message);
+}
+
+function handleAvatarDeltaClick(context) {
+  if (!window.CybermidStateModel || typeof window.CybermidStateModel.computeDeltaFromInitialSnapshot !== 'function') {
+    renderAvatarDeltaStatus('Delta function unavailable: state model is not ready.', true);
+    return null;
+  }
+
+  const result = window.CybermidStateModel.computeDeltaFromInitialSnapshot();
+  if (!result || !result.ok || !result.delta) {
+    renderAvatarDeltaStatus('Initial snapshot missing: unable to calculate delta.', true);
+    return result || null;
+  }
+
+  const payload = {
+    context: context || 'unknown',
+    computedAt: result.computedAt,
+    delta: result.delta,
+    initial: result.initial,
+    current: result.current
+  };
+
+  localStorage.setItem(LAST_DELTA_STORAGE_KEY, JSON.stringify(payload));
+
+  const delta = result.delta;
+  renderAvatarDeltaStatus(
+    'Delta computed. Egregore: ' + formatSignedNumber(delta.Egregore) +
+      ', Trasmigrator: ' + formatSignedNumber(delta.Trasmigrator) +
+      ', Inmate: ' + formatSignedNumber(delta.Inmate),
+    false
+  );
+
+  window.dispatchEvent(new CustomEvent('cybermid:state:delta:computed', {
+    detail: payload
+  }));
+
+  return payload;
+}
+
 window.setRoutingBugMode = setRoutingBugMode;
 window.isRoutingBugModeEnabled = isRoutingBugModeEnabled;
 window.resolveRouteByState = resolveRouteByState;
 window.routeTriangleByState = routeTriangleByState;
+window.handleAvatarDeltaClick = handleAvatarDeltaClick;
