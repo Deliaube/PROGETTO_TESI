@@ -6,6 +6,8 @@
     <title>avvertenze</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="timer.css">
+    <link rel="stylesheet" href="options.css">
+    <link rel="stylesheet" href="new_index_CHANGES REVISED.css">
     <!-- LOAD Tone.js from unpkg -->
 		<script src="https://unpkg.com/tone"></script>
 		<script>
@@ -18,15 +20,80 @@
 		</script>
 </head>
 <body>
-    <header>
-        <h1>avvertenze</h1>
-    </header>
+   
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="new_index_CHANGES REVISED.html">📌</a>
+        </div>
+        <div class="title" >
+            <h1>CYBERMED_</h1>
+        </div>
 
-    <main>
+
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">🔗</button>
+          <div id="myDropdown" class="dropdown-content">
+            <button onclick="resetChoices()" class="btn default reset">✨ Reset</button>
+            <span class="tooltip-text1">Caution, rebooting will erase MY memory</span>
+          </div>
+        </div>
+
+
+    </nav>
+</header>
+
+
+<section class="container-corpo">
+  <div class="text">
+    <p> In this site you can find me, so that i'll find you</p>
+    <br> <p>look</p>
+    <p>Here you can hear my thump from the inside of the code  </p>
+  </div>
+
+
+   <main>
         <h1>TUMPH</h1>
 		<button onclick="playNote()">Click me to play note!</button>
     </main>
-    <a href="new_index_CHANGES.html" class="go-to-homepage">Homepage</a>
+
+<!--immagini___________________________________________________________-->
+
+  <div class="immagine">
+      <div class="image-container" > 
+        <a href="new_index_CHANGES REVISED.html">   
+            <img src="images/heart.png" id ="placeholder" alt="Placeholder Image"  class="rotate custom.image floating-img img-responsive">
+        </a>
+        </div>
+      <span class="tooltip">Origin Point?</span>
+  </div>
+
+
+<!--bottoni___________________________________________________________-->
+
+  <div class="button-container">
+
+    <!-- Pulsante 1: Controindicazioni -->
+    <button class="btn default" onclick="window.location.href='controindicazioni.html'">
+        <img src="bottoni/Polygon 4.svg" alt="Controindicazioni" style="width: 100px; height: 50px;">
+    </button>
+
+    <!-- Pulsante 2: Dosaggio -->
+    <button class="btn default" onclick="window.location.href='dosaggio.html'">
+        <img src="bottoni/Polygon 3.svg" alt="Dosaggio" style="width: 100px; height: 50px;">
+    </button>
+
+    <!-- Pulsante 3: Effetti Collaterali -->
+    <button class="btn default" onclick="window.location.href='draggable_cards.html'">
+        <img src="bottoni/Polygon 2.svg" alt="Effetti Collaterali" style="width: 100px; height: 50px;">
+    </button>
+
+</div>
+ 
+</section>
+
+
+  
 
 
     <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
@@ -56,6 +123,18 @@
         }
     </script>
     <script src="timer.js"></script>
+
+ <footer>
+          <p class="marquee">Delia Scaccianoce - 2025 Beware of any infections ----This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data 
+           ---- This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data
+          </p>
+        </footer>
+
+<!--dove avviene il cambio immagine e la selezione immagine-->
+      <script src="new_index_CHANGES REVISED.js"></script>
+      <!-- Timer Scripts -->
+      <script src="timer.js"></script>
+
 
 </body>
 </html>
