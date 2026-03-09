@@ -94,6 +94,13 @@
       return list;
     }
 
+    function deleteCardFromDb(cardId) {
+      if (window.CybermidCardsSync && typeof window.CybermidCardsSync.deleteCardForCurrentUser === 'function') {
+        return window.CybermidCardsSync.deleteCardForCurrentUser(cardId);
+      }
+      return false;
+    }
+
     return {
       get: get,
       set: set,
@@ -101,7 +108,8 @@
       persist: persist,
       nextUniqueId: nextUniqueId,
       normalizeSeedIds: normalizeSeedIds,
-      toSafeNonNegativeInt: toSafeNonNegativeInt
+      toSafeNonNegativeInt: toSafeNonNegativeInt,
+      deleteCardFromDb: deleteCardFromDb
     };
   }
 

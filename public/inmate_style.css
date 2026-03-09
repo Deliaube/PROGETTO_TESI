@@ -296,7 +296,7 @@ footer {
 .page-cards #cardContainer {
     position: relative; 
     width: 100%;
-    min-height: 80vh;
+    min-height: 80%;
     border: 2px solid #6ee61e;      /* Bordo Inmate */
     overflow: hidden;
     padding: 10px;

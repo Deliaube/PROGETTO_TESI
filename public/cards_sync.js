@@ -417,6 +417,15 @@
     return true;
   }
 
+  async function deleteCardForCurrentUser(cardId) {
+    const userId = getCurrentUserId();
+    if (!userId) {
+      return false;
+    }
+
+    return deleteCardForUser(userId, cardId);
+  }
+
   async function syncFromLocalStateNow() {
     const userId = getCurrentUserId();
     if (!userId) {
@@ -548,6 +557,7 @@
     enableDraggableCardsRealtimeSync: enableDraggableCardsRealtimeSync,
     syncFromLocalStateNow: syncFromLocalStateNow,
     deleteAllCardsForCurrentUser: deleteAllCardsForCurrentUser,
+    deleteCardForCurrentUser: deleteCardForCurrentUser,
     getCurrentUserId: getCurrentUserId,
     keys: {
       cache: LOCAL_CACHE_KEY,
