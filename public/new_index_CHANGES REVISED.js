@@ -70,7 +70,7 @@ function updateImageBasedOnSum() {
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
     } else if (totalSum.includes('A') && totalSum.includes('B') && totalSum.includes('C')) {
-      placeholder.src = 'images/doubleface.gif';
+      placeholder.src = 'images/img neutrale/neutral pfp 1.png';
       message.textContent = 'Tutte le opzioni sono state selezionate!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
