@@ -143,26 +143,10 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    display: block;
-  margin-left: auto;
-  margin-right: auto;
+
+  
 }
 
-/*
-.rotate {
-    animation: rotation 8s infinite linear;
-  }
-  
-  @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(359deg);
-    }
-  }
-  */
   
   .image-container-homepage img {
     max-width: 100%;
@@ -179,6 +163,7 @@ nav {
     border-radius: 50%;
    
     cursor: pointer;
+   
     
 }
 
@@ -468,3 +453,4 @@ footer {
   display: block;      /* Elimina spazi vuoti indesiderati sotto l'immagine */
   margin: 10px auto;  /* Centra l'immagine se il contenitore è più largo */
 }
+

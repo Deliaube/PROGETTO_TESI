@@ -50,12 +50,12 @@ function updateImageBasedOnSum() {
   
     // Controllo per le combinazioni - cambia immagini con compatibili 
     if (totalSum === 'AAA') {
-      placeholder.src = 'images/treeecourse.gif';
+      placeholder.src = 'images/img neutrale/neutral pfp 1.png';
       message.textContent = 'Combinazione AAA scelta!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
     } else if (totalSum === 'ABC') {
-      placeholder.src = 'images/closet.png';
+      placeholder.src = 'images/img neutrale/neutral pfp 2.png';
       message.textContent = 'Combinazione ABC scelta!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
