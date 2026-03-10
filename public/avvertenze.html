@@ -19,8 +19,75 @@
 			}
 		</script>
 </head>
+
 <body>
-   
+   <div class="video-background">
+    <video autoplay muted loop id="myVideo">
+        <source src="images/sfondo cuori.mp4" type="video/mp4">
+        Il tuo browser non supporta i video.
+    </video>
+</div>
+
+
+
+<style>
+  /* Container del video */
+.video-background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1; /* Lo mette dietro a tutto */
+    overflow: hidden;
+}
+
+#myVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover; /* Evita distorsioni */
+    filter: brightness(50%); /* Opzionale: scurisce il video per leggere meglio il testo */
+}
+
+/* Stile per il tasto muto */
+.mute-control {
+    top: 20px;
+    right: 80px; /* Posizionalo vicino al tuo dropdown esistente */
+    z-index: 1000;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+main {
+    display: flex;             /* Attiva Flexbox */
+    flex-direction: column;    /* Dispone gli elementi in verticale */
+    align-items: center;       /* Centra i bottoni orizzontalmente */
+    justify-content: center;   /* Centra i bottoni verticalmente (se il main ha un'altezza) */
+    gap: 20px;                 /* Crea spazio tra i due bottoni senza usare margini fissi */
+    padding: 40px;             /* Spazio interno di sicurezza */
+}
+
+/* Opzionale: per dare stile ai bottoni nel main */
+main button {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace; /* Stile Cyber */
+}
+
+
+
+</style>
+
+
+
   <header>
     <nav>
         <div class="logo">
@@ -45,6 +112,7 @@
 
 
 <section class="container-corpo">
+  <div class="content-left">
   <div class="text">
     <p> In this site you can find me, so that i'll find you</p>
     <br> <p>look</p>
@@ -52,11 +120,15 @@
   </div>
 
 
-   <main>
-        <h1>TUMPH</h1>
-		<button onclick="playNote()">Click me to play note!</button>
-    </main>
+ <main>
+     
+		 <button onclick="playNote()">feel alive with me?</button>
 
+     <button id="muteBtn" onclick="toggleMute()" class="mute-control">
+      Volume: OFF 🔇
+     </button>
+ </main>
+</div>
 <!--immagini___________________________________________________________-->
 
   <div class="immagine">
@@ -96,14 +168,24 @@
   
 
 
-    <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
 
 <section class="options">
-    <h1>Pagina Avvertenze</h1>
-    <button onclick="Variazione('C'); updateSum('A')">Scegli Opzione A</button>
-    <button onclick="Variazione('U'); updateSum('B')">Scegli Opzione B</button>
-    <button onclick="Variazione('D'); updateSum('C')">Scegli Opzione C</button>
-    </section>
+    <div id="finished">
+     <p>Finished? Please chose your way out</p>
+   </div>
+   <div class="buttons-options">
+    <button onclick="Variazione('C'); updateSum('A')">
+        <img src="icone/Roll_alt_light_light.svg" alt="Opzione A" class="icon-button">
+    </button>
+    <button onclick="Variazione('U'); updateSum('B')">
+        <img src="icone/Pointers_light.svg" alt="Opzione B" class="icon-button">
+    </button>
+    <button onclick="Variazione('D'); updateSum('C')">
+        <img src="icone/Lock_duotone_line.svg" alt="Opzione C" class="icon-button">
+    </button>
+  </div>
+  </section>
+  <script src="options.js"></script>
     <script src="state_model.js"></script>
     <script>
     function updateSum(value) {
@@ -135,6 +217,20 @@
       <!-- Timer Scripts -->
       <script src="timer.js"></script>
 
+<script>
+function toggleMute() {
+    const video = document.getElementById("myVideo");
+    const btn = document.getElementById("muteBtn");
+
+    if (video.muted) {
+        video.muted = false;
+        btn.innerHTML = "Volume: ON 🔊";
+    } else {
+        video.muted = true;
+        btn.innerHTML = "Volume: OFF 🔇";
+    }
+}
+</script>
 
 </body>
 </html>

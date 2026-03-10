@@ -65,7 +65,7 @@ function updateImageBasedOnSum() {
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
     }else if (totalSum === 'CCC') { 
-      placeholder.src = 'images/doubleface.gif';
+      placeholder.src = 'images/img neutrale/weblogo.svg';
       message.textContent = 'Combinazione CCC scelta!';
       placeholder.style.width = '300px';
       placeholder.style.height = 'auto';
