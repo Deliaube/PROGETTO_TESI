@@ -40,47 +40,111 @@ function resetChoices() {
   }
   
 /*UPDATE IMAGE BASED ON SUM*/
+const TOTAL_SUM_STORAGE_KEY = 'totalSum';
+const SLOT_COUNT = 3;
+const VALID_CHOICES = new Set(['A', 'B', 'C']);
+
+const mappingRisultati = {
+  AAA: {
+    imagePath: 'images/img neutrale/neutral pfp 1.png',
+    message: 'Pattern AAA: equilibrio lineare, assetto stabile e prevedibile.'
+  },
+  AAB: {
+    imagePath: 'images/img neutrale/neutral pfp 2.png',
+    message: 'Pattern AAB: prevale A con una lieve interferenza del canale B.'
+  },
+  AAC: {
+    imagePath: 'images/img neutrale/neutral pfp 3.gif',
+    message: 'Pattern AAC: prevale A con una deviazione verso il canale C.'
+  },
+  BBA: {
+    imagePath: 'images/img neutrale/neutral pfp 4.png',
+    message: 'Pattern BBA: prevale B con un residuo del canale A.'
+  },
+  BBC: {
+    imagePath: 'images/img neutrale/weblogo.png',
+    message: 'Pattern BBC: prevale B con un innesto del canale C.'
+  },
+  CCA: {
+    imagePath: 'images/img neutrale/neutral pfp 1.png',
+    message: 'Pattern CCA: prevale C con un ritorno puntuale al canale A.'
+  },
+  CCB: {
+    imagePath: 'images/img neutrale/weblogo.svg',
+    message: 'Pattern CCB: prevale C con modulazione secondaria su B.'
+  },
+  ABC: {
+    imagePath: 'images/img neutrale/weblogo.png',
+    message: 'Pattern ABC: triade completa, i tre canali sono tutti presenti.'
+  },
+  BBB: {
+    imagePath: 'images/img neutrale/neutral pfp 2.png',
+    message: 'Pattern BBB: ripetizione B dominante, comportamento coerente ma rigido.'
+  },
+  CCC: {
+    imagePath: 'images/img neutrale/weblogo.svg',
+    message: 'Pattern CCC: ripetizione C dominante, forte polarizzazione del profilo.'
+  }
+};
+
+function sanitizeCombination(rawValue) {
+  return String(rawValue || '')
+    .toUpperCase()
+    .split('')
+    .filter((char) => VALID_CHOICES.has(char))
+    .join('');
+}
+
+function sortCombination(rawValue) {
+  return sanitizeCombination(rawValue)
+    .split('')
+    .sort()
+    .join('');
+}
+
+const mappingRisultatiOrdinato = Object.entries(mappingRisultati).reduce((acc, [key, value]) => {
+  acc[sortCombination(key)] = value;
+  return acc;
+}, {});
+
+function getMessageElement() {
+  return document.getElementById('message') || document.getElementById('frase-avatar');
+}
+
 function updateImageBasedOnSum() {
-    // Ottieni la somma salvata
-    const totalSum = localStorage.getItem('totalSum') || '';
-  
-    // Seleziona l'immagine e il messaggio
+    const totalSum = localStorage.getItem(TOTAL_SUM_STORAGE_KEY) || '';
     const placeholder = document.getElementById('placeholder');
-    const message = document.getElementById('message');
-  
-    // Controllo per le combinazioni - cambia immagini con compatibili 
-    if (totalSum === 'AAA') {
-      placeholder.src = 'images/img neutrale/neutral pfp 1.png';
-      message.textContent = 'Combinazione AAA scelta!';
-      placeholder.style.width = '300px';
-      placeholder.style.height = 'auto';
-    } else if (totalSum === 'ABC') {
-      placeholder.src = 'images/img neutrale/neutral pfp 2.png';
-      message.textContent = 'Combinazione ABC scelta!';
-      placeholder.style.width = '300px';
-      placeholder.style.height = 'auto';
-    } else if (totalSum === 'BBB') { 
-      placeholder.src = 'images/vvvortex.svg';
-      message.textContent = 'Combinazione BBB scelta!';
-      placeholder.style.width = '300px';
-      placeholder.style.height = 'auto';
-    }else if (totalSum === 'CCC') { 
-      placeholder.src = 'images/img neutrale/weblogo.svg';
-      message.textContent = 'Combinazione CCC scelta!';
-      placeholder.style.width = '300px';
-      placeholder.style.height = 'auto';
-    } else if (totalSum.includes('A') && totalSum.includes('B') && totalSum.includes('C')) {
-      placeholder.src = 'images/img neutrale/neutral pfp 1.png';
-      message.textContent = 'Tutte le opzioni sono state selezionate!';
-      placeholder.style.width = '300px';
-      placeholder.style.height = 'auto';
-    } else {
-      message.textContent = 'Completa le scelte per vedere il risultato.';
+    const message = getMessageElement();
+
+    // Questo script e condiviso da piu pagine: aggiorna solo se i nodi UI esistono.
+    if (!placeholder || !message) {
+      return;
     }
+
+    const sanitizedSum = sanitizeCombination(totalSum);
+    if (sanitizedSum.length < SLOT_COUNT) {
+      message.textContent = 'Completa i 3 slot di scelta per visualizzare il risultato finale.';
+      return;
+    }
+
+    const slotSelection = sanitizedSum.slice(-SLOT_COUNT);
+    const sortedSelection = sortCombination(slotSelection);
+    const result = mappingRisultatiOrdinato[sortedSelection];
+
+    if (!result) {
+      message.textContent = 'Combinazione non riconosciuta. Esegui il reset e riprova con 3 scelte A/B/C.';
+      return;
+    }
+
+    placeholder.src = result.imagePath;
+    placeholder.alt = 'Avatar risultante dalla combinazione ' + sortedSelection;
+    placeholder.style.width = '300px';
+    placeholder.style.height = 'auto';
+    message.textContent = result.message;
   }
   
-  // Esegui al caricamento
-  window.onload = updateImageBasedOnSum;
+  // Esegui al caricamento senza sovrascrivere eventuali altri handler globali.
+  window.addEventListener('DOMContentLoaded', updateImageBasedOnSum);
 
 const ROUTING_BUG_FLAG_KEY = 'cybermid_route_bug_enabled_v1';
 const STATE_MODEL_STORAGE_KEY = 'cybermid_state_model_v1';
