@@ -331,6 +331,7 @@
     textElement.textContent = String(message || 'Messaggio non disponibile.');
     popup.style.display = 'block';
     popup.style.backgroundColor = isError ? '#7a0a0a' : '#000000';
+    popup.style.color = isError ? '#f0b0b0' : '#ffffff';
 
     placePopupRandomly(popup);
 

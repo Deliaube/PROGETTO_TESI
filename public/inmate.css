@@ -203,7 +203,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 50%;
 }   
 
 .custom-video {
@@ -211,7 +211,7 @@ nav {
     max-width: 600px;  /* Limite massimo di larghezza */
     height: auto;      /* Mantiene le proporzioni */
     cursor: pointer;   /* Fa capire che è cliccabile */
-    border-radius: 100px; /* Opzionale: per arrotondare i bordi */
+    border-radius: 40%; /* Opzionale: per arrotondare i bordi */
     display: flex;
 }
 

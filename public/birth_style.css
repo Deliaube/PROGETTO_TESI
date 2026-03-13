@@ -1,0 +1,218 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Blocca lo scorrimento orizzontale residuo */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Nero assoluto di base */
+    /* Applichiamo la GIF a tutto il corpo del sito */
+    background-image: url('images/prebirth.gif');
+    background-attachment: fixed; /* Lo sfondo resta fermo mentre il contenuto scorre */
+    background-size: cover;
+    background-position: center;
+    
+    /* Effetto Ecografia: Monocromatico e sgranato */
+    filter: grayscale(100%) brightness(0.7) contrast(1.4);
+    
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+}
+
+.global-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Rumore generato tramite un data URI di un'immagine PNG trasparente con grana */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05; 
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Scanlines (linee orizzontali del monitor) */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05) 0px,
+        rgba(0, 0, 0, 0.05) 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9998;
+}
+
+@keyframes fluid-distort {
+    0% { filter: grayscale(100%) brightness(0.7) contrast(1.4); }
+    50% { filter: grayscale(100%) brightness(0.75) contrast(1.6) blur(0.5px); }
+    100% { filter: grayscale(100%) brightness(0.7) contrast(1.4); }
+}
+
+body {
+    animation: fluid-distort 4s infinite ease-in-out;
+}
+
+.container-corpo {
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #000; /* Fondo nero profondo */
+    background-image: url('images/prebirth.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    /* EFFETTO ECOGRAFIA: Monocromatico e contrastato */
+    filter: grayscale(100%) brightness(0.8) contrast(1.5);
+    
+    /* Overlay scuro per profondità */
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9);
+    
+    overflow: hidden;
+}
+
+/* EFFETTO RUMORE (Noise) e SCANLINES */
+.container-corpo::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Crea delle sottili linee orizzontali da monitor vecchio */
+    background: repeating-linear-gradient(
+        rgba(0, 0, 0, 0) 0px,
+        rgba(0, 0, 0, 0) 1px,
+        rgba(0, 0, 0, 0.3) 2px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ANIMAZIONE GLITCH CASUALE */
+@keyframes glitch-move {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); filter: hue-rotate(90deg); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.container-corpo:active {
+    animation: glitch-move 0.2s infinite; /* Il glitch aumenta quando clicchi */
+}
+
+/* Stile per il tasto muto */
+.mute-control {
+    top: 20px;
+    right: 80px; /* Posizionalo vicino al tuo dropdown esistente */
+    z-index: 1000;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+main {
+    display: flex;             /* Attiva Flexbox */
+    flex-direction: column;    /* Dispone gli elementi in verticale */
+    align-items: center;       /* Centra i bottoni orizzontalmente */
+    justify-content: center;   /* Centra i bottoni verticalmente (se il main ha un'altezza) */
+    gap: 20px;                 /* Crea spazio tra i due bottoni senza usare margini fissi */
+    padding: 40px;             /* Spazio interno di sicurezza */
+}
+
+/* Assicura che ogni sezione occupi il suo spazio e non si sovrapponga */
+.container-corpo, .options, footer {
+    display: block;
+    position: relative; /* Fondamentale per il corretto ordine di z-index */
+    width: 100%;
+    clear: both;        /* Pulisce eventuali float residui */
+}
+
+.options {
+    clear: both;
+    position: relative;
+    padding: 60px 20px;
+    border-top: 1px solid #333;
+    z-index: 30; /* Assicura che stia sopra lo sfondo */
+}
+
+footer {
+    padding: 20px 0;
+    z-index: 10;
+    border-top: 1px solid #333;
+}
+
+/* --- LAYOUT GENERALE --- */
+.container-corpo {
+    display: flex;
+    flex-direction: row; /* Default: orizzontale per desktop */
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    min-height: 80vh;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.content-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Seleziona il bottone dentro il main del container-corpo */
+.content-left main button {
+    border: none;            /* Rimuove i bordi */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out; /* Rende l'allargamento fluido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Rende il bottone rotondo */
+}
+
+/* Quando il mouse passa sopra il bottone... */
+.content-left main button:hover {
+    transform: scale(1.5); /* Allarga il bottone del 50%. Usa 1.2 per un effetto più discreto */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); /* Aggiunge un bagliore "neon" */
+}
+
+/* Opzionale: un piccolo effetto quando clicchi */
+.content-left main button:active {
+    transform: scale(1.3); /* Si rimpicciolisce leggermente al click */
+}
+
+.icon-button-ovaries {
+    width: 40px; /* Dimensione base un po' più grande per l'ecografia */
+    height: auto;
+    filter: grayscale(100%) brightness(1.2); /* Coerenza con lo stile medico */
+}
+
+/* Nascondi la sezione options inizialmente */
+.options {
+    display: none; /* Inizia nascosta */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Classe che aggiungeremo via JavaScript per mostrare il pannello */
+.options.active {
+    display: block;
+    opacity: 1;
+}
