@@ -155,3 +155,9 @@ body:not(.page-controindicazioni) #dropArea3 {
 body:not(.page-controindicazioni) #dropArea4 {
     background-image: url("images/drop-area/neutral_droparea1 (4).gif");
 }
+
+#resultSection{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}

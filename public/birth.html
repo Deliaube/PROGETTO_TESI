@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prebirth</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="timer.css">
+    <link rel="stylesheet" href="options.css">
+    <link rel="stylesheet" href="new_index_CHANGES REVISED.css">
+    <link rel="stylesheet" href="birth_style.css">
+    <!-- LOAD Tone.js from unpkg -->
+		<script src="https://unpkg.com/tone"></script>
+		<script>
+			function playNote() {
+				// create a synth
+				const synth = new Tone.Synth().toDestination();
+				// play a note from that synth
+				synth.triggerAttackRelease("C4", "8n");
+			}
+		</script>
+</head>
+
+<body>
+<div class="global-noise"></div>
+
+
+
+
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="new_index_CHANGES REVISED.html">📌</a>
+        </div>
+        <div class="title" >
+            <h1>CYBERMED_</h1>
+        </div>
+
+
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">🔗</button>
+          <div id="myDropdown" class="dropdown-content">
+            <button onclick="resetChoices()" class="btn default reset">✨ Reset</button>
+            <span class="tooltip-text1">Caution, rebooting will erase MY memory</span>
+          </div>
+        </div>
+
+
+    </nav>
+</header>
+
+
+<section class="container-corpo">
+
+  <div class="content-left">
+        <main>
+         <button onclick="showOptions()">
+            <img src="images/ovaries.png" alt="Esci" class="icon-button-ovaries">
+         </button>
+        </main>
+ </div>
+
+</section>
+
+
+<section class="options">
+    <div id="finished">
+     <p>Finished? Please chose your way out</p>
+   </div>
+   <div class="buttons-options">
+    <button onclick="Variazione('C'); updateSum('A')">
+        <img src="icone/Roll_alt_light_light.svg" alt="Opzione A" class="icon-button">
+    </button>
+    <button onclick="Variazione('U'); updateSum('B')">
+        <img src="icone/Pointers_light.svg" alt="Opzione B" class="icon-button">
+    </button>
+    <button onclick="Variazione('D'); updateSum('C')">
+        <img src="icone/Lock_duotone_line.svg" alt="Opzione C" class="icon-button">
+    </button>
+  </div>
+  </section>
+  <script src="options.js"></script>
+    <script src="state_model.js"></script>
+    <script>
+    function updateSum(value) {
+          // Recupera la somma attuale da localStorage
+          const totalSum = localStorage.getItem('totalSum') || '';
+          
+          // Aggiorna la somma concatenando la scelta fatta
+          const newSum = totalSum + value;
+          
+          // Salva la nuova somma in localStorage
+          localStorage.setItem('totalSum', newSum);
+          
+          console.log(`Somma aggiornata: ${newSum}`); // Log per debugging
+          
+          // Reindirizza alla homepage (index.html)
+          window.location.href = 'new_index_CHANGES REVISED.html';
+        }
+    </script>
+    <script src="timer.js"></script>
+
+ <footer>
+          <p class="marquee">Delia Scaccianoce - 2025 Beware of any infections ----This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data 
+           ---- This content is solely intended to illustrate concepts related to the vulnerability of digital identity and does not represent real or personal data
+          </p>
+        </footer>
+
+<!--dove avviene il cambio immagine e la selezione immagine-->
+      <script src="new_index_CHANGES REVISED.js"></script>
+      <!-- Timer Scripts -->
+      <script src="timer.js"></script>
+
+<script>
+function toggleMute() {
+    const video = document.getElementById("myVideo");
+    const btn = document.getElementById("muteBtn");
+
+    if (video.muted) {
+        video.muted = false;
+        btn.innerHTML = "Volume: ON 🔊";
+    } else {
+        video.muted = true;
+        btn.innerHTML = "Volume: OFF 🔇";
+    }
+}
+</script>
+
+<script>
+    function showOptions() {
+    const optionsSection = document.querySelector('.options');
+    
+    // Mostra la sezione aggiungendo la classe active
+    optionsSection.classList.add('active');
+    
+    // Effettua uno scroll fluido verso il basso per far vedere il pannello
+    optionsSection.scrollIntoView({ behavior: 'smooth' });
+    
+    // (Opzionale) Suona la nota di Tone.js se vuoi un feedback sonoro
+    if (typeof playNote === "function") {
+        playNote();
+    }
+}
+</script>
+
+</body>
+</html>
