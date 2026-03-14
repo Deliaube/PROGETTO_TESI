@@ -70,7 +70,7 @@ const mappingRisultati = {
     message: 'Pattern CCA: prevale C con un ritorno puntuale al canale A.'
   },
   CCB: {
-    imagePath: 'images/img neutrale/weblogo.svg',
+    imagePath: 'images/img neutrale/sigillo4-.png',
     message: 'Pattern CCB: prevale C con modulazione secondaria su B.'
   },
   ABC: {
