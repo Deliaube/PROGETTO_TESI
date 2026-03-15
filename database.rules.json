@@ -8,6 +8,10 @@
       ".read": true,
       ".write": false
     },
+    "welcome": {
+      ".read": true,
+      ".write": false
+    },
     ".read": true,
     ".write": true
   }

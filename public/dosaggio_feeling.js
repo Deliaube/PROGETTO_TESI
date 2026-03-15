@@ -25,10 +25,9 @@
     }
 
     const combo = context.combinazione || 'N';
-    const livello = Number.isFinite(Number(context.livello)) ? Number(context.livello) : '?';
     const stato = context.statoPredominante || 'Neutrale';
 
-    return 'context=' + stato + ' combo=' + combo + ' level=' + livello;
+    return 'context=' + stato + ' combo=' + combo;
   }
 
   function buildMissingMessage(reason, context) {

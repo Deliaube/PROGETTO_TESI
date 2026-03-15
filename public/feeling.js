@@ -275,16 +275,11 @@
   function pickEntryByPriority(entries, context, action) {
     const azione = normalizeAction(action);
     const comboCode = context.combinazione || 'N';
-    const livello = normalizeLevel(context.livello) || 1;
 
     const pools = [
-      filterEntries(entries, { azione: azione, comboCode: comboCode, livello: livello }),
       filterEntries(entries, { azione: azione, comboCode: comboCode }),
-      filterEntries(entries, { azione: azione, comboCode: 'N', livello: livello }),
       filterEntries(entries, { azione: azione, comboCode: 'N' }),
-      filterEntries(entries, { azione: azione, livello: livello }),
       filterEntries(entries, { azione: azione }),
-      filterEntries(entries, { comboCode: comboCode, livello: livello }),
       filterEntries(entries, { comboCode: comboCode }),
       entries
     ];
