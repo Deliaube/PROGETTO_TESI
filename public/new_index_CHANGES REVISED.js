@@ -62,27 +62,27 @@ const mappingRisultati = {
     message: 'Pattern BBA: prevale B con un residuo del canale A.'
   },
   BBC: {
-    imagePath: 'images/img neutrale/weblogo.png',
+    imagePath: 'images/img neutrale/neutral pfp 5.png',
     message: 'Pattern BBC: prevale B con un innesto del canale C.'
   },
   CCA: {
-    imagePath: 'images/img neutrale/neutral pfp 1.png',
+    imagePath: 'images/img neutrale/neutral pfp 6.png',
     message: 'Pattern CCA: prevale C con un ritorno puntuale al canale A.'
   },
   CCB: {
-    imagePath: 'images/img neutrale/sigillo4-.png',
+    imagePath: 'images/img neutrale/neutral pfp 7.png',
     message: 'Pattern CCB: prevale C con modulazione secondaria su B.'
   },
   ABC: {
-    imagePath: 'images/img neutrale/weblogo.png',
+    imagePath: 'images/img neutrale/neutral pfp 8.png',
     message: 'Pattern ABC: triade completa, i tre canali sono tutti presenti.'
   },
   BBB: {
-    imagePath: 'images/img neutrale/neutral pfp 2.png',
+    imagePath: 'images/img neutrale/neutral pfp 9.png',
     message: 'Pattern BBB: ripetizione B dominante, comportamento coerente ma rigido.'
   },
   CCC: {
-    imagePath: 'images/img neutrale/weblogo.svg',
+    imagePath: 'images/img neutrale/neutral pfp 10.png',
     message: 'Pattern CCC: ripetizione C dominante, forte polarizzazione del profilo.'
   }
 };
