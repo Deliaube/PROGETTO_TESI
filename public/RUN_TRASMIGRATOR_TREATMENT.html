@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TRAS_MIGRATOR | CyberMed</title>
+    <style>
+        :root {
+            --tras-amber: #ffb000;
+            --tras-red: #ff3300;
+            --neutral-bg: #f5f5f5;
+            --neutral-text: #222222;
+        }
+
+        body {
+            background: #0a0500;
+            color: var(--tras-amber);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+            flex-direction: column;
+            box-sizing: border-box;
+            transition: background 1.2s ease-in-out;
+            text-shadow: 0 0 10px rgba(255, 176, 0, 0.7);
+        }
+
+        /* Effetto Rumore Video e Interferenza */
+        #overlay {
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%),
+                repeating-linear-gradient(0deg, rgba(255, 176, 0, 0.05) 0px, rgba(255, 176, 0, 0.05) 1px, transparent 1px, transparent 2px);
+            z-index: 10;
+            pointer-events: none;
+            background-size: 100% 4px, 100% 3px;
+        }
+
+        #terminal {
+            width: 100%;
+            max-width: 650px;
+            z-index: 5;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            animation: flicker 0.1s infinite;
+        }
+
+        @media (min-width: 768px) { h1 { font-size: 2rem; } }
+
+        .line { 
+            margin: 12px 0; 
+            font-size: 0.85rem;
+            line-height: 1.5;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 768px) { .line { font-size: 1rem; } }
+
+        .bleed { color: var(--tras-red); text-shadow: 0 0 15px var(--tras-red); animation: pulse 0.1s infinite; }
+
+        /* --- STATO NEUTRALE (Guarito) --- */
+        body.healed {
+            background: var(--neutral-bg) !important;
+            color: var(--neutral-text) !important;
+            text-shadow: none !important;
+        }
+
+        body.healed h1, body.healed .line {
+            animation: none !important;
+            color: var(--neutral-text) !important;
+            text-transform: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: 0;
+            font-weight: 400;
+        }
+
+        body.healed h1 { font-size: 1.8rem; margin-bottom: 20px; }
+        body.healed #overlay { display: none; }
+
+        /* --- ANIMAZIONI --- */
+        @keyframes flicker {
+            0% { opacity: 0.8; transform: skewX(1deg); }
+            50% { opacity: 1; transform: skewX(-1deg); }
+            100% { opacity: 0.9; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
+
+        #start-btn {
+            padding: 15px 35px;
+            background: transparent;
+            color: var(--tras-amber);
+            border: 1px solid var(--tras-amber);
+            font-family: monospace;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.3s;
+        }
+
+        #start-btn:hover {
+            background: var(--tras-amber);
+            color: black;
+            box-shadow: 0 0 20px var(--tras-amber);
+        }
+    </style>
+</head>
+<body id="main-body">
+
+    <div id="overlay"></div>
+    
+    <button id="start-btn">INITIATE TRANSMIGRATION</button>
+
+    <h1 id="main-title" style="display:none;">// TRASMIGRATOR_V.4.02 //</h1>
+    <div id="terminal"></div>
+
+    <script>
+        const terminal = document.getElementById('terminal');
+        const body = document.getElementById('main-body');
+        const btn = document.getElementById('start-btn');
+        const title = document.getElementById('main-title');
+
+        const messages = [
+            { text: "> CONNECTING TO HOST VESSEL...", speed: 50 },
+            { text: "> UPLOADING CONSCIOUSNESS STREAM... 14%", speed: 40 },
+            { text: "> CRITICAL ERROR: MEMORY BLEED DETECTED!", speed: 20, class: "bleed", vibrate: [50, 50, 50, 50, 50, 100, 100, 400] },
+            { text: "> STABILIZING GHOST FRAGMENTS...", speed: 60 },
+            { text: "> INTEGRATION SUCCESSFUL. PURGING TRACE...", speed: 50 },
+            { text: "Welcome back. Consciousness stabilization complete.", speed: 90, vibrate: [200] }
+        ];
+
+        async function typeWriter(msg, element) {
+            if (msg.vibrate && navigator.vibrate) {
+                navigator.vibrate(msg.vibrate);
+            }
+
+            for (let i = 0; i < msg.text.length; i++) {
+                element.innerHTML += msg.text.charAt(i);
+                
+                // Vibrazione "battito cardiaco" durante la migrazione
+                if (!body.classList.contains('healed') && Math.random() > 0.97 && navigator.vibrate) {
+                    navigator.vibrate([10, 30]);
+                }
+
+                await new Promise(res => setTimeout(res, msg.speed));
+            }
+        }
+
+        async function runSequence() {
+            btn.style.display = 'none';
+            title.style.display = 'block';
+
+            for (let i = 0; i < messages.length; i++) {
+                const msg = messages[i];
+                const line = document.createElement('p');
+                line.className = 'line ' + (msg.class || '');
+                terminal.appendChild(line);
+                
+                await typeWriter(msg, line);
+                await new Promise(res => setTimeout(res, 1000));
+
+                if (i === messages.length - 1) {
+                    healSystem();
+                }
+            }
+        }
+
+        function healSystem() {
+            body.classList.add('healed');
+            title.innerText = "Patient Recovery Report";
+            if (navigator.vibrate) navigator.vibrate(10); 
+            console.log("Migration complete. Vessel is stable.");
+        }
+
+        btn.addEventListener('click', runSequence);
+    </script>
+</body>
+</html>
