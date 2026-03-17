@@ -104,7 +104,7 @@ We are the Egregore, and we are here to support you and your avatar’s journey 
 
 <div class="container-riga"> 
 
-  <button id="confirmBtn">Confirm</button>
+  <button id="confirmBtn" onclick="forceScrollToOptions()">Confirm</button>
   <button id="ignoreBtn" onclick="Variazione('B'); Route()">Ignore</button>
   <button id="repeatBtn">Repeat</button>
 
@@ -174,7 +174,7 @@ We are inevitable. 💞
   </div>
 </section>
 
-       <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER in tutte le altre pagine come in dosaggio (prima del footer)-->
+      
 
 <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->
 <section class="options">
@@ -195,24 +195,7 @@ We are inevitable. 💞
   </section>
 
 </div>
-<!--
-  <script>
-  function updateSum(value) {
-        // Recupera la somma attuale da localStorage
-        const totalSum = localStorage.getItem('totalSum') || '';
-        
-        // Aggiorna la somma concatenando la scelta fatta
-        const newSum = totalSum + value;
-        
-        // Salva la nuova somma in localStorage
-        localStorage.setItem('totalSum', newSum);
-        
-        console.log(`Somma aggiornata: ${newSum}`); // Log per debugging
-        
-        // Reindirizza alla homepage (index.html)
-        window.location.href = 'new_index_CHANGES REVISED.html';
-      }
-  </script> -->
+
 <script src="state_model.js"></script>
 <script src="options.js"></script>
 <script src="controindicazioni_drop_popup.js"></script>
@@ -277,5 +260,18 @@ function resetChoices() {
         <script src="timer.js"></script>
         <script src="dragndrop.js"></script>
       
+<script>
+function forceScrollToOptions() {
+    // Lasciamo che le altre funzioni (Variazione, ecc.) facciano il loro lavoro
+    // e poi forziamo lo scroll dopo un breve delay
+    setTimeout(() => {
+        const target = document.querySelector(".options");
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }, 150);
+}
+</script>
+
     </body>
 </html>

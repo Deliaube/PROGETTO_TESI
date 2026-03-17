@@ -107,16 +107,56 @@
             z-index: 20;
             box-shadow: 0 0 15px var(--egregore-pink);
         }
+
+
+        /* Pulsante Download Egregore */
+     /* Pulsante Download Rosa (Trasmigrator Style) */
+        #download-btn {
+            display: none; /* Nascosto inizialmente */
+            margin-top: 30px;
+            padding: 15px 35px;
+            background-color: #ff007f; /* Rosa acceso/Shocking Pink */
+            color: #ffffff;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3); /* Ombra rosa leggera */
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        #download-btn:hover {
+            background-color: #ff66b2; /* Rosa più chiaro al passaggio del mouse */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.5);
+        }
+
+        /* Appare quando il body è healed */
+        body.healed #download-btn {
+            display: inline-block;
+            animation: emerge 1.5s ease-out;
+        }
+
+        @keyframes emerge {
+            0% { opacity: 0; filter: blur(10px); }
+            100% { opacity: 1; filter: blur(0); }
+        }
     </style>
 </head>
 <body id="main-body">
 
     <div id="overlay"></div>
     
-    <button id="start-btn">CONNETTI ALL'EGREGORE</button>
+    <button id="start-btn">CONNECT TO EGREGORE</button>
 
     <h1 id="main-title" style="display:none;">♥ EGREGORE_LINK ♥</h1>
     <div id="terminal"></div>
+
+<a id="download-btn" href="images/img download/egregore_consensus_key.png" download="Collective_Integration_Record.jpg">
+    EXPORT CONSENSUS KEY
+</a>
 
     <script>
         const terminal = document.getElementById('terminal');
@@ -170,11 +210,16 @@
         }
 
         function healSystem() {
-            body.classList.add('healed');
-            title.innerText = "CyberMed Clinical Report";
-            if (navigator.vibrate) navigator.vibrate([50]); 
-            console.log("Egregore purged. Reality restored.");
-        }
+    body.classList.add('healed');
+    // Per l'Egregore usiamo un blu elettrico su bianco o un viola
+    body.style.backgroundColor = "#00051a"; 
+    body.style.color = "#00f0ff";
+    
+    title.innerText = "CONSENSUS ACHIEVED";
+    title.style.letterSpacing = "10px";
+
+    if (navigator.vibrate) navigator.vibrate([50, 100, 50, 100, 200]); 
+}
 
         btn.addEventListener('click', runSequence);
     </script>

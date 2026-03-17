@@ -1,21 +1,93 @@
-/*OPTIONS _____________________________________________*/
+/* OPTIONS _____________________________________________*/
 
 .options {
-    display: flex;               /* Attiva il layout flexbox */
-    float: right;
-    flex-direction: column;      /* Disposizione verticale */
-    align-items: center;         /* Centra orizzontalmente */
-    gap: 20px;                   /* Spazio tra gli elementi */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
     background-color: rgb(235, 235, 235);
-    width: 20%;
-    min-width: 200px;            /* Larghezza minima */
-    max-width: 300px;            /* Larghezza massima */
-    border: 4px double black;    /* Bordo doppio */
-    border-radius: 20px;
-    padding: 10px;               /* Spaziatura interna */
-    box-sizing: border-box;      /* Include il padding nella larghezza */
+
+    width: 25%;
+    min-width: 250px;
+    max-width: 350px;
+
+    margin-left: auto; /* spinge a destra su desktop */
+    margin-right: 20px;
     margin-bottom: 100px;
+
+    border: 4px double black;
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
 }
+
+/* CONTENITORE BOTTONI */
+.buttons-options {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+/* BOTTONI */
+.options button {
+    flex: 1; /* 🔑 fondamentale: si ridimensionano proporzionalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(232, 219, 219);
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
+
+    cursor: pointer;
+    transition: background 0.3s;
+    box-sizing: border-box;
+}
+
+/* SVG dentro i bottoni */
+.options button svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0; /* evita deformazioni */
+}
+
+/* HOVER */
+.options button:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .options {
+        width: 45%;              /* più largo */
+        margin: 40px auto;       /* centrato */
+    }
+
+    .buttons-options {
+        flex-direction: row;     /* resta orizzontale */
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .options {
+        width: 95%;
+        max-width: 100%;
+        margin: 20px auto 100px;
+    }
+
+    .buttons-options {
+        flex-direction: column;  /* 🔥 verticale */
+    }
+
+    .options button {
+        width: 100%;
+    }
+}
+
+/* EXTRA ELEMENTI (invariati ma puliti) */
 
 #supplyButton,
 .page-dosaggio-egregore #supplyButton {
@@ -26,58 +98,11 @@
     margin-bottom: 80px;
 }
 
-/* Media query per tablet */
-@media (max-width: 1024px) {
-    .options {
-        width: 30%;
-        min-width: 180px;
-        gap: 15px;
-        padding: 8px;
-    }
-}
-
-/* Media query per mobile */
-@media (max-width: 768px) {
-    .options {
-        float: none;
-        width: 90%;
-        max-width: 100%;
-        margin: 20px auto 100px;
-        gap: 10px;
-    }
-    
-    .buttons-options {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .options button {
-        width: 100%;
-    }
-}
-
 #finished {
-    text-align: center;          /* Centra il testo */
+    text-align: center;
     padding: 6px;
-    border: 1px solid black;    /* Bordo doppio */
+    border: 1px solid black;
     border-radius: 20px;
     display: flex;
-}
-
-.buttons-options {
-    display: flex;               /* Flexbox per i bottoni */
-    gap: 10px;                   /* Spazio tra i bottoni */
-}
-
-.options button {
-    background-color: rgb(232, 219, 219);
-    border-radius: 10px;
-    padding: 10px 20px;          /* Migliora la dimensione dei bottoni */
-    border: 1px solid black;
-    cursor: pointer;             /* Cambia il cursore al passaggio */
-    transition: background 0.3s; /* Effetto hover fluido */
-}
-
-.options button:hover {
-    background-color: rgb(200, 200, 200); /* Cambio colore al passaggio */
+    justify-content: center;
 }

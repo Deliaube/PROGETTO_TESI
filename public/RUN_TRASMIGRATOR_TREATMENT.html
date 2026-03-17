@@ -134,7 +134,8 @@
 }
 
 #download-btn:hover {
-    background-color: #444;
+    background-color: #0056b3; /* Blu clinico scuro */
+    box-shadow: 0 0 20px #0056b3;
 }
 
 /* Quando il corpo è 'healed', possiamo dare un tocco finale al bottone */
@@ -147,21 +148,28 @@ body.healed #download-btn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+body.healed #download-btn {
+    background-color: #007bff; /* Blu clinico */
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+}
     </style>
 </head>
 <body id="main-body">
 
     <div id="overlay"></div>
     
-    <button id="start-btn">INITIATE TRANSMIGRATION</button>
+    <button id="start-btn">INITIATE TRANSMIGRATOR TREATMENT</button>
 
-    <h1 id="main-title" style="display:none;">// TRASMIGRATOR_V.4.02 //</h1>
+    <h1 id="main-title" style="display:none;">// CALMIGEN 20 BIT X MINUTE //</h1>
     <div id="terminal"></div>
 
     <div id="terminal"></div>
 
-<a id="download-btn" href="images/img download/ricetta download trasm.jpg" download="CyberMed_Identity_Record.jpg">
-    DOWNLOAD IDENTITY RECORD
+<a id="download-btn" href="images/img download/ricetta download trasm.jpg" download="CyberMed_Medical_Prescription.jpg">
+    GENERATE MEDICAL PRESCRIPTION
 </a>
 
     <script>

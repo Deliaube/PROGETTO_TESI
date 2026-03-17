@@ -107,16 +107,51 @@
             cursor: pointer;
             z-index: 20;
         }
+
+        /* Pulsante Download - Appare solo alla fine */
+        #download-btn {
+            display: none; /* Nascosto inizialmente */
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #000; /* Nero su bianco */
+            color: #fff;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        #download-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Quando il body ha la classe 'healed', mostra il pulsante */
+        body.healed #download-btn {
+            display: inline-block;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body id="main-body">
 
     <div id="overlay"></div>
     
-    <button id="start-btn">INIZIA TRATTAMENTO</button>
+    <button id="start-btn">START TREATMENT</button>
 
     <h1 id="main-title" style="display:none;">CYBERMED SYSTEM</h1>
     <div id="terminal"></div>
+
+    <a id="download-btn" href="images/img download/medica_record_inmate.png" download="medical_record_inmate.png">
+        GET RELEASE PAPERS
+    </a>
 
     <script>
         const terminal = document.getElementById('terminal');
@@ -132,6 +167,8 @@
             { text: "> PURGING SIMULACRINE™ RESIDUE...", speed: 50 },
             { text: "> TREATMENT SUCCESSFUL. WELCOME BACK.", speed: 80, vibrate: [500] }
         ];
+
+        
 
         async function typeWriter(msg, element) {
             // Se il messaggio ha un pattern di vibrazione, lo eseguiamo all'inizio della riga
@@ -170,10 +207,17 @@
             }
         }
 
-        function healSystem() {
+      function healSystem() {
             body.classList.add('healed');
+            
+            // Cambia il titolo per riflettere lo stato neutrale/riabilitato
+            title.innerText = "REHABILITATION COMPLETED";
+            title.style.animation = "none"; // Ferma lo scuotimento
+            
             // Vibrazione finale "secca" per confermare la guarigione
             if (navigator.vibrate) navigator.vibrate([100]); 
+            
+            console.log("Inmate neutralized. Status: Fit for release.");
         }
 
         btn.addEventListener('click', runSequence);
