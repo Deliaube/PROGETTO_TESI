@@ -19,22 +19,34 @@ input[type="reset"],
 /* Timer container in alto a destra */
 .timer-widget {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 0px;
+  right: 0px;
   background-color: #ffffff;
-  border: 3px solid #000000;
+  border: 1px solid #000000;
   border-radius: 15px;
-  padding: 15px 20px;
+  padding: 10px 15px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Courier New', Courier, monospace;
   z-index: 1000;
-  min-width: 150px;
+  min-width: 120px;
   text-align: center;
   cursor: grab;
-  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  user-select: none;
+  touch-action: none;
+
+  /* --- CHIAVE EFFETTO VETRO --- */
+    background: rgba(255, 255, 255, 0.1); /* Sfondo bianco molto trasparente */
+    -webkit-backdrop-filter: blur(10px);   /* Supporto per Safari */
+    backdrop-filter: blur(10px);          /* Sfoca ciò che sta dietro */
+    
+    /* Bordo sottile e chiaro per definire il vetro */
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    
+    /* Ombra leggera e diffusa */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .timer-widget.hidden {
@@ -42,26 +54,42 @@ input[type="reset"],
 }
 
 .timer-display {
-  font-size: 28px;
-  font-weight: bold;
+  font-family: 'Orbitron', sans-serif; /* Usa il font digitale caricato */
+  font-size: 10px;
+  font-weight: 100;
+/* Colore ambra/arancione tipico delle vecchie radio */
+    color: #ff9f43; 
+    
+    /* Effetto bagliore (Glow) dei segmenti */
+    text-shadow: 0 0 5px rgba(235, 189, 149, 0.7), 
+                 0 0 10px rgba(252, 234, 96, 0.5);
+    
+    margin: 5px 0;
+    letter-spacing: 2px;
+
+
+  font-size: 18px;
+  font-weight: 500;
   color: #000000;
-  margin: 10px 0;
-  font-family: 'Courier New', Courier, monospace;
-  letter-spacing: 2px;
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
 }
 
 .timer-label {
-  font-size: 12px;
-  color: #666666;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
   letter-spacing: 1px;
+  display: block;
+  margin-bottom: 2px;
 }
 
 .timer-bar {
   width: 100%;
-  height: 8px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.1); /* Sfondo scuro e trasparente */
+  border-radius: 2px;
   margin-top: 10px;
   overflow: hidden;
   border: 1px solid #cccccc;

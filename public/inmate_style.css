@@ -7,7 +7,7 @@
 
 body, html {
     background-color: #050a05; /* Nero profondo leggermente verdastro */
-    color: #6ee61e; /* Verde fosforo */
+    color: #000000; /* Verde fosforo */
     font-family: 'Courier New', Courier, monospace;
     overflow-x: hidden;
     min-height: 100vh;
@@ -327,7 +327,8 @@ footer {
 /* Speciale Trasparente Inmate */
 .postit-transparent { 
     background: rgba(110, 230, 30, 0.1) !important; 
-    backdrop-filter: blur(5px);
+     -webkit-backdrop-filter: blur(5px); /* to work on safari */
+     backdrop-filter: blur(5px);
     border: 1px solid #6ee61e !important;
     color: #6ee61e !important;
 }
@@ -449,7 +450,7 @@ footer {
 .page-cards .draggable .postit-pink { background: linear-gradient(180deg, #ffd9f0 0%, #ffcde6 100%); }
 .page-cards .draggable .postit-green { background: linear-gradient(180deg, #dfffda 0%, #c6fcc6 100%); }
 .page-cards .draggable .postit-blue { background: linear-gradient(180deg, #dff4ff 0%, #cfefff 100%); }
-.page-cards .draggable .postit-transparent { background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+.page-cards .draggable .postit-transparent { background: rgba(255,255,255,0.7); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
 
 #createColorSelect { margin-left: 6px; padding: 6px 8px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.06); background: #fff; }
 
@@ -512,6 +513,7 @@ footer {
 
 .page-cards .draggable-header {
     cursor: grab;       /* Cambia cursore in 'mano' per indicare che si può trascinare */
+    -webkit-user-select: none;  /* Impedisce di selezionare il testo mentre trascini */
     user-select: none;  /* Impedisce di selezionare il testo mentre trascini */
     background: rgba(110, 230, 30, 0.1); /* Leggero tocco verde */
     padding: 10px;
@@ -524,8 +526,8 @@ footer {
 
 .card-content img {
     pointer-events: none; /* L'immagine non intercetta il click, che passa alla card sotto */
-    user-drag: none;
     -webkit-user-drag: none;
+    user-drag: none;
 }
 
 

@@ -54,7 +54,7 @@ const mappingRisultati = {
     message: 'Pattern AAB: prevale A con una lieve interferenza del canale B.'
   },
   AAC: {
-    imagePath: 'images/img neutrale/neutral pfp 3.gif',
+    imagePath: 'images/img neutrale/neutral pfp 3.png',
     message: 'Pattern AAC: prevale A con una deviazione verso il canale C.'
   },
   BBA: {
@@ -123,7 +123,7 @@ function updateImageBasedOnSum() {
 
     const sanitizedSum = sanitizeCombination(totalSum);
     if (sanitizedSum.length < SLOT_COUNT) {
-      message.textContent = 'Completa i 3 slot di scelta per visualizzare il risultato finale.';
+      message.textContent = 'Complete 3/3 choices to reveal the result.';
       return;
     }
 
@@ -132,18 +132,18 @@ function updateImageBasedOnSum() {
     const result = mappingRisultatiOrdinato[sortedSelection];
 
     if (!result) {
-      message.textContent = 'Combinazione non riconosciuta. Esegui il reset e riprova con 3 scelte A/B/C.';
+      message.textContent = 'Unrecognized combination. Reset and try again with 3 choices A/B/C.';
       return;
     }
 
     placeholder.src = result.imagePath;
-    placeholder.alt = 'Avatar risultante dalla combinazione ' + sortedSelection;
+    placeholder.alt = 'Avatar resulting from combination ' + sortedSelection;
     placeholder.style.width = '300px';
     placeholder.style.height = 'auto';
     message.textContent = result.message;
   }
   
-  // Esegui al caricamento senza sovrascrivere eventuali altri handler globali.
+  // Execute on load without overwriting any other global handlers.
   window.addEventListener('DOMContentLoaded', updateImageBasedOnSum);
 
 const ROUTING_BUG_FLAG_KEY = 'cybermid_route_bug_enabled_v1';

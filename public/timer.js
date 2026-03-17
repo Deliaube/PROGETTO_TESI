@@ -76,28 +76,47 @@ class TimerManager {
     let offsetX = 0;
     let offsetY = 0;
 
-    widget.addEventListener('mousedown', (e) => {
+    const moveWidget = (clientX, clientY) => {
+      const rect = widget.getBoundingClientRect();
+      const maxX = Math.max(0, window.innerWidth - rect.width);
+      const maxY = Math.max(0, window.innerHeight - rect.height);
+      const newX = Math.min(Math.max(0, clientX - offsetX), maxX);
+      const newY = Math.min(Math.max(0, clientY - offsetY), maxY);
+
+      widget.style.right = 'auto';
+      widget.style.left = newX + 'px';
+      widget.style.top = newY + 'px';
+    };
+
+    const stopDragging = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      widget.style.cursor = 'grab';
+    };
+
+    widget.addEventListener('pointerdown', (e) => {
+      // Ignore non-primary mouse buttons while keeping touch support.
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+
       isDragging = true;
       const rect = widget.getBoundingClientRect();
       offsetX = e.clientX - rect.left;
       offsetY = e.clientY - rect.top;
+
       widget.style.cursor = 'grabbing';
+      widget.setPointerCapture(e.pointerId);
+      e.preventDefault();
     });
 
-    document.addEventListener('mousemove', (e) => {
-      if (isDragging) {
-        const newX = e.clientX - offsetX;
-        const newY = e.clientY - offsetY;
-        widget.style.right = 'auto';
-        widget.style.top = Math.max(0, newY) + 'px';
-        widget.style.left = Math.max(0, newX) + 'px';
-      }
+    widget.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      moveWidget(e.clientX, e.clientY);
+      e.preventDefault();
     });
 
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      widget.style.cursor = 'grab';
-    });
+    widget.addEventListener('pointerup', stopDragging);
+    widget.addEventListener('pointercancel', stopDragging);
+    widget.addEventListener('lostpointercapture', stopDragging);
 
     widget.style.cursor = 'grab';
   }
