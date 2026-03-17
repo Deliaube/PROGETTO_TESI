@@ -115,6 +115,38 @@
             color: black;
             box-shadow: 0 0 20px var(--tras-amber);
         }
+
+        /* Stile per il pulsante Download (appare solo alla fine) */
+#download-btn {
+    display: none; /* Nascosto all'inizio */
+    margin-top: 30px;
+    padding: 12px 25px;
+    background-color: #222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none; /* Per farlo sembrare un bottone anche se è un link */
+    transition: background 0.3s ease;
+    z-index: 25;
+}
+
+#download-btn:hover {
+    background-color: #444;
+}
+
+/* Quando il corpo è 'healed', possiamo dare un tocco finale al bottone */
+body.healed #download-btn {
+    display: inline-block; /* Diventa visibile */
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
     </style>
 </head>
 <body id="main-body">
@@ -125,6 +157,12 @@
 
     <h1 id="main-title" style="display:none;">// TRASMIGRATOR_V.4.02 //</h1>
     <div id="terminal"></div>
+
+    <div id="terminal"></div>
+
+<a id="download-btn" href="images/img download/ricetta download trasm.jpg" download="CyberMed_Identity_Record.jpg">
+    DOWNLOAD IDENTITY RECORD
+</a>
 
     <script>
         const terminal = document.getElementById('terminal');
@@ -176,13 +214,19 @@
                 }
             }
         }
+function healSystem() {
+    body.classList.add('healed');
+    title.innerText = "Patient Recovery Report";
+    
+    // Opzionale: Cambia il testo dell'ultimo messaggio per renderlo più formale
+    const lastLine = terminal.lastElementChild;
+    if (lastLine) {
+        lastLine.innerText = "Status: Vessel Stabilized. Official record generated.";
+    }
 
-        function healSystem() {
-            body.classList.add('healed');
-            title.innerText = "Patient Recovery Report";
-            if (navigator.vibrate) navigator.vibrate(10); 
-            console.log("Migration complete. Vessel is stable.");
-        }
+    if (navigator.vibrate) navigator.vibrate(10); 
+    console.log("Migration complete. Vessel is stable.");
+}
 
         btn.addEventListener('click', runSequence);
     </script>

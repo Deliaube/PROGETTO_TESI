@@ -96,7 +96,7 @@ nav {
     background: linear-gradient(-45deg, rgba(255,255,255,0.4), rgba(var(--p-accent-rgb), 0.2), rgba(255,255,255,0.4));
     background-size: 400% 400%;
     animation: gradientMove 10s ease infinite, morphing 8s ease-in-out infinite;
-    
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border: 2px dashed var(--p-accent); /* Tratto tratteggiato = incertezza */
     
@@ -148,6 +148,7 @@ nav:hover .logo a {
     align-items: center;
     padding: 10px 25px;
     background: rgba(255, 255, 255, 0.5); /* Effetto vetro */
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     border: 3px solid var(--p-accent);
     border-radius: 30px;
@@ -559,6 +560,7 @@ button::after {
 
 /* Speciale Trasparente egregore */
 .postit-transparent { 
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
 
@@ -740,6 +742,7 @@ button::after {
 
 .page-cards .draggable-header {
     cursor: grab;       /* Cambia cursore in 'mano' per indicare che si può trascinare */
+     -webkit-user-select: none;  /* Add this line for Safari compatibility */
     user-select: none;  /* Impedisce di selezionare il testo mentre trascini */
     padding: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -827,6 +830,7 @@ button::after {
     gap: 10px;
     padding: 12px 18px;
     background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -875,6 +879,7 @@ footer {
         rgba(255, 250, 240, 0.3), 
         rgba(177, 189, 136, 0.4));
     background-size: 400% 400%;
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
 
     /* Bordo: Dash per l'incertezza, come la nav */

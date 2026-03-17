@@ -125,15 +125,26 @@ if your material condition begins to destabilize your digital motion.
     <p class="photo-caption">Transmigrator_Log_01</p>
 
 
-     <div>
-<button class="btn-transfer" type="button" onclick="handleAvatarDeltaClick('transmigrator')" aria-label="Ottieni il tuo avatar">
-    <div class="transfer">Transfer your <br> Trasmigrator out</div>
-   </button>
-<p id="avatar-delta-status" role="status" aria-live="polite"></p>
-</div>
+    <div>
+      <button class="btn-transfer" type="button" onclick="handleTransferAndRedirect()" aria-label="Ottieni il tuo avatar">
+        <div class="transfer">Transfer your <br> Trasmigrator out</div>
+      </button>
+      <p id="avatar-delta-status" role="status" aria-live="polite"></p>
+    </div>
 </div>
   
-   
+<script>
+  function handleTransferAndRedirect() {
+    // 1. Esegue la funzione originale
+    handleAvatarDeltaClick('transmigrator');
+
+    // 2. Attende un istante (300ms) e poi cambia pagina
+    // Sostituisci 'la-tua-pagina.html' con il nome del file reale
+    setTimeout(() => {
+        window.location.href = 'RUN_TRASMIGRATOR_TREATMENT.html';
+    }, 300);
+}
+</script>
  
 
 <!--filtro___________________________________________________________-->
