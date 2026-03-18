@@ -2,7 +2,7 @@
   'use strict';
 
   const POPUP_ID = 'cardsActionPopup';
-  const AUTO_HIDE_MS = 3200;
+  const AUTO_HIDE_MS = 3800;
   const DEFAULT_PATH = 'feeling';
   const MIN_INTERVAL_MS = {
     crea: 900,
@@ -228,7 +228,7 @@
 
       if (candidate) {
         lastTextByAction.set(action, candidate);
-        return candidate + ' [' + debugInfo + ']';
+        return candidate; // + ' [' + debugInfo + ']';
       }
 
       return buildMissingMessage('empty-result', debugInfo);
