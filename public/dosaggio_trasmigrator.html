@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="trasmigrator_style.css">
+  <link rel="stylesheet" href="dosaggio_dynamic_popups.css">
   <link rel="stylesheet" href="options.css">
   <link rel="stylesheet" href="timer.css">
 
@@ -46,62 +47,23 @@
     <div class="point" data-message="Whatever. I wasn't listening anyway." data-id="point20">ಥ_ಥ</div>
   </div>
   
-  <div class="popup" id="popup">
-    <span class="close">&times;</span>
-    <p id="popup-content"></p>
-    <textarea id="commentBox" placeholder="Write here..."></textarea>
-  </div>
-  
    <div class="popup-dark" id="darkPopup">
       <p>i don't think so</p>
    </div>
 </section>
-  <script> // Posizionamento casuale dei punti e gestione del popup
-    const points = document.querySelectorAll('.point');
-    const popup = document.getElementById('popup');
-    const popupContent = document.getElementById('popup-content');
-    const commentBox = document.getElementById('commentBox');
-    let currentPointId = '';
-    
-    points.forEach(point => {
-      point.style.top = `${Math.random() * 80}%`;
-      point.style.left = `${Math.random() * 95}%`;
-      
-      point.addEventListener('click', function () {
-        currentPointId = this.getAttribute('data-id');
-        popupContent.textContent = this.getAttribute('data-message');
-        commentBox.value = localStorage.getItem(currentPointId) || '';
-        popup.style.display = 'block';
-      });
-    });
-    
-    const darkPopup = document.getElementById('darkPopup');
-    
-    document.querySelector('.popup .close').addEventListener('click', function () {
-      popup.style.display = 'none';
-      
-      // Mostra il popup nero in posizione random
-      darkPopup.style.top = `${Math.random() * 80}%`;
-      darkPopup.style.left = `${Math.random() * 80}%`;
-      darkPopup.style.display = 'block';
-      
-      // Nascondi il popup nero dopo 2 secondi
-      setTimeout(() => {
-        darkPopup.style.display = 'none';
-      }, 2000);
-    });
+  <script src="dosaggio_dynamic_popups.js"></script>
+  <script>
+    const dosaggioPopupController = window.initDosaggioDynamicPopups();
 
-    commentBox.addEventListener('input', () => {
-      if (currentPointId) {
-        localStorage.setItem(currentPointId, commentBox.value);
-      }
-    });
+    function startRepeatSequence() {
+      dosaggioPopupController.startRepeatSequence();
+    }
   </script>
 
 <div id="supplyButton" style="padding-left: 10%;">
 <button id="confirmButton" onclick="handleConfirm()">Confirm</button>
 <button id="ignoreButton" onclick="Variazione('B'); Route()">Ignore</button>
-<button id="repeatButton">Repeat</button>
+<button id="repeatButton" onclick="Variazione('U'); startRepeatSequence()">Repeat</button>
 </div>
   
 <!--DA AGGIUNGERE PER LE 3 OPZIONI DEL PLACEHOLDER-->

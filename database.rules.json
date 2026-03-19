@@ -12,6 +12,10 @@
       ".read": true,
       ".write": false
     },
+    "Notes": {
+      ".read": true,
+      ".write": true
+    },
     ".read": true,
     ".write": true
   }

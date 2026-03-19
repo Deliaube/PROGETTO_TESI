@@ -1,0 +1,35 @@
+.dynamic-popup {
+  display: none;
+  position: fixed;
+  background-color: #ffffff;
+  border: 2px solid #ff5722;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 220px;
+  z-index: 1000;
+}
+
+.dynamic-popup p.popup-msg {
+  margin: 0 0 6px 0;
+  font-size: 13px;
+  color: #333;
+}
+
+.dynamic-popup textarea {
+  width: 100%;
+  height: 50px;
+  margin-top: 4px;
+  resize: none;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.dynamic-popup .close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+}
