@@ -5,7 +5,7 @@
   const FEELING_ROOT_PATH = 'feeling';
   const LOCAL_STATE_KEY = 'cybermid_state_model_v1';
   const POPUP_ID = 'dropFeelingPopup';
-  const AUTO_HIDE_MS = 3200;
+  const AUTO_HIDE_MS = 3800;
   const ACTION_LIKE = 'mi piace';
   const ACTION_DISLIKE = 'non mi piace';
   const ALLOWED_ACTIONS = new Set([ACTION_LIKE, ACTION_DISLIKE]);
