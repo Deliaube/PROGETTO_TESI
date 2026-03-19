@@ -100,7 +100,9 @@ function initOptionsVisibilityByButtons() {
     ? '#confirmBtn, #repeatBtn'
     : '#confirmBtn, #repeatBtn, #confirmButton, #repeatButton';
 
-  const unlockButtons = Array.from(document.querySelectorAll(unlockSelector));
+  const unlockButtons = Array.from(document.querySelectorAll(unlockSelector)).filter((button) => {
+    return button.getAttribute('data-no-unlock') !== 'true';
+  });
   if (!unlockButtons.length) {
     return;
   }
@@ -132,7 +134,7 @@ function initOptionsVisibilityByButtons() {
     }
 
     const unlockButton = event.target.closest(unlockSelector);
-    if (unlockButton) {
+    if (unlockButton && unlockButton.getAttribute('data-no-unlock') !== 'true') {
       showOptionsSections();
     }
   });
