@@ -152,22 +152,22 @@ const LAST_DELTA_STORAGE_KEY = 'cybermid_last_delta_v1';
 
 const ROUTE_MAP = {
   up: {
-    egregore: 'controindicazioni_egregore.html',
-    transmigrator: 'controindicazioni_trasmigrator.html',
-    inmate: 'controindicazioni_inmate.html',
-    default: 'controindicazioni.html'
+    egregore: 'Side_Effects_egregore.html',
+    transmigrator: 'Side_Effects_trasmigrator.html',
+    inmate: 'Side_Effects_inmate.html',
+    default: 'Side_Effects.html'
   },
   right: {
-    egregore: 'dosaggio_egregore.html',
-    transmigrator: 'dosaggio_trasmigrator.html',
-    inmate: 'dosaggio_inmate.html',
-    default: 'dosaggio.html'
+    egregore: 'Dosage_egregore.html',
+    transmigrator: 'Dosage_trasmigrator.html',
+    inmate: 'Dosage_inmate.html',
+    default: 'Dosage.html'
   },
   down: {
-    egregore: 'draggable_cards_egregore.html',
-    transmigrator: 'draggable_cards_trasmigrator.html',
-    inmate: 'draggable_cards_inmate.html',
-    default: 'draggable_cards.html'
+    egregore: 'Check_Up_egregore.html',
+    transmigrator: 'Check_Up_trasmigrator.html',
+    inmate: 'Check_Up_inmate.html',
+    default: 'Check_Up.html'
   }
 };
 

@@ -3,46 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="IDENTITY_QUEST.css">
-    <link rel="stylesheet" href="timer.css">
+    <title>System Warning: Identity Quest</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --border-color: #d1d1d1;
+            --accent-color: #e67e22; /* Un arancione neutrale, non aggressivo */
+        }
 
-    <title>Homepage Confirmation</title>
-    <script src="state_model.js"></script>
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Usa min-height per evitare tagli su schermi bassi */
+            margin: 0;
+            padding: 20px; /* Margine di sicurezza per mobile */
+            box-sizing: border-box;
+        }
+
+        .warning-container {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        h1 {
+            font-size: 1.1rem;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #000;
+        }
+
+        p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            word-wrap: break-word; /* Evita che parole lunghe rompano il layout */
+        }
+
+        #homepage-link {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #333;
+            padding: 15px;
+            transition: background 0.2s;
+            font-weight: bold;
+        }
+
+/* Media Query per desktop: il bottone torna "piccolo" */
+    @media (min-width: 600px) {
+        #homepage-link {
+            display: inline-block;
+            padding: 10px 20px;
+        }
+    }
+
+        #homepage-link:hover {
+            background-color: var(--accent-color);
+        }
+
+        .status-code {
+            font-size: 0.7rem;
+            color: #999;
+            margin-bottom: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="warning-container">
+        <span class="status-code">SYS_MSG / NEUTRAL_ADVISORY</span>
+        <h1>Attention Required</h1>
+        
+        <p>
+            By accessing this domain, you acknowledge the inherent instability of the interface. 
+            Potential side effects include: <strong>existential musings</strong> and <strong>contextual dissonance</strong>.
+            <br><br>
+            Proceed at your own emotional risk. <br>
+            The system is designed to challenge your perceptions and may lead to unexpected insights or mild confusion.
+        </p>
+
+        <a id="homepage-link" href="IDENTITY_QUEST.html">Initialize Access</a>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const confirmAccess = () => {
-                const userConfirmed = confirm("Do you think you can access the homepage?");
-                if (!userConfirmed) {
-                    alert("Access cancelled. Your input is no longer wanted.");
-                    return false;
-                }
-                return true;
-            };
-
             const homepageLink = document.getElementById("homepage-link");
             if (homepageLink) {
                 homepageLink.addEventListener("click", function(event) {
-                    if (!confirmAccess()) {
+                    const userConfirmed = confirm("Do you think you can access the homepage?");
+                    if (!userConfirmed) {
+                        alert("Access cancelled. Your input is no longer wanted.");
                         event.preventDefault();
                     }
                 });
             }
-
-            if (window.CybermidStateModel && typeof window.CybermidStateModel.getModel === "function") {
-                const initializedModel = window.CybermidStateModel.getModel();
-                console.log("[Cybermid] Stato inizializzato:", initializedModel);
-            }
         });
     </script>
-</head>
-<body>
-
-    <h1>Hello friend</h1>
-    <p>By accessing, you agree to embrace the beautifully flawed design of this site. <br> Warning: side effects may include existential musings and mild confusion. 
-        <br> Proceed at your own emotional risk</p>
-    <a id="homepage-link" href="IDENTITY_QUEST.html">Proceed</a>
-
-    <!-- Timer Scripts -->
-    <script src="timer.js"></script>
+ <script src="timer.js"></script>
+ <script src="state_model.js"></script>
 </body>
 </html>

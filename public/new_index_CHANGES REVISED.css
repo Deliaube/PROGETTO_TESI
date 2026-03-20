@@ -24,6 +24,20 @@ nav {
     font-weight: bold;
     text-decoration: none;
     color: black;
+    
+}
+
+.logo-img {
+    height: 50px; /* Regola l'altezza in base alla tua navbar */
+    width: auto;  /* Mantiene le proporzioni corrette */
+    display: block;
+    transition: transform 0.3s ease; /* Opzionale: un piccolo effetto al passaggio del mouse */
+    border-radius: 50%;
+}
+
+.logo-img:hover {
+    transform: scale(1.05); /* Effetto cyberpunk: si ingrandisce leggermente */
+    filter: drop-shadow(0 0 8px rgba(160, 255, 200, 0.6)); /* Glow pastello */
 }
 
 /* nelle altre pag il title sarà a dx----------------------------------*/
@@ -458,3 +472,6 @@ footer {
   margin: 10px auto;  /* Centra l'immagine se il contenitore è più largo */
 }
 
+.avatar-voice{
+    display: none;
+}
