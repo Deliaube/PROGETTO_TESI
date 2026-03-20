@@ -13,7 +13,9 @@
   <header>
     <nav>
         <div class="logo">
-            <a href="new_index_CHANGES REVISED.html">📌</a>
+            <a href="new_index_CHANGES REVISED.html">
+              <img src="images/logo.png" alt="Cybermed Logo" class="logo-img" >
+            </a>
         </div>
         <div class="title" >
             <h1>CYBERMED_</h1>
@@ -58,15 +60,15 @@
 
 <div class="button-container">
 
-    <button class="btn default" type ="button" onclick="routeTriangleByState('up')" title="controllo indicazioni">
+    <button class="btn default" type ="button" onclick="routeTriangleByState('up')" title="Side Effects">
         <div class="triangle punta-alto"></div>
     </button>
 
-    <button class="btn default" type ="button" onclick="routeTriangleByState('right')" title="dosaggio">
+    <button class="btn default" type ="button" onclick="routeTriangleByState('right')" title="Dosage">
         <div class="triangle punta-destra"></div>  
     </button>
 
-    <button class="btn default" type ="button" onclick="routeTriangleByState('down')" title="combinazioni">
+    <button class="btn default" type ="button" onclick="routeTriangleByState('down')" title="Check-Up">
         <div class="triangle punta-basso"></div>
     </button>
 
@@ -74,117 +76,6 @@
 
 </section>
 
-<!--Stile per il contenuto IMMAGINI e TESTO della pagina___________________________
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #f4f4f4;
-}
-
-.container-corpo {
-    display: flex;
-    justify-content: space-between; /* Distribuisce le colonne */
-    align-items: flex-start;         /* Allinea in alto */
-    margin: 5% auto;                 /* Margine del 5% ai lati */
-    padding: 20px;
-    max-width: 90%;                  /* Limita la larghezza massima */
-    gap: 20px;                       /* Spazio tra le colonne */
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 10px;
-}
-
-/* Colonne */
-.text, .immagine, .button {
-    flex: 1;                        /* Ogni colonna occupa lo stesso spazio */
-    padding: 15px;
-    text-align: center;
-    border: 1px dotted blue;
-}
-
-/* Hover sul testo */
-.text p:hover {
-    color: darkblue;
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-}
-
-/* Tooltip */
-.immagine {
-    position: relative;
-}
-
-.tooltip {
-    display: none;
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: black;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-}
-
-.immagine:hover .tooltip {
-    display: block;
-}
-
-/* Bottoni */
-.button button {
-    display: block;
-    margin: 10px auto; /** Spazio tra i bottoni- togliere per avvicinarli all'img*/
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.button button:hover {
-    background-color: #0056b3;
-}
-
-/* Responsive: Mobile */
-@media (max-width: 768px) {
-    .container-corpo {
-        flex-direction: column; /* Le colonne diventano righe */
-        align-items: center;
-    }
-}
-
-</style> -->
-
-<!--script Resetta scelte BUTTON
-<script>
-                      function resetChoices() {
-                        localStorage.removeItem('totalSum');
-                        location.reload();
-                      }
-</script>
-
-the one workink is below 
-<script>
-function resetChoices() {
-  try {
-    // Verifica se la chiave esiste prima di rimuoverla
-    if (localStorage.getItem('totalSum') !== null) {
-      localStorage.removeItem('totalSum');
-    }
-    
-    // Ricarica la pagina senza cache per evitare problemi
-    window.location.reload(true);
-  } catch (error) {
-    console.error("Errore durante il reset:", error);
-    alert("Si è verificato un errore durante il reset. Riprova.");
-  }
-}
-</script> -->
 
 <!--PARTE 2 SCRIPT RIGO 31/ UPDATE IMG BASED ON SUMM-                
   <script>

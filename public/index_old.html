@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="IDENTITY_QUEST.css">
+    <link rel="stylesheet" href="timer.css">
+
+    <title>Homepage Confirmation</title>
+    <script src="state_model.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const confirmAccess = () => {
+                const userConfirmed = confirm("Do you think you can access the homepage?");
+                if (!userConfirmed) {
+                    alert("Access cancelled. Your input is no longer wanted.");
+                    return false;
+                }
+                return true;
+            };
+
+            const homepageLink = document.getElementById("homepage-link");
+            if (homepageLink) {
+                homepageLink.addEventListener("click", function(event) {
+                    if (!confirmAccess()) {
+                        event.preventDefault();
+                    }
+                });
+            }
+
+            if (window.CybermidStateModel && typeof window.CybermidStateModel.getModel === "function") {
+                const initializedModel = window.CybermidStateModel.getModel();
+                console.log("[Cybermid] Stato inizializzato:", initializedModel);
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <h1>Hello friend</h1>
+    <p>By accessing, you agree to embrace the beautifully flawed design of this site. <br> Warning: side effects may include existential musings and mild confusion. 
+        <br> Proceed at your own emotional risk</p>
+    <a id="homepage-link" href="IDENTITY_QUEST.html">Proceed</a>
+
+    <!-- Timer Scripts -->
+    <script src="timer.js"></script>
+</body>
+</html>
