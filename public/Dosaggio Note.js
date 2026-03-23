@@ -69,13 +69,14 @@
   }
 
   function setStatus(textarea, message, isError) {
-    const status = ensureStatusElement(textarea);
-    if (!status) {
+    const safeMessage = String(message || '');
+    const textareaId = textarea && textarea.id ? ' textarea#' + textarea.id : '';
+    if (isError) {
+      console.error('[DosaggioNote]' + textareaId + ' ' + safeMessage);
       return;
     }
 
-    status.textContent = String(message || '');
-    status.style.color = isError ? '#b00020' : '#333';
+    console.info('[DosaggioNote]' + textareaId + ' ' + safeMessage);
   }
 
   function normalizeFetchedNote(payload) {
@@ -147,7 +148,7 @@
     saveTimers.delete(key);
   }
 
-  function queueSave(pointId, text){//, textarea) {
+  function queueSave(pointId, text, textarea) {
     const key = String(pointId || '').trim();
     if (!key) {
       setStatus(textarea, 'No point selected: note not saved.', true);
@@ -160,10 +161,10 @@
     const timer = setTimeout(async function () {
       try {
         await saveNote(key, text);
-        //setStatus(textarea, 'Note saved to Notes/' + key + '.', false);
+        setStatus(textarea, 'Note saved to Notes/' + key + '.', false);
       } catch (error) {
         const reason = error && error.message ? error.message : 'unknown-error';
-       // setStatus(textarea, 'Save error on Firebase: ' + reason, true);
+        setStatus(textarea, 'Save error on Firebase: ' + reason, true);
       } finally {
         saveTimers.delete(key);
       }
