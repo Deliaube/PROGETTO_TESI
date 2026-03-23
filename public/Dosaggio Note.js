@@ -147,7 +147,7 @@
     saveTimers.delete(key);
   }
 
-  function queueSave(pointId, text, textarea) {
+  function queueSave(pointId, text){//, textarea) {
     const key = String(pointId || '').trim();
     if (!key) {
       setStatus(textarea, 'No point selected: note not saved.', true);
