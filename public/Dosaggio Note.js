@@ -160,10 +160,10 @@
     const timer = setTimeout(async function () {
       try {
         await saveNote(key, text);
-        setStatus(textarea, 'Note saved to Notes/' + key + '.', false);
+        //setStatus(textarea, 'Note saved to Notes/' + key + '.', false);
       } catch (error) {
         const reason = error && error.message ? error.message : 'unknown-error';
-        setStatus(textarea, 'Save error on Firebase: ' + reason, true);
+       // setStatus(textarea, 'Save error on Firebase: ' + reason, true);
       } finally {
         saveTimers.delete(key);
       }
